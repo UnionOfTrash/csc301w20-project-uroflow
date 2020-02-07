@@ -286,20 +286,20 @@ Describe your team's working culture.
 
 
 >> * Communications:
->>      * We expect to communicate no less than twice a week by Slacks.
->>      * Announcements and summary for weekly meetings will also be uploaded and shared on Slacks.
+>>      * We expect to communicate no less than twice a week by Slack.
+>>      * Announcements and summary for weekly meetings will also be uploaded and shared on Slack.
 >>      * Attendance for meetings is required for every team member. Moderator will be decided on the scene by turns.
 
 >> * Meetings with SickKids:
 >>      * We have established a weekly meeting schedule with SickKids representatives in person every Friday from 10am to 11am.
 >>      * Online meetings can also be held when necessary through Skype.
 >>      * We have also created a Slack channel where team members and SickKids representatives discuss problems related to the project.
->>      * Messages are sent via slacks and emails.
+>>      * Messages are sent via Slack and emails.
 
 >> * Conflict Resolution:
 >>      1. **Indecisions**: If we face indecisions, we will first have a discussion, if we can not make an agreement within a limited time, we hold a simple majority vote.
->>      2. **Non-responsive team members**: Maybe the work looks too time-consuming to the team members? We will try to divide the work allocated to them and make them do smaller work first.
->>      3. **Low efficiency of discussion, too much time spent on useless "chat"**: we will list the key points to talk about during each discussion so that we can focus.
+>>      2. **Non-responsive team members**: Maybe the workload is too heavy for some team members? We will try to divide the work allocated to them and give them smaller tasks first.
+>>      3. **Low efficiency of discussion, too much time spent on useless "chat"**: We will list the key points to talk about during each discussion so that we can focus.
 >>      4. **Lack of cohesion**: we will organize some team-building activities, like having a meal together.
 >>      5. **Some teammates can not finish his / her work because some other teammates are hiding information**: we will encourage everyone to list what information they need to finish his / her part during our regular meeting.
 >>      6. **Some teammates are too shy to share his / her ideas**: we may use some app to allow our teammates to leave his / her opinions anonymously.
