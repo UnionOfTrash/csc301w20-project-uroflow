@@ -240,12 +240,12 @@ Describe meetings (and other events) you are planning to have.
 >>      * For other specific purpose events, like the coding workshop is probably the ad hoc event. We will decide a few days before the event and announce it to the team members by Slack.
 
 >> * Partner Meetings
->> We have had three meetings with our partner. In the first three meetings we have:
+>>      * We have had three meetings with our partner. In the first three meetings we have:
 >>          1. Clarified the app’s functions from both technical and non-technical aspects.
 >>          2. Decided the architecture, tech stack, api and third party applications including framework, language we are using.
 >>          3. Set up weekly meeting schedule with our partner (SickKids) at the Peter Gilgan centre for Research and Learning.
 >>          4. Reviewed and revised our user stories.
-            5. Introduced our roles on the team.
+>>          5. Introduced our roles on the team.
 >>      * In the first two meetings, we clarified some questions we had regrading the app's feature and decided the architechture, tech stack, API and third party applications including framework and language we are using. Our partner and us had agree on a weekly meeting schedule on Friday mornings. 
 >>      * During the third meeitng, we met up with our partners to review and revise our user stories and introduced our roles on the team.
 
