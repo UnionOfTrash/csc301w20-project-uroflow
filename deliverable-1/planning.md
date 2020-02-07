@@ -207,7 +207,7 @@ List each team member and:
 
 >> Karen Chen
 >> * Description of her role and responsibilities
->>      * I will work as a front-end web-app developer in our team and take the responsibilities of the design and implementation of the user interface, also the communication with backend APIs.
+>>      * I will be responsible for hosting team and partner meetings. I will work as a front-end web-app developer in our team and take the responsibilities of the design and implementation of the user interface, also the communication with backend APIs.
 >> * Technical strengths and weaknesses
 >>      * Strength: Python, Java, SQL
 >>      * Weaknesses: JavaScript, [React Native][react-native], [Expo][expo]
