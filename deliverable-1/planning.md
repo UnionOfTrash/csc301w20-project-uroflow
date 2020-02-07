@@ -234,17 +234,20 @@ Describe meetings (and other events) you are planning to have.
 
 
 >> * Weekly Meeting
->>      * We have weekly routine meetings with our teammates in person every Friday afternoon, the schedule is starting at 3 p.m. till 6 p.m. holding at Gerstein Library at University of Toronto St. George Campus. We will book a group study room in advance and other libraries like Roberts, OISE will be selected as backup plans. For each meeting, we will do code review, provide test feedback, share working progress, and schedule meetings for the next coming weeks. Meanwhile, we would talk about some weakness in our corporation and share technical problems that we found in our daily work with each other. For next week's schedule, we will set up detailed deadlines for pushing the feature on the repo, the deadlines are flexible often with a 24-hours extension. Moreover, we would split up in the small groups to talk about our own responsible party and the strategy we need to reach that goal.
+>>      * We have weekly routine meetings with our teammates in person every Friday afternoon from 3 p.m. to 6 p.m at Gerstein Library at University of Toronto St. George Campus. We will book a group study room in advance and other libraries such as Roberts and OISE will be selected as backup plans. In each meeting, we will do code review, provide test feedback, share working progress, and schedule meetings for the next coming weeks. Meanwhile, we would talk about some weakness in our cooperation and share technical problems we found. For next week's schedule, we will set up detailed deadlines for pushing the feature on the repo, the deadlines are flexible often with a 24-hours extension. Moreover, we would split up in small groups to talk about our own responsible party and the strategy we need to reach that goal.
 
->> * Other type events
+>> * Other type of events
 >>      * For other specific purpose events, like the coding workshop is probably the ad hoc event. We will decide a few days before the event and announce it to the team members by Slack.
 
 >> * Partner Meetings
->>      * In the first two meetings we have:
->>          1. Clarified the app’s functions from both technical and non-technical aspects
->>          2. Decide the architecture, tech stack, api and third party applications including framework, language we used
->>          3. Setup weekly meeting schedule with our partner (Sick Kids) at SickKid hospital
->>      * In the first two meetings, we talk with our partner with the questions we listed above. We have a kind and successful meeting with their project manager. We asked the questions we were curious about, and they answered our questions.
+>> We have had three meetings with our partner. In the first three meetings we have:
+>>          1. Clarified the app’s functions from both technical and non-technical aspects.
+>>          2. Decided the architecture, tech stack, api and third party applications including framework, language we are using.
+>>          3. Set up weekly meeting schedule with our partner (SickKids) at the Peter Gilgan centre for Research and Learning.
+>>          4. Reviewed and revised our user stories.
+            5. Introduced our roles on the team.
+>>      * In the first two meetings, we clarified some questions we had regrading the app's feature and decided the architechture, tech stack, API and third party applications including framework and language we are using. Our partner and us had agree on a weekly meeting schedule on Friday mornings. 
+>>      * During the third meeitng, we met up with our partners to review and revise our user stories and introduced our roles on the team.
 
 
 #### Q8: What artifacts will you use to self-organize?
