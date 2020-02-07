@@ -321,9 +321,9 @@ Specify 3 - 5 key decisions and/or insights that came up during your meetings an
 * This section is useful for important information regarding your decision making process that may not necessarily fit in other sections.
 
 
->> 1. We decided to file the application for the partnership with SickKids since they demonstrate a valuable project to us, which has a positive social impact, and we would like to explore the approach to communicate with uriflow database via the given API. As for the partner, SickKids foundation maintains a high reputation among people around. We are keen to cooperate with them to make our society better, as software engineers.
->> 2. We chose the Field application in the first place since music streaming is popular among young people, and we appreciate that  it supports the development of local music. However, there is already an existing product which is quite similar to the idea of Field which makes this project less challenging, let alone Spotify has nearly all the features Field is going to make, which makes Field a less competitive product. \
->> Therefore, we decided to give up the application for the partnership with Field because our team wants a more challenging task so that we can learn more about software development and also we want our product to be competitive in the market.
+>> 1. We decided to apply for the SickKids project since they have a innovative pitch with positive social impact. SickKids has a good reputation among the local community and we would like to work with them to make our community a better place.
+>> 2. We were interested in the Field application at first since music streaming is popular among young people, and we appreciate that it supports the development of local music. However, there is already an existing product which is quite similar to the idea of Field which makes this project less challenging, let alone Spotify has nearly all the features Field is going to make, which makes Field a less competitive product.
+>> Therefore, we decided to give up the application for the partnership with Field because our team wants a more challenging task so that we can learn more about software engineering.
 >> 3. We allocate every teammate with specific front-end and back-end jobs according to their strengths and weaknesses.
 >> 4. Every teammate is optimistic about the application, in case of user acceptance, practical usage, social impact, etc.
 
