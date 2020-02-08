@@ -171,7 +171,7 @@ List each team member and:
 >> Our team has three major software engineering roles, two for front-end development (mobile app and web app) and the one for backend development.
 >> 1. Mobile application: Develop a user interface for patients to use.
 >> 2. Web application: Develop user interface for clinicians to analyze and review the data uploaded by the mobile app and processed by the backend.
->> 3. Backend: Responsible for providing APIs that receive uploaded information from the frontend, updating the database and accessing machine learning model for data processing.
+>> 3. Backend: Responsible for providing APIs that receive uploaded information from the frontend, updating the database and accessing the machine learning model for data processing.
 
 >> Yiwen Zhou
 >> * Description of his role and responsibilities
@@ -192,7 +192,7 @@ List each team member and:
 >>      * I will work as a quality assurance in our team and be responsible for making sure that our web / mobile applications communicate with provided APIs successfully.
 >> * Technical strengths and weaknesses
 >>      * Strength: JQuery, PHP, Ops, [MySQL][mysql]
->>      * Weaknesses: Lack of experience with [React][react], Never used [Expo][expo] before, can hardly write high quality code
+>>      * Weaknesses: Lack of experience with [React][react], Never used [Expo][expo] before, can hardly write high-quality code
 
 >> Qiushi Shi
 >> * Description of his role and responsibilities
@@ -245,8 +245,8 @@ Describe meetings (and other events) you are planning to have.
 >> * Partner Meetings
 >>      * We have had three meetings with our partner. In the first three meetings we have:
 >>          1. Clarified the app's functions from both technical and non-technical aspects.
->>          2. Decided the architecture, tech stack, API and third party applications including framework and language we are using.
->>          3. Set up weekly meeting schedule with our partner (SickKids) at the Peter Gilgan centre for Research and Learning.
+>>          2. Decided the architecture, tech stack, API and third-party applications including framework and language we are using.
+>>          3. Set up a weekly meeting schedule with our partner (SickKids) at the Peter Gilgan Centre for Research and Learning.
 >>          4. Reviewed and revised our user stories.
 >>          5. Introduced our roles on the team.
 >>      * In the first two meetings, we clarified some questions we had regarding the app's feature and decided the architecture, tech stack, API and third-party applications including the framework and language we are using. Our partner and we had agreed on a weekly meeting scheduled on Friday mornings.
@@ -294,7 +294,7 @@ Describe your team's working culture.
 >>      * Attendance for meetings is required for every team member. Moderator will be decided on the scene by turns.
 
 >> * Meetings with SickKids:
->>      * We have established a weekly meeting schedule with SickKids representatives in person every Friday from 10am to 11am.
+>>      * We have established a weekly meeting schedule with SickKids representatives in person every Friday from 10 am to 11 am.
 >>      * Online meetings can also be held when necessary through Skype.
 >>      * We have also created a Slack channel where team members and SickKids representatives discuss problems related to the project.
 >>      * Messages are sent via Slack and emails.
@@ -306,7 +306,7 @@ Describe your team's working culture.
 >>      4. **Lack of cohesion**: we will organize some team-building activities, like having a meal together.
 >>      5. **Some teammates can not finish his / her work because some other teammates are hiding information**: we will encourage everyone to list what information they need to finish his / her part during our regular meeting.
 >>      6. **Some teammates are too shy to share his / her ideas**: we may use some app to allow our teammates to leave his / her opinions anonymously.
->>      7. **Teammates are unwilling to criticize another teammate**: we will avoid criticizing this teammate in public but try to talk to him / her in private.
+>>      7. **Teammates are unwilling to criticize another teammate**: we will avoid criticizing this teammate in public but try to talk to him/her in private.
 
 
 ----
