@@ -18,12 +18,12 @@
 * **Feel free (and very much encouraged) to include useful diagrams, mock-ups and/or links**.
 
 
->> Our product is an application that allows urology patients to do uroflowmetry at home and send test data remotely to clinicians. [Uroflowmetry](https://www.aboutkidshealth.ca/Article?contentid=1269&language=English) is a common practice in urology clinics to evaluate a patient’s urine flow rate. The patient is asked to urinate into a device called a flow rate toilet that measures the volume and rate of urine flow. A uroflow curve is then generated based on the test result of the patient.
+>> Our product is an application that allows urology patients to do uroflowmetry at home and send test data remotely to clinicians. [Uroflowmetry](https://www.aboutkidshealth.ca/Article?contentid=1269&language=English) is a common practice in urology clinics to evaluate a patient's urine flow rate. The patient is asked to urinate into a device called a flow rate toilet that measures the volume and rate of urine flow. A uroflow curve is then generated based on the test result of the patient.
 
 >> This is an example of a uroflow curve: \
 >> ![Example Uroflow Curve](images/uroflow_curve.png)
 
->> Currently, uroflowmetry tests can only be done with a machine in clinics. Since the test is regularly conducted and relatively easy compared to other urodynamic tests, it is taking up time from nurses that could be better spent on other tasks. Imagine a busy day at an understaffed urology clinic, if urodynamics nurses had to do uroflowmetry for many of the patients, there would be less time for them to conduct more intellectually demanding tests such as [cystometrogram](https://www.aboutkidshealth.ca/Article?contentid=1291&language=English). From the patient’s perspective, the test is not easily accessible since patients need to travel to the clinic to do the test. A young patient living outside Ontario would have trouble showing up to every followup uroflowmetry test at SickKids’ clinic, which is located in Toronto.
+>> Currently, uroflowmetry tests can only be done with a machine in clinics. Since the test is regularly conducted and relatively easy compared to other urodynamic tests, it is taking up time from nurses that could be better spent on other tasks. Imagine a busy day at an understaffed urology clinic, if urodynamics nurses had to do uroflowmetry for many of the patients, there would be less time for them to conduct more intellectually demanding tests such as [cystometrogram](https://www.aboutkidshealth.ca/Article?contentid=1291&language=English). From the patient's perspective, the test is not easily accessible since patients need to travel to the clinic to do the test. A young patient living outside Ontario would have trouble showing up to every followup uroflowmetry test at SickKids' clinic, which is located in Toronto.
 
 >> We are planning to build a web app and a mobile app to solve this problem. Through our product, patients would record the sound of urine through the mobile app, which is then directly sent to the web database where it is passed through a pre-developed natural network model and a uroflow curve is generated. The curve is then shared with predefined web users (clinicians) and is pushed back to mobile users (patients).
 
@@ -53,7 +53,7 @@
     * How does this align with your partner's organization's values/mission/mandate?
 
 
->> Our application can save users time. With our application, patients don’t need to rush to the hospital to provide a urine sample. Instead, they only need to collect the sound of urine through the application. Doctors and nurses can obtain more frequent and accurate uroflowmetry samples which will improve their ability to diagnose, prognosticate, and treat their patients. Researchers can use the application for technical research to improve the ability of the algorithm to derive a uroflow curve from sound in many different environments and they can use the application for clinical research to evaluate how increasing the number and frequency of uroflowmetry changes clinical management and outcomes.
+>> Our application can save users time. With our application, patients don't need to rush to the hospital to provide a urine sample. Instead, they only need to collect the sound of urine through the application. Doctors and nurses can obtain more frequent and accurate uroflowmetry samples which will improve their ability to diagnose, prognosticate, and treat their patients. Researchers can use the application for technical research to improve the ability of the algorithm to derive a uroflow curve from sound in many different environments and they can use the application for clinical research to evaluate how increasing the number and frequency of uroflowmetry changes clinical management and outcomes.
 
 >> Also, our application allows users to discover new information. The statistical analysis of urine data our application supports can help doctors make better plans of treatment. Collecting urine sound samples routinely makes patients actively participate in the treatment, which is beneficial to their mental health and can strengthen their willingness to recover from the disease, and it also enables patients to more frequently update their care provider with current and salient information about their condition.
 
@@ -72,7 +72,7 @@
 * What is your testing strategy?
 
 
->> We are planning to use JavaScript/TypeScript throughout the whole project. As there is an existing prototype on hand, we will just go ahead and use the same frameworks that prototype depends on, that is, [Expo][expo] for the mobile app frontend, [React][react] for the web app frontend that will be built from the ground up, [Feathers][feathers] for the backend API\authentication stuff and [PostgreSQL][postgres] for the database. [Docker][docker] will be introduced for both deployment and testing purposes to maintain a consistent and purely clean environment for the app to run smoothly such that "well the app does run on my computer, there’s no reason it fails on the production server" kind of stories could be prevented. Both the production version of the backend and the web app will be hosted on our partner’s server, and the mobile app will be pushed into the public preview channel of Google Play Store (for Android) and App Store (for iOS), though the beta version will be tested and hosted on our private servers for a much easier server management.
+>> We are planning to use JavaScript/TypeScript throughout the whole project. As there is an existing prototype on hand, we will just go ahead and use the same frameworks that prototype depends on, that is, [Expo][expo] for the mobile app frontend, [React][react] for the web app frontend that will be built from the ground up, [Feathers][feathers] for the backend API\authentication stuff and [PostgreSQL][postgres] for the database. [Docker][docker] will be introduced for both deployment and testing purposes to maintain a consistent and purely clean environment for the app to run smoothly such that "well the app does run on my computer, there's no reason it fails on the production server" kind of stories could be prevented. Both the production version of the backend and the web app will be hosted on our partner's server, and the mobile app will be pushed into the public preview channel of Google Play Store (for Android) and App Store (for iOS), though the beta version will be tested and hosted on our private servers for a much easier server management.
 
 >> Both the mobile app and the web app will exchange data with an API gateway using the [Feathers][feathers] framework that can redirect requests to specific API microservices that talk directly to the database. We may also deploy a message queue so that messages between microservices can be shared and pushed to predefined users.
 >> ![Architecture Diagram](images/arch_diagram.svg)
@@ -126,19 +126,19 @@
 >>      * Clinicians have to set their password for the first time they log on to the mobile app
 >>      * If the password is not set then clinicians are not allowed to access the features
 
->> 9. As a urology clinician at SickKids, I want to login to the web app using the predefined username so that I can access my patient’s test results.
+>> 9. As a urology clinician at SickKids, I want to login to the web app using the predefined username so that I can access my patient's test results.
 >>      * Login clinicians only when given the correct username and password match
 >>      * Clinicians can start using the web app only when they are logged in
 
->> 10. As a urology clinician in SickKids, I want to view a patient’s test results in my clinic so that I can prognosticate and diagnose more effectively.
->>      * Clinicians can view a patient’s urine flow test results
+>> 10. As a urology clinician in SickKids, I want to view a patient's test results in my clinic so that I can prognosticate and diagnose more effectively.
+>>      * Clinicians can view a patient's urine flow test results
 >>      * Clinicians can view the urine conditions (such as "leak", "urgency" and "poop") entered by the patients
 >>      * Clinicians can view the statistical result such as total void and max flow returned by the machine learning model
 >>      * The username of clinician who has most recently viewed the feedback will be recorded and displayed
 
->> 11. As a urology clinician in SickKids, I want to search a patient’s past records by their unique identifiers.
+>> 11. As a urology clinician in SickKids, I want to search a patient's past records by their unique identifiers.
 >>      * Clinicians can search a patient's profile by their unique identifiers.
->>      * A patient’s profile will include all of their past uroflowmetry test results.
+>>      * A patient's profile will include all of their past uroflowmetry test results.
 
 >> 12. As a urology clinician at SickKids, I want to view all uploads from my patients, so I can know which patients did their tests recently
 >>      * Clinicians are able to view all uploads sorted by time.
@@ -177,7 +177,7 @@ List each team member and:
 >> * Description of his role and responsibilities
 >>      * I will work as a coordinator that gets in touch with our partner and our TA, also be managing our Github repo and infrastructures for a more convenient DevOps procedure. For software-related work, I will take over the backend job that provides reliable data exchange channels to frontends.
 >> * Technical strengths and weaknesses
->>      * Strength: I’m good at JavaScript, Python and C and previously worked with Linux, [Docker][docker], Github Actions and [Express](express), which is a backend framework of JavaScript that is similar to [Feathers][feathers].
+>>      * Strength: I'm good at JavaScript, Python and C and previously worked with Linux, [Docker][docker], Github Actions and [Express](express), which is a backend framework of JavaScript that is similar to [Feathers][feathers].
 >>      * Weaknesses: I lack experience with UI/UX design due to a bad taste in art.
 
 >> Kexin Lin
@@ -244,12 +244,12 @@ Describe meetings (and other events) you are planning to have.
 
 >> * Partner Meetings
 >>      * We have had three meetings with our partner. In the first three meetings we have:
->>          1. Clarified the app’s functions from both technical and non-technical aspects.
+>>          1. Clarified the app's functions from both technical and non-technical aspects.
 >>          2. Decided the architecture, tech stack, API and third party applications including framework and language we are using.
 >>          3. Set up weekly meeting schedule with our partner (SickKids) at the Peter Gilgan centre for Research and Learning.
 >>          4. Reviewed and revised our user stories.
 >>          5. Introduced our roles on the team.
->>      * In the first two meetings, we clarified some questions we had regarding the app's feature and decided the architecture, tech stack, API and third-party applications including the framework and language we are using. Our partner and we had agreed on a weekly meeting scheduled on Friday mornings. 
+>>      * In the first two meetings, we clarified some questions we had regarding the app's feature and decided the architecture, tech stack, API and third-party applications including the framework and language we are using. Our partner and we had agreed on a weekly meeting scheduled on Friday mornings.
 >>      * During the third meeting, we met up with our partners to review and revise our user stories and introduced our roles on the team.
 
 
