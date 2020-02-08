@@ -57,7 +57,7 @@
 
 >> Also, our application allows users to discover new information. The statistical analysis of urine data our application supports can help doctors make better plans of treatment. Collecting urine sound samples routinely makes patients actively participate in the treatment, which is beneficial to their mental health and can strengthen their willingness to recover from the disease, and it also enables patients to more frequently update their care provider with current and salient information about their condition.
 
->> Regarding whether this application exists in another form, we would declare that our application is a professional, and specific task focused application, used for cooperating with the treatment of sick kids suffering from urological conditions, whose usage is rather narrow. There can hardly be similar products on the market. If we want to do comparison with products used in similar fields, i.e, medical product, our application is designed to bring more convenience to patients and provide user-centered experience since kids are a group that needs extra care.
+>> Regarding whether this application exists in another form, we would describe our product as a professional and task-oriented application used for the diagnosis and treatment for children suffering from urological conditions, whose usage is rather narrow. This is a novel technology and there is no similar product on the market. If we want to compare with products used in similar fields, i.e, laboratory test equipments, our application is designed to bring more convenience to patients and provide user-centered experience since children are a group that requires extra care.
 
 >> Last but not least, we can proudly say that our application aligns with our partner's organization's values. As we know, SickKids Hospital is fighting to save lives, to find new cures and to provide world-class care. Providing sick children with a better measurement of their urological condition through our application with greater convenience and efficiency, therefore aligning with the SickKids mandate.
 
@@ -88,16 +88,16 @@
 * The user stories should be written in Github and each one must have clear acceptance criteria.
 
 
->> 1. As a new urology patient at SickKids, for the first time I login I want to set a password so that I can take full control of my account.
+>> 1. As a new urology patient at SickKids, for the first time I log in I want to set a password so that I can take full control of my account.
 >>      * Patients have to set their password for the first time they log on to the mobile app
 >>      * If the password is not set then patients are not allowed to access the features
->>      * Passwords should be inputted twice in order to avoid any typos
+>>      * Passwords should be inputted twice to avoid any typos
 
 >> 2. As a urology patient at SickKids, I want to login to this mobile app using the predefined username so that I can access the app.
 >>      * Login patients only when given the correct username and password match
 >>      * Patients can start using the mobile app only when they are logged in
 
->> 3. As a urology patient at SickKids, I want to record my urine sound in the app so that I can have a more productive visit in the clinic.
+>> 3. As a urology patient at SickKids, I want to record my urine sound in the app so that I can have a more productive visit at the clinic.
 >>      * Having a record option for patients
 >>      * Require a timestamp after saving the record
 >>      * Imply patients the start of a recording process
@@ -109,20 +109,20 @@
 
 >> 5. As a urology patient at SickKids, I want to upload my void sound through the app so that I can take my uroflowmetry tests remotely
 >>      * Patients can upload void sound recording
->>      * Uploading can be done off site if there is an Internet connection
+>>      * Uploading can be done off-site if there is an Internet connection
 >>      * Before uploading patients could have a second chance to review the sound
 >>      * Patients can select to upload either one or more records
 >>      * Patients can enter their urine condition, including "leak", "urgency" and "poop", during the upload
 
 >> 6. As a urology patient at SickKids, I want to view my uroflow curve so that I can get to know my current health condition
->>      * Patients can select to view a certain feedback from a uploaded record
+>>      * Patients can select to view the generated curve from a uploaded recording
 
 >> 7. As a urology patient at SickKids, I want to view all my past uroflow so that I can keep a record of my past test results.
 >>      * Patients will be able to see all the records and feedbacks
 >>      * Patients can select what to see within some years, some months, some weeks or some days
 >>      * Patients can sort all the information based on time or urgent level
 
->> 8. As a new urology clinician in SickKids, for the first time I login I want to set a password so that I can access the web app.
+>> 8. As a new urology clinician in SickKids, for the first time I log in I want to set a password so that I can access the web app.
 >>      * Clinicians have to set their password for the first time they log on to the mobile app
 >>      * If the password is not set then clinicians are not allowed to access the features
 
@@ -134,14 +134,14 @@
 >>      * Clinicians can view a patient's urine flow test results
 >>      * Clinicians can view the urine conditions (such as "leak", "urgency" and "poop") entered by the patients
 >>      * Clinicians can view the statistical result such as total void and max flow returned by the machine learning model
->>      * The username of clinician who has most recently viewed the feedback will be recorded and displayed
+>>      * The username of clinicians who has most recently viewed the feedback will be recorded and displayed
 
->> 11. As a urology clinician in SickKids, I want to search a patient's past records by their unique identifiers.
+>> 11. As a urology clinician in SickKids, I want to search a patient's past uploadings by their unique identifiers.
 >>      * Clinicians can search a patient's profile by their unique identifiers.
 >>      * A patient's profile will include all of their past uroflowmetry test results.
 
 >> 12. As a urology clinician at SickKids, I want to view all uploads from my patients, so I can know which patients did their tests recently
->>      * Clinicians are able to view all uploads sorted by time.
+>>      * Clinicians can view all uploads sorted by time.
 >>      * There will be an indication if there is a new upload from a patient
 
 >> 13. As a urology clinician at SickKids, I want to be able to add a new patient to the system so my new patients can start using this app.
