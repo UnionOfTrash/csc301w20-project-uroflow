@@ -182,35 +182,35 @@ List each team member and:
 
 >> Kexin Lin
 >> * Description of her role and responsibilities
->>      * I will work as a front-end developer in our team and take the responsibilities of making the user interface for web and mobile applications.
+>>      * I will work as a front-end developer in our team and be responsible for making the user interface for web and mobile applications.
 >> * Technical strengths and weaknesses
 >>      * Strengths: JavaScript, [React][react], [MongoDB][mongo]
 >>      * Weaknesses: Lack of experience with [React Native][react-native]
 
 >> Pan Chen
 >> * Description of his role and responsibilities
->>      * I will work as a quality assurance in our team and take the responsibilities of making sure that our web / mobile applications communicate with provided APIs successfully.
+>>      * I will work as a quality assurance in our team and be responsible for making sure that our web / mobile applications communicate with provided APIs successfully.
 >> * Technical strengths and weaknesses
 >>      * Strength: JQuery, PHP, Ops, [MySQL][mysql]
 >>      * Weaknesses: Lack of experience with [React][react], Never used [Expo][expo] before, can hardly write high quality code
 
 >> Qiushi Shi
 >> * Description of his role and responsibilities
->>      * I will work as a front-end web-app developer in our team and take the responsibility for the design and implementation of the user interface, also the communication with backend APIs.
+>>      * I will work as a front-end web-app developer in our team and be responsible for the design and implementation of the user interface, also the communication with backend APIs.
 >> * Technical strengths and weaknesses
 >>      * Strength: [Node.js][node], [React][react], [MongoDB][mongo]
 >>      * Weaknesses: Lack of experience with [React Native][react-native] as [Expo][expo]
 
 >> Yuxin Yang
 >> * Description of his role and responsibilities
->>      * I will work as a mobile app developer in our team and take responsibilities of the design and implementation of the user interface and the communication with APIs.
+>>      * I will work as a mobile app developer in our team and be responsible for the design and implementation of the user interface and the communication with APIs.
 >> * Technical strengths and weaknesses
 >>      * Strength: Python, C, SQL
 >>      * Weaknesses: [React Native][react-native], JavaScript, [Expo][expo]
 
 >> Karen Chen
 >> * Description of her role and responsibilities
->>      * I will be responsible for hosting team and partner meetings. I will work as a front-end web-app developer in our team and take the responsibilities of the design and implementation of the user interface, also the communication with backend APIs.
+>>      * I will be responsible for hosting team and partner meetings. For software-related work, I will work as a front-end web-app developer in our team and be responsible for the design and implementation of the user interface, also the communication with backend APIs.
 >> * Technical strengths and weaknesses
 >>      * Strength: Python, Java, SQL
 >>      * Weaknesses: JavaScript, [React Native][react-native], [Expo][expo]
