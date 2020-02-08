@@ -1,5 +1,5 @@
-# We are the SickKids
-> _Note:_ This document is meant to evolve throughout the planning phase of your project. That is, it makes sense for you commit regularly to this file while working on the project (especially edits/additions/deletions to the _Highlights_ section). Most importantly, it is a reflection of all the planning you work you've done in the first iteration.
+# SickKids Uroflowmetry
+> _Note:_ This document is meant to evolve throughout the planning phase of your project. That is, it makes sense for you commit regularly to this file while working on the project (especially edits/additions/deletions to the _Highlights_ section). Most importantly, it is a reflection of all the planning you work you've done in the first iteration. \
 > **This document will serve as a master plan between your team, your partner and your TA.**
 
 ## Product Details
@@ -20,11 +20,15 @@
 
 >> Our product is an application that allows urology patients to do uroflowmetry at home and send test data remotely to clinicians. [Uroflowmetry](https://www.aboutkidshealth.ca/Article?contentid=1269&language=English) is a common practice in urology clinics to evaluate a patient’s urine flow rate. The patient is asked to urinate into a device called a flow rate toilet that measures the volume and rate of urine flow. A uroflow curve is then generated based on the test result of the patient.
 
+>> This is an example of a uroflow curve: \
+>> ![Example Uroflow Curve](images/uroflow_curve.png)
+
 >> Currently, uroflowmetry tests can only be done with a machine in clinics. Since the test is regularly conducted and relatively easy compared to other urodynamic tests, it is taking up time from nurses that could be better spent on other tasks. Imagine a busy day at an understaffed urology clinic, if urodynamics nurses had to do uroflowmetry for many of the patients, there would be less time for them to conduct more intellectually demanding tests such as [cystometrogram](https://www.aboutkidshealth.ca/Article?contentid=1291&language=English). From the patient’s perspective, the test is not easily accessible since patients need to travel to the clinic to do the test. A young patient living outside Ontario would have trouble showing up to every followup uroflowmetry test at SickKids’ clinic, which is located in Toronto.
 
 >> We are planning to build a web app and a mobile app to solve this problem. Through our product, patients would record the sound of urine through the mobile app, which is then directly sent to the web database where it is passed through a pre-developed natural network model and a uroflow curve is generated. The curve is then shared with predefined web users (clinicians) and is pushed back to mobile users (patients).
 
->> ![Example Uroflow Curve](images/uroflow_curve.png)
+>> This is a brief view of the prototype: \
+>> ![Prototype](images/prototype.gif)
 
 
 #### Q2: Who are your target users?
@@ -70,7 +74,8 @@
 
 >> We are planning to use JavaScript/TypeScript throughout the whole project. As there is an existing prototype on hand, we will just go ahead and use the same frameworks that prototype depends on, that is, [Expo][expo] for the mobile app frontend, [React][react] for the web app frontend that will be built from the ground up, [Feathers][feathers] for the backend API\authentication stuff and [PostgreSQL][postgres] for the database. [Docker][docker] will be introduced for both deployment and testing purposes to maintain a consistent and purely clean environment for the app to run smoothly such that "well the app does run on my computer, there’s no reason it fails on the production server" kind of stories could be prevented. Both the production version of the backend and the web app will be hosted on our partner’s server, and the mobile app will be pushed into the public preview channel of Google Play Store (for Android) and App Store (for iOS), though the beta version will be tested and hosted on our private servers for a much easier server management.
 
->> Both the mobile app and the web app will exchange data with an API gateway using the [Feathers][feathers] framework that can redirect requests to specific API microservices that talk directly to the database. We may also deploy a message queue so that messages between microservices can be shared and pushed to predefined users.![Diagrams Here]()
+>> Both the mobile app and the web app will exchange data with an API gateway using the [Feathers][feathers] framework that can redirect requests to specific API microservices that talk directly to the database. We may also deploy a message queue so that messages between microservices can be shared and pushed to predefined users.
+>> ![Architecture Diagram](images/arch_diagram.svg)
 
 >> We are following a test-driven development model such that all tests will be pre-written before the actual implementation starts. For each commit and push to the remote repository we make, the testing server will automatically run through all unit tests and provide feedback. After releasing a version, the testing server will run through integration tests and UI tests to make sure all the apps will work as a complete system (manual tests will also be involved). The testing server might also be hosted on our own, running a [Jenkins][jenkins] instance.
 
@@ -84,69 +89,69 @@
 
 
 >> 1. As a new urology patient at SickKids, for the first time I login I want to set a password so that I can take full control of my account.
->> - Patients have to set their password for the first time they log on to the mobile app
->> - If the password is not set then patients are not allowed to access the features
->> - Passwords should be inputted twice in order to avoid any typos
+>>      * Patients have to set their password for the first time they log on to the mobile app
+>>      * If the password is not set then patients are not allowed to access the features
+>>      * Passwords should be inputted twice in order to avoid any typos
 
 >> 2. As a urology patient at SickKids, I want to login to this mobile app using the predefined username so that I can access the app.
->> - Login patients only when given the correct username and password match
->> - Patients can start using the mobile app only when they are logged in
+>>      * Login patients only when given the correct username and password match
+>>      * Patients can start using the mobile app only when they are logged in
 
->> 3. As a urology patient at SickKids, I want to record my urine sound in the app so that I do not need to record through other applications before uploading.
->> - Having a record option for patients
->> - Imply patients the start of a recording process
->> - Still can accept records from other applications
+>> 3. As a urology patient at SickKids, I want to record my urine sound in the app so that I can have a more productive visit in the clinic.
+>>      * Having a record option for patients
+>>      * Require a timestamp after saving the record
+>>      * Imply patients the start of a recording process
 
 >> 4. As a urology patient at SickKids, I want to cancel or delete my recordings so I do not upload a false recording to the system.
-Patients can choose to delete their recordings before submitting them.
->> - A ten-day resume time will be given if patients accidentally delete a record
->> - The resume time is only applicable for those that record by this mobile app
+>>      * Patients can choose to delete their recordings before submitting them.
+>>      * A ten-day recovery time will be given if patients accidentally delete a record
+>>      * The recovery functionality is only applicable for those that record by this mobile app
 
 >> 5. As a urology patient at SickKids, I want to upload my void sound through the app so that I can take my uroflowmetry tests remotely
->> - Patients can upload void sound recording
->> - Uploading can be done off site if there is an Internet connection
->> - Before uploading patients could have a second chance to revise the sound
+>>      * Patients can upload void sound recording
+>>      * Uploading can be done off site if there is an Internet connection
+>>      * Before uploading patients could have a second chance to review the sound
+>>      * Patients can select to upload either one or more records
+>>      * Patients can enter their urine condition, including "leak", "urgency" and "poop", during the upload
 
 >> 6. As a urology patient at SickKids, I want to view my uroflow curve so that I can get to know my current health condition
->> - Patients can select to view a certain feedback from a uploaded record
+>>      * Patients can select to view a certain feedback from a uploaded record
 
 >> 7. As a urology patient at SickKids, I want to view all my past uroflow so that I can keep a record of my past test results.
->> - Patients will be able to see all the records and feedbacks
->> - Patients can select what to see within some years, some months, some weeks or some days
->> - Patients can sort all the information based on time or urgent level
+>>      * Patients will be able to see all the records and feedbacks
+>>      * Patients can select what to see within some years, some months, some weeks or some days
+>>      * Patients can sort all the information based on time or urgent level
 
->> 8. As a urology patient at SickKids, I want to view my doctor’s comment on test result (if there is any), so that I will know when my results are abnormal.
->> - Patients are able to see their doctor’s comment (if they left one) in the test result page, along with the uroflow curve.
->> - Patients can also reply to the comments
+>> 8. As a new urology clinician in SickKids, for the first time I login I want to set a password so that I can access the web app.
+>>      * Clinicians have to set their password for the first time they log on to the mobile app
+>>      * If the password is not set then clinicians are not allowed to access the features
 
->> 9. As a new urology clinician in SickKids, for the first time I login I want to set a password so that I can access the web app.
->> - Clinicians have to set their password for the first time they log on to the mobile app
->> - If the password is not set then Clinicians are not allowed to access the features
+>> 9. As a urology clinician at SickKids, I want to login to the web app using the predefined username so that I can access my patient’s test results.
+>>      * Login clinicians only when given the correct username and password match
+>>      * Clinicians can start using the web app only when they are logged in
 
->> 10. As a urology clinician at SickKids, I want to login to the web app using the predefined username so that I can access my patient’s test results.
->> - Login clinicians only when given the correct username and password match
->> - Clinicians can start using the web app only when they are logged in
+>> 10. As a urology clinician in SickKids, I want to view a patient’s test results in my clinic so that I can prognosticate and diagnose more effectively.
+>>      * Clinicians can view a patient’s urine flow test results
+>>      * Clinicians can view the urine conditions (such as "leak", "urgency" and "poop") entered by the patients
+>>      * Clinicians can view the statistical result such as total void and max flow returned by the machine learning model
+>>      * The username of clinician who has most recently viewed the feedback will be recorded and displayed
 
->> 11. As a urology clinician in SickKids, I want to view all patient’s test results so that I can prognosticate and diagnose more effectively.
->> - Clinicians can view all patient’s test results.
+>> 11. As a urology clinician in SickKids, I want to search a patient’s past records by their unique identifiers.
+>>      * Clinicians can search a patient's profile by their unique identifiers.
+>>      * A patient’s profile will include all of their past uroflowmetry test results.
 
->> 12. As a urology clinician in SickKids, I want to search a patient’s past records by their name.
->> - Clinicians can search a patient’s profile by their name.
->> - A patient’s profile will include all of their past uroflowmetry test results.
+>> 12. As a urology clinician at SickKids, I want to view all uploads from my patients, so I can know which patients did their tests recently
+>>      * Clinicians are able to view all uploads sorted by time.
+>>      * There will be an indication if there is a new upload from a patient
 
->> 13. As a urology clinician at SickKids, I want to view all recent uploads from my patients, so I can know which patients did their tests recently
->> - Clinicians are able to view all uploads sorted by time.
+>> 13. As a urology clinician at SickKids, I want to be able to add a new patient to the system so my new patients can start using this app.
+>>      * Clinicians can add a new patient into the system.
+>>      * Clinicians can send an invitation to the patients
+>>      * A random unique id will be generated for each new patient
 
->> 14. As a urology clinician at SickKids, I want to be able to see feedback for a certain patient so I am notified when one of my patients has an abnormal condition.
->> - Clinicians can see feedback (whether it is normal or abnormal) from the generated curve.
-
->> 15. As a urology clinician at SickKids, I want to view a particular curve in detail so that I can assess if there is an abnormality.
->> - Clinicians can view a particular curve in detail, for example looking up
-
->> 16. As a urology clinician at SickKids, I want to be able to add a new patient to the system so my new patients can start using this app.
->> - Clinicians can add a new patient into the system.
->> - Clinicians need to provide some basic information when adding a new patient into the system
->> - A random username will be generated for the new patient
+>> 14. As a group admin at SickKids, I want to add new users to the system so that new fellows will be able to access this system.
+>>      * Group admins are only allowed to add users in the same group
+>>      * Group admins can add more than 1 people to the group
 
 
 ----
