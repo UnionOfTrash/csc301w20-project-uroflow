@@ -116,7 +116,16 @@ Our product is an application that allows urology patients to do uroflowmetry at
  2. Web application: Develop user interface for clinicians to analyze and review the data uploaded by the mobile app and processed by the backend.
  3. Backend: Responsible for providing APIs that receive uploaded information from the frontend, updating the database and accessing the machine learning model for data processing.
 
- Yiwen Zhou
+| Name| Role and Responsibilities| Strengths | Weaknesses|
+| ---------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| Yiwen Zhou | I will work as a coordinator that gets in touch with our partner and our TA, also be managing our github repo and infrastructures for a more convenient DevOps procedure. For software-related work, I will take over the backend job that provides reliable data exchange channel to the frontend. | I’m good at JavaScript, Python and C and previously worked with Linux, [Docker][docker], Github Actions and [Express](express), which is a backend framework of JavaScript that is similar to [Feathers][feathers]. | I lack experience with UI/UX design due to a bad taste in art. |
+| Karen Chen | I will be responsible for hosting team and partner meetings. For software-related work, I will work as a front-end web-app developer in our team and be responsible for the design and implementation of the user interface, also the communication with backend APIs.| Python, Java, SQL| JavaScript, [React Native][react-native], [Expo][expo]|
+| Kexin Lin  | I will work as a front-end developer in our team and take the responsibilities of making user interface for web and mobile applications.| JavaScript, [React][react], [MongoDB][mongo]| Lack of experience with [React Native][react-native]|
+|Pan Chen|I will work as a quality assurance in our team and be responsible for making sure that our web / mobile applications communicate with provided APIs successfully.|JQuery, PHP, Ops, [MySQL][mysql]|Lack of experience with [React][react], Never used [Expo][expo] before, can hardly write high-quality code|
+|Qiushi Shi|I will work as a front-end web-app developer in our team and be responsible for the design and implementation of the user interface, also the communication with backend APIs.|[Node.js][node], [React][react], [MongoDB][mongo]|Lack of experience with [React Native][react-native] as [Expo][expo]|
+|Yuxin Yang|I will work as a mobile app developer in our team and be responsible for the design and implementation of the user interface and the communication with APIs.|Python, C, SQL|[React Native][react-native], JavaScript, [Expo][expo]|
+|Jingjing Gu|I will work as a front-end developer and be responsible for user authentication and user interface implementation.|Java, PHP, Python|[React Native][react-native], [Expo][expo], Code simpleness|
+ <!-- Yiwen Zhou
  * Description of his role and responsibilities
       * I will work as a coordinator that gets in touch with our partner and our TA, also be managing our Github repo and infrastructures for a more convenient DevOps procedure. For software-related work, I will take over the backend job that provides reliable data exchange channels to frontends.
  * Technical strengths and weaknesses
@@ -163,7 +172,7 @@ Our product is an application that allows urology patients to do uroflowmetry at
       * I will work as a front-end developer and be responsible for user authentication and user interface implementation.
  * Technical strengths and weaknesses
       * Strength: Java, PHP, Python
-      * Weakness: [React Native][react-native], [Expo][expo], Code simpleness
+      * Weakness: [React Native][react-native], [Expo][expo], Code simpleness -->
 
 
 #### Q7: What operational events will you have as a team?
