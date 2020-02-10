@@ -112,9 +112,10 @@ Our product is an application that allows urology patients to do uroflowmetry at
 #### Q6: What are the roles & responsibilities on the team?
 
  Our team has three major software engineering roles, two for front-end development (mobile app and web app) and the one for backend development.
- 1. Mobile application: Develop a user interface for patients to use.
- 2. Web application: Develop user interface for clinicians to analyze and review the data uploaded by the mobile app and processed by the backend.
- 3. Backend: Responsible for providing APIs that receive uploaded information from the frontend, updating the database and accessing the machine learning model for data processing.
+1. Mobile application: Develop a user interface for patients to use. We will have three members working on the mobile application.
+2. Web application: Develop user interface for clinicians to analyze and review the data uploaded by the mobile app and processed by the backend. We will have three members working on the web application.
+3. Backend: Responsible for providing APIs that receive uploaded information from the frontend, updating the database and accessing the machine learning model for data processing. We will have one member who is responsible for our backend.
+4. Quality Assurance: Responsible for writing tests to ensure the quality of our application. We will have two members responsible for quality assurance.
 
 | Name| Role and Responsibilities| Strengths | Weaknesses|
 | ---------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
