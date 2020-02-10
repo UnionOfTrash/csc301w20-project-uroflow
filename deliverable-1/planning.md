@@ -181,7 +181,7 @@ Our product is an application that allows urology patients to do uroflowmetry at
       * We have weekly routine meetings with our teammates in person every Friday afternoon from 3 p.m. to 6 p.m at Gerstein Library at the University of Toronto St. George Campus. We will book a group study room in advance and other libraries such as Roberts and OISE will be selected as backup plans. In each meeting, we will do code review, provide test feedback, share working progress, and schedule meetings for the next coming weeks. Meanwhile, we would talk about some weakness in our cooperation and share technical problems we found. For next week's schedule, we will set up detailed deadlines for pushing the feature on the repo, the deadlines are flexible often with a 24-hours extension. Moreover, we would split up in small groups to talk about our own responsible party and the strategy we need to reach that goal.
 
  * Other types of events
-      * For other specific purpose events coding workshop is probably the ad hoc event. We will decide a few days before the event and announce it to the team members by Slack.
+      * We are planning to host ad hoc events when a significant technical issue has come up. We will announce it to the team members on Slack at least 24 hours before the event.
 
  * Partner Meetings
       * We have had three meetings with our partner. In the first three meetings we have:
@@ -216,13 +216,11 @@ Our product is an application that allows urology patients to do uroflowmetry at
       * Messages are sent via Slack and emails.
 
  * Conflict Resolution:
-      1. **Indecisions**: If we face indecisions, we will first have a discussion, if we can not reach an agreement within a limited time, we hold a simple majority vote.
+      1. **Indecisions**: If we face indecisions, we will first have a discussion about it. If we can not reach an agreement within a limited time, we will hold a simple majority vote.
       2. **Non-responsive team members**: Maybe the workload is too heavy for some team members? We will try to divide the work allocated to them and give them smaller tasks first.
       3. **Low efficiency of discussion, too much time spent on useless "chat"**: We will list the key points to talk about during each discussion so that we can focus.
-      4. **Lack of cohesion**: we will organize some team-building activities, like having a meal together.
-      5. **Some teammates can not finish his / her work because some other teammates are hiding information**: we will encourage everyone to list what information they need to finish his / her part during our regular meeting.
-      6. **Some teammates are too shy to share his / her ideas**: we may use some app to allow our teammates to leave his / her opinions anonymously.
-      7. **Teammates are unwilling to criticize another teammate**: we will avoid criticizing this teammate in public but try to talk to him/her in private.
+      4. **Lack of cohesion**: We will organize team-building activities at least once a month, like having a meal together.
+      5. **Some teammates are too shy to share his / her ideas**: we may use some app to allow our teammates to leave his / her opinions anonymously.
 
 
 ----
