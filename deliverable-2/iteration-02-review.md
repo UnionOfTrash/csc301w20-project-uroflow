@@ -43,22 +43,11 @@ List any **process-related** (i.e. team organization and how you work) changes y
 
 ## Product - Review
 
-#### Q4. Goals and/or tasks that were met/completed:
-
- * From most to least important.
- * Refer/link to artifact(s) that show that a goal/task was met/completed.
- * If a goal/task was not part of the original iteration plan, please mention it.
-
-#### Q5. Goals and/or tasks that were planned but not met/completed:
-
- * From most to least important.
- * For each goal/task, explain why it was not met/completed.      
-   e.g. Did you change your mind, or did you just not get to it yet?
-
-#### Q6. How was your product demo?
+#### Q4. How was your product demo?
  * How did you prepare your demo?
  * What did you manage to demo to your partner?
  * Did your partner accept the features?
  * Were there change requests?
  * What did you learn from the demo from either a process or product perspective?
+ * *This section will be marked very leniently so keep it brief and just make sure the points are addressed*
 
