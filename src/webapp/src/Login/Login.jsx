@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
 function Login() {
 
     const [ email, setEmail ] = useState("")
-    const [password, setpassword] = useState("")
+    const [password, setPassword] = useState("")
 
 
     const classes = useStyles();
@@ -65,7 +65,7 @@ function Login() {
     }
 
     const handlePasswordChange = (e) => {
-        setpassword(e.target.value)
+        setPassword(e.target.value)
     }
 
     return (
