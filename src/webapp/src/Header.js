@@ -22,7 +22,7 @@ function Header() {
 
   const classes = useStyles();
 
-  const [ groupName, setGroupName ] = useState('SickKids');
+  const [ groupName, setGroupName ] = useState('Uroflow');
   const [ userName, setUserName] = useState('Test');
 
   return (
