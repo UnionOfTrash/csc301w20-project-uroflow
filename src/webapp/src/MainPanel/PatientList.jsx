@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Grid, Paper } from '@material-ui/core';
 import { Button, ButtonGroup, IconButton, InputBase } from '@material-ui/core';
 import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell} from '@material-ui/core';
@@ -37,6 +37,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function PatientList(props) {
+
+  const [patient, setPatient] = useState(0)
 
   const rows = props.patients
 
@@ -91,4 +93,4 @@ function PatientList(props) {
   );
 }
 
-export default PatientList;
+export {PatientList};

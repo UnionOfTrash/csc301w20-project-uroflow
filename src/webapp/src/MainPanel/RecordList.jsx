@@ -94,4 +94,4 @@ function RecordList(props) {
   );
 }
 
-export default RecordList;
+export {RecordList};

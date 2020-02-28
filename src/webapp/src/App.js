@@ -6,10 +6,12 @@ import './App.css';
 
 import theme from './theme';
 import Header from './Header';
-import PatientList from './PatientList';
-import RecordList from './RecordList';
+import {PatientList, RecordList} from "./MainPanel"
+// import {MainPanel} from './MainPanel';
 
 import {Service} from './Service'
+
+import {Login} from "./Login"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -30,12 +32,12 @@ const useStyles = makeStyles(theme => ({
 
 function App() {
 
-  const fakeData = Service.getFakeData()
+  // Athorize User here
+
+
+  const patients = Service.getPatients()
   const [patientId, setPatientId] = useState(0)
   const classes = useStyles();
-  const handleChangePatientClick = (e) => {
-    console.log(e)
-  }
 
   return (
     <ThemeProvider theme={ theme } >
@@ -45,20 +47,21 @@ function App() {
           <Grid item xl={ 4 } xs={ 4 } >
             <Paper className={ classes.paper } >
               <PatientList 
-                handleDetailClick={handleChangePatientClick}
-                patients={fakeData.patients}
+
+                patients={patients}
               />
             </Paper>
           </Grid>
           <Grid item xl={ 8 } xs={ 8 } >
             <Paper className={ classes.paper } >
               <RecordList
-                records={fakeData.records[patientId]}
+                records={Service.getRecords(patientId)}
               />
             </Paper>
           </Grid>
         </Grid>
       </div>
+      {/* <MainPanel/> */}
     </ThemeProvider>
   );
 }
