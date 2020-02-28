@@ -110,7 +110,6 @@ function PatientList(props) {
                 <TableCell align='left'> <FiberManualRecord fontSize='small' color={ row.recentUpdate ? 'primary' : 'disabled' } /> </TableCell>
                 <TableCell align='right'>
                   <ButtonGroup variant='text'>
-                    <Button color='secondary'> Edit </Button>
                     <Button color='secondary'> Details </Button>
                   </ButtonGroup>
                 </TableCell>

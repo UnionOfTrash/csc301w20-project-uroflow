@@ -48,7 +48,7 @@ function RecordList(props) {
         <TableBody>
           {
             rows.map(row => (
-              <TableRow hover>
+              <TableRow hover key={0}>
                 <TableCell align='left'> { row.time } </TableCell>
                 <TableCell align='left'> <img src='/logo192.png' alt='' /> </TableCell>
                 <TableCell align='left'>
