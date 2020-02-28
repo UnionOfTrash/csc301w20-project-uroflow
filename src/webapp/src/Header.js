@@ -32,7 +32,7 @@ function Header() {
           <Typography variant='h5' className={ classes.title } >
             { groupName }
           </Typography>
-          <Button color='inherit'>
+          <Button variant='contained' color='secondary'>
             { userName }
           </Button>
         </Toolbar>

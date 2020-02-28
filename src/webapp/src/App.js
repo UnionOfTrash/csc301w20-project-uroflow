@@ -4,9 +4,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import './App.css';
 
-import theme from "./theme";
+import theme from './theme';
 import Header from './Header';
 import PatientList from './PatientList';
+import RecordList from './RecordList';
 
 
 const useStyles = makeStyles(theme => ({
@@ -34,14 +35,16 @@ function App() {
     <ThemeProvider theme={ theme } >
       <div className={ classes.root } >
         <Header />
-        <Grid container className={ classes.grid } spacing={ 2 }>
+        <Grid container className={ classes.grid } spacing={ 2 } >
           <Grid item xl={ 4 } xs={ 4 } >
             <Paper className={ classes.paper } >
               <PatientList />
             </Paper>
           </Grid>
           <Grid item xl={ 8 } xs={ 8 } >
-            <Paper className={ classes.paper } > Record Column </Paper>
+            <Paper className={ classes.paper } >
+              <RecordList />
+            </Paper>
           </Grid>
         </Grid>
       </div>
