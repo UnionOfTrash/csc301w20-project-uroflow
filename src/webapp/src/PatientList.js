@@ -36,39 +36,9 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function createData(id, num, recentUpdate) {
-  return { id, num, recentUpdate };
-}
+function PatientList(props) {
 
-const rows = [
-  createData('cc266811-9859-4ab4-a80d-2b0d39a9ce69', 50, true),
-  createData('579093e7-7764-4028-b43d-36ececf2166f', 40, false),
-  createData('8048d5f4-ab49-4490-980a-a275f6fa5b70', 40, true),
-  createData('73eb9474-ddf1-4a96-8a22-fe7bd6bac9e4', 30, false),
-  createData('b08094d1-fd00-4e80-abb8-f7b7ef37f602', 100, false),
-  createData('cc266811-9859-4ab4-a80d-2b0d39a9ce69', 50, true),
-  createData('579093e7-7764-4028-b43d-36ececf2166f', 40, false),
-  createData('8048d5f4-ab49-4490-980a-a275f6fa5b70', 40, true),
-  createData('73eb9474-ddf1-4a96-8a22-fe7bd6bac9e4', 30, false),
-  createData('b08094d1-fd00-4e80-abb8-f7b7ef37f602', 100, false),
-  createData('cc266811-9859-4ab4-a80d-2b0d39a9ce69', 50, true),
-  createData('579093e7-7764-4028-b43d-36ececf2166f', 40, false),
-  createData('8048d5f4-ab49-4490-980a-a275f6fa5b70', 40, true),
-  createData('73eb9474-ddf1-4a96-8a22-fe7bd6bac9e4', 30, false),
-  createData('b08094d1-fd00-4e80-abb8-f7b7ef37f602', 100, false),
-  createData('cc266811-9859-4ab4-a80d-2b0d39a9ce69', 50, true),
-  createData('579093e7-7764-4028-b43d-36ececf2166f', 40, false),
-  createData('8048d5f4-ab49-4490-980a-a275f6fa5b70', 40, true),
-  createData('73eb9474-ddf1-4a96-8a22-fe7bd6bac9e4', 30, false),
-  createData('b08094d1-fd00-4e80-abb8-f7b7ef37f602', 100, false),
-  createData('cc266811-9859-4ab4-a80d-2b0d39a9ce69', 50, true),
-  createData('579093e7-7764-4028-b43d-36ececf2166f', 40, false),
-  createData('8048d5f4-ab49-4490-980a-a275f6fa5b70', 40, true),
-  createData('73eb9474-ddf1-4a96-8a22-fe7bd6bac9e4', 30, false),
-  createData('b08094d1-fd00-4e80-abb8-f7b7ef37f602', 100, false),
-];
-
-function PatientList() {
+  const rows = props.patients
 
   const classes = useStyles();
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Grid, Paper } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
@@ -9,6 +9,7 @@ import Header from './Header';
 import PatientList from './PatientList';
 import RecordList from './RecordList';
 
+import {Service} from './Service'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,7 +30,12 @@ const useStyles = makeStyles(theme => ({
 
 function App() {
 
+  const fakeData = Service.getFakeData()
+  const [patientId, setPatientId] = useState(0)
   const classes = useStyles();
+  const handleChangePatientClick = (e) => {
+    console.log(e)
+  }
 
   return (
     <ThemeProvider theme={ theme } >
@@ -38,12 +44,17 @@ function App() {
         <Grid container className={ classes.grid } spacing={ 2 } >
           <Grid item xl={ 4 } xs={ 4 } >
             <Paper className={ classes.paper } >
-              <PatientList />
+              <PatientList 
+                handleDetailClick={handleChangePatientClick}
+                patients={fakeData.patients}
+              />
             </Paper>
           </Grid>
           <Grid item xl={ 8 } xs={ 8 } >
             <Paper className={ classes.paper } >
-              <RecordList />
+              <RecordList
+                records={fakeData.records[patientId]}
+              />
             </Paper>
           </Grid>
         </Grid>

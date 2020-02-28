@@ -23,35 +23,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function createData(time, imageURL, leak, poop, urgent) {
-  return { time, imageURL, leak, poop, urgent };
-}
+function RecordList(props) {
 
-const rows = [
-  createData('2021-01-32 13:51:17', '', true, false, true),
-  createData('2022-02-31 25:60:37', '', false, true, false),
-  createData('2009-01-01 23:24:54', '', true, false, false),
-  createData('2021-01-32 13:51:17', '', true, false, true),
-  createData('2022-02-31 25:60:37', '', false, true, false),
-  createData('2009-01-01 23:24:54', '', true, false, false),
-  createData('2021-01-32 13:51:17', '', true, false, true),
-  createData('2022-02-31 25:60:37', '', false, false, false),
-  createData('2009-01-01 23:24:54', '', true, false, false),
-  createData('2021-01-32 13:51:17', '', true, false, true),
-  createData('2022-02-31 25:60:37', '', false, false, false),
-  createData('2009-01-01 23:24:54', '', true, false, false),
-  createData('2021-01-32 13:51:17', '', true, false, true),
-  createData('2022-02-31 25:60:37', '', false, false, false),
-  createData('2009-01-01 23:24:54', '', true, false, false),
-  createData('2021-01-32 13:51:17', '', true, false, true),
-  createData('2022-02-31 25:60:37', '', false, false, false),
-  createData('2009-01-01 23:24:54', '', true, false, false),
-  createData('2021-01-32 13:51:17', '', true, false, true),
-  createData('2022-02-31 25:60:37', '', false, false, false),
-  createData('2009-01-01 23:24:54', '', true, false, false),
-];
-
-function RecordList() {
+  const rows = props.records
 
   const classes = useStyles();
 
