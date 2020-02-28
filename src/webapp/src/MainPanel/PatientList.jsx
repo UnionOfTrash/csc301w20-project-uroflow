@@ -48,10 +48,24 @@ function PatientList(props) {
 
     e.preventDefault();
     
-
     setRows(props.patients.filter(p => {
       const pid = p.id.substring(0, searchId.length)
       return (pid === searchId)
+    }))
+
+  }
+
+  const onSearchChange = (e) => {
+
+    const value = e.target.value
+
+    setSearchId(value)
+
+    setRows(props.patients.filter(p => {
+      console.log(p)
+      const pid = p.id.substring(0, value.length)
+      console.log(pid+ ":" + searchId)
+      return (pid === value)
     }))
 
   }
@@ -72,7 +86,7 @@ function PatientList(props) {
                 </Grid>
                 <Grid item xl={ 6 } xs={ 6 } >
                   <Paper component='form' className={ classes.form } >
-                    <InputBase placeholder='Search ID' className={ classes.input } onChange={(e) => setSearchId(e.target.value)} />
+                    <InputBase placeholder='Search ID' className={ classes.input } onChange={onSearchChange} />
                     <IconButton type='submit' className={ classes.iconButton } onClick={onSearchClick}> <Search /> </IconButton>
                   </Paper>
                 </Grid>
