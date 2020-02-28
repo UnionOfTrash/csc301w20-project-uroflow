@@ -38,9 +38,25 @@ const useStyles = makeStyles(theme => ({
 
 function PatientList(props) {
 
+  const [rows, setRows] = useState(props.patients)
+
   const [patient, setPatient] = useState(0)
 
-  const rows = props.patients
+  const [searchId, setSearchId] = useState("")
+
+  const onSearchClick = (e) => {
+
+    e.preventDefault();
+    
+
+    setRows(props.patients.filter(p => {
+      const pid = p.id.substring(0, searchId.length)
+      return (pid === searchId)
+    }))
+
+  }
+
+
 
   const classes = useStyles();
 
@@ -56,8 +72,8 @@ function PatientList(props) {
                 </Grid>
                 <Grid item xl={ 6 } xs={ 6 } >
                   <Paper component='form' className={ classes.form } >
-                    <InputBase placeholder='Search ID' className={ classes.input } />
-                    <IconButton type='submit' className={ classes.iconButton } > <Search /> </IconButton>
+                    <InputBase placeholder='Search ID' className={ classes.input } onChange={(e) => setSearchId(e.target.value)} />
+                    <IconButton type='submit' className={ classes.iconButton } onClick={onSearchClick}> <Search /> </IconButton>
                   </Paper>
                 </Grid>
                 <Grid item className={ classes.sort } xl={ 4 } xs={ 4 } >
