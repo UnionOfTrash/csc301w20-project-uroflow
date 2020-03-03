@@ -69,15 +69,16 @@ function RecordList(props) {
               />
             </TableCell>
           </TableRow>
-          <TableRow></TableRow>
-          <TableCell align="center">Uploaded Time</TableCell>
-          <TableCell align="center">Uroflow Preview</TableCell>
-          <TableCell align="center">Conditions</TableCell>
-          <TableCell align="center">Comments</TableCell>
+          <TableRow>
+            <TableCell align="center">Uploaded Time</TableCell>
+            <TableCell align="center">Uroflow Preview</TableCell>
+            <TableCell align="center">Conditions</TableCell>
+            <TableCell align="center">Comments</TableCell>
+          </TableRow>
         </TableHead>
         <TableBody>
           {rows.map(row => (
-            <TableRow hover key={0}>
+            <TableRow hover key={row.id}>
               <TableCell align="left"> {row.time} </TableCell>
               <TableCell align="left">
                 {" "}
