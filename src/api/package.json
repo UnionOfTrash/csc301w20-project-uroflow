@@ -1,33 +1,15 @@
 {
   "name": "api",
-  "description": "API for Uroflow app",
-  "version": "0.0.0",
-  "homepage": "",
-  "main": "src",
-  "keywords": [
-    "feathers"
-  ],
-  "author": {
-    "name": "hamzanadeveloper",
-    "email": "hamza.arshad.developer@gmail.com"
-  },
-  "contributors": [],
-  "bugs": {},
-  "directories": {
-    "lib": "src",
-    "test": "test/",
-    "config": "config/"
-  },
+  "description": "Uroflow APIs",
+  "version": "0.0.1",
+  "private": true,
   "engines": {
     "node": "^12.0.0",
     "npm": ">= 3.0.0"
   },
   "scripts": {
-    "test": "npm run eslint && npm run mocha",
-    "eslint": "eslint src/. test/. --config .eslintrc.json",
-    "dev": "nodemon src/",
     "start": "node src/",
-    "mocha": "mocha test/ --recursive --exit"
+    "test": "mocha test/ --recursive --exit"
   },
   "dependencies": {
     "@feathersjs/authentication": "^4.4.3",
@@ -50,8 +32,6 @@
   },
   "devDependencies": {
     "axios": "^0.19.0",
-    "eslint": "^6.7.2",
-    "mocha": "^6.2.2",
-    "nodemon": "^1.19.4"
+    "mocha": "^6.2.2"
   }
 }
