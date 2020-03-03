@@ -1,6 +1,6 @@
-# api
+# API
 
-> API for Uroflow app
+> Uroflow APIs v0.0.1
 
 ## About
 
@@ -8,20 +8,39 @@ This project uses [Feathers](http://feathersjs.com). An open source web framewor
 
 ## Getting Started
 
-Getting up and running is as easy as 1, 2, 3.
+1. Make sure you have [Docker](https://docs.docker.com/get-docker/) installed.
 
-1. Make sure you have [NodeJS](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed.
-2. Install your dependencies
-
-    ```
-    cd path/to/api
-    npm install
+2. Activate develop scripts
+    ```bash
+    cd /path/to/api
+    source activate.sh
     ```
 
-3. Start your app
-
+3. Install node dependencies
+    ```bash
+    setup
     ```
-    npm start
+
+4. Run the application
+    ```bash
+    run
+    ```
+
+5. To exit the developing environment
+    ```bash
+    deactivate
+    ```
+
+### Extra Functions
+
+6. To add new npm packages
+    ```bash
+    add PACKAGE_NAME
+    ```
+
+7. To remove npm packages
+    ```bash
+    remove PACKAGE_NAME
     ```
 
 ## Testing
