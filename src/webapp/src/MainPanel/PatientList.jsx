@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   container: {
-    maxHeight: window.innerHeight - theme.spacing(16),
+    maxHeight:400
   },
   head: {
     padding: theme.spacing(1),
@@ -38,87 +38,58 @@ const useStyles = makeStyles(theme => ({
 
 function PatientList(props) {
 
-  const [rows, setRows] = useState(props.patients)
+  const rows = props.patients
 
-  const [patient, setPatient] = useState(0)
-
-  const [searchId, setSearchId] = useState("")
-
-  const onSearchClick = (e) => {
-
-    e.preventDefault();
+  const onDetailClick = (e) => {
     
-    setRows(props.patients.filter(p => {
-      const pid = p.id.substring(0, searchId.length)
-      return (pid === searchId)
-    }))
-
   }
-
-  const onSearchChange = (e) => {
-
-    const value = e.target.value
-
-    setSearchId(value)
-
-    setRows(props.patients.filter(p => {
-      console.log(p)
-      const pid = p.id.substring(0, value.length)
-      console.log(pid+ ":" + searchId)
-      return (pid === value)
-    }))
-
-  }
-
-
 
   const classes = useStyles();
 
+  function DetailButton(props){
+    const id = props.id
+
+    const buttonClick = () => {
+      props.buttonClick(id)
+    }
+    return(
+      <Button onClick={buttonClick} color='secondary'> Details </Button>
+    )
+  }
+
   return (
-    <TableContainer className={ classes.container } >
-      <Table stickyHeader>
-        <TableHead>
-          <TableRow>
-            <TableCell className={ classes.head } colSpan={ 4 } >
-              <Grid container className={ classes.grid } spacing={ 1 } >
-                <Grid item xl={ 2 } xs={ 2 } >
-                  <Button variant='contained' color='secondary'> Add </Button>
-                </Grid>
-                <Grid item xl={ 6 } xs={ 6 } >
-                  <Paper component='form' className={ classes.form } >
-                    <InputBase placeholder='Search ID' className={ classes.input } onChange={onSearchChange} />
-                    <IconButton type='submit' className={ classes.iconButton } onClick={onSearchClick}> <Search /> </IconButton>
-                  </Paper>
-                </Grid>
-                <Grid item className={ classes.sort } xl={ 4 } xs={ 4 } >
-                  <Typography variant='overline' display='block'> Sort By </Typography>
-                  <ButtonGroup variant='text'>
-                    <Button color='primary'> ID </Button>
-                    <Button color='secondary'> Recent Update </Button>
-                  </ButtonGroup>
-                </Grid>
-              </Grid>
-            </TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {
-            rows.map(row => (
-              <TableRow hover key={ row.id } >
-                <TableCell component='th' scope='row'> { row.id } </TableCell>
-                <TableCell align='left'> { row.num } </TableCell>
-                <TableCell align='left'> <FiberManualRecord fontSize='small' color={ row.recentUpdate ? 'primary' : 'disabled' } /> </TableCell>
-                <TableCell align='right'>
-                  <ButtonGroup variant='text'>
-                    <Button color='secondary'> Details </Button>
-                  </ButtonGroup>
-                </TableCell>
-              </TableRow>
-            ))
-          }
-        </TableBody>
-      </Table>
-    </TableContainer>
+      <TableContainer className={ classes.container } >
+        <Table stickyHeader>
+          <TableHead>
+            <TableRow>
+              <TableCell>StudyId</TableCell>
+              <TableCell align="right">RecNum</TableCell>
+              <TableCell align="right">New</TableCell>
+              <TableCell align="right">Detail</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {
+              rows.map(row => (
+                <TableRow hover key={ row.studyId } >
+                  <TableCell component='th' scope='row'> { row.studyId } </TableCell>
+                  <TableCell align='left'> { row.numRecord } </TableCell>
+                  <TableCell align='left'> <FiberManualRecord fontSize='small' color={ row.hasNew ? 'primary' : 'disabled' } /> </TableCell>
+                  <TableCell align='right'>
+                    <ButtonGroup variant='text'>
+                      <DetailButton
+                        id={row.studyId}
+                        buttonClick={props.onDetailClick}
+                      />
+                    </ButtonGroup>
+                  </TableCell>
+                </TableRow>
+              ))
+            }
+          </TableBody>
+        </Table>
+      </TableContainer>
+    
   );
 }
 

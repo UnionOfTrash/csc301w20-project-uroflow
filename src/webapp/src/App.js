@@ -1,13 +1,11 @@
-import React, {useState} from 'react';
-import { Grid, Paper } from '@material-ui/core';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import './App.css';
 
 import theme from './theme';
-import Header from './Header';
-import {PatientList, RecordList} from "./MainPanel"
-// import {MainPanel} from './MainPanel';
+import MainPanel from './MainPanel/MainPanel';
+import Header from "./Header"
 
 import {Service} from './Service'
 
@@ -33,35 +31,16 @@ const useStyles = makeStyles(theme => ({
 function App() {
 
   // Athorize User here
-
-
-  const patients = Service.getPatients()
-  const [patientId, setPatientId] = useState(0)
   const classes = useStyles();
 
   return (
     <ThemeProvider theme={ theme } >
       <div className={ classes.root } >
         <Header />
-        <Grid container className={ classes.grid } spacing={ 2 } >
-          <Grid item xl={ 4 } xs={ 4 } >
-            <Paper className={ classes.paper } >
-              <PatientList 
-
-                patients={patients}
-              />
-            </Paper>
-          </Grid>
-          <Grid item xl={ 8 } xs={ 8 } >
-            <Paper className={ classes.paper } >
-              <RecordList
-                records={Service.getRecords(patientId)}
-              />
-            </Paper>
-          </Grid>
-        </Grid>
+        <MainPanel
+          classes={ classes }
+        />
       </div>
-      {/* <MainPanel/> */}
     </ThemeProvider>
   );
 }

@@ -1,103 +1,221 @@
-function createData(id, num, recentUpdate) {
-    return { id, num, recentUpdate };
+// function createData(id, num, recentUpdate) {
+//     return { id, num, recentUpdate };
+// }
+// function createData2(id, time, imageURL, leak, poop, urgent) {
+//     return { id, time, imageURL, leak, poop, urgent };
+// }
+
+// user = {
+//     "id":"37ece188-0d4e-415a-887a-8eeda4f761d8",
+//     "userName":"Even",
+//     "password":"even",
+//     "role":0
+// }
+
+// patients: [{
+//     "id":"37ece188-0d4e-415a-887a-8eeda4f761d8",
+//     "studyId":"1234567890",
+//     "numRecord":10,
+//     "dob": "2010-10-10",
+//     "hasNew":true,
+//     "gender": "Male",
+//     "condition": "die"
+// },
+// {
+//     "id":"7c7f3fa1-12a9-4025-938a-668e0fb2739f",
+//     "studyId":"1234567891",
+//     "numRecord":20,
+//     "dob": "2010-10-01",
+//     "hasNew":true,
+//     "gender": "Famale",
+//     "condition": "wanna die"
+// }]
+
+// record = {
+//     "id": "4dc68e17-7b8c-4ff2-a67a-c2f21d5d8979",
+//     "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
+//     "condition": [true, false , false],
+//     "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
+//     "time": "2019-10-10 22:10:01",
+//     "pComment": "good!",
+//     "cComment": "sooo Good!"
+// }
+
+const Data = {
+    patients:[
+        {
+            "id":"37ece188-0d4e-415a-887a-8eeda4f761d8",
+            "studyId":"1234567890",
+            "numRecord":2,
+            "dob": "2010-10-10",
+            "hasNew":true,
+            "gender": "Male",
+            "condition": "die"
+        },
+        {
+            "id":"7c7f3fa1-12a9-4025-938a-668e0fb2739f",
+            "studyId":"1234567891",
+            "numRecord":1,
+            "dob": "2010-10-01",
+            "hasNew":true,
+            "gender": "Famale",
+            "condition": "wanna die"
+        },
+        {
+            "id":"7c7f3fa1-12a9-4025-938a-668e0fb2739a",
+            "studyId":"1234567892",
+            "numRecord":2,
+            "dob": "2010-10-20",
+            "hasNew":false,
+            "gender": "Male",
+            "condition": "dont wanna die"
+        },
+        {
+            "id":"7c7f3fa1-12a9-4025-938a-668e0fb27391",
+            "studyId":"1234567893",
+            "numRecord":1,
+            "dob": "2010-10-01",
+            "hasNew":true,
+            "gender": "Famale",
+            "condition": "wanna die"
+        },
+        {
+            "id":"7c7f3fa1-12a9-4025-938a-668e0fb27392",
+            "studyId":"1234567894",
+            "numRecord":2,
+            "dob": "2010-10-20",
+            "hasNew":false,
+            "gender": "Male",
+            "condition": "dont wanna die"
+        },
+        {
+            "id":"7c7f3fa1-12a9-4025-938a-668e0fb27393",
+            "studyId":"1234567895",
+            "numRecord":1,
+            "dob": "2010-10-01",
+            "hasNew":true,
+            "gender": "Famale",
+            "condition": "wanna die"
+        },
+        {
+            "id":"7c7f3fa1-12a9-4025-938a-668e0fb27394",
+            "studyId":"1234567896",
+            "numRecord":2,
+            "dob": "2010-10-20",
+            "hasNew":false,
+            "gender": "Male",
+            "condition": "dont wanna die"
+        }
+    ],
+
+    records:[
+        {
+            pid : "1234567890",
+            rec : [{
+                "id": "4dc68e17-7b8c-4ff2-a67a-c2f21d5d8970",
+                "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
+                "condition": [true, false , false],
+                "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
+                "time": "2019-10-10 22:10:01",
+                "pComment": "good!",
+                "cComment": "sooo Good!"
+            },
+
+            {
+                "id": "4dc68e17-7b8c-4ff2-a67a-c2f21d5d8971",
+                "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
+                "condition": [true, false , false],
+                "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
+                "time": "2019-10-10 22:10:01",
+                "pComment": "good!",
+                "cComment": "sooo Good!"
+            }]
+        },
+        {
+            pid:"1234567891",
+            rec:[{
+                "id": "4dc68e17-7b8c-4ff2-a67a-c2f21d5d8972",
+                "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
+                "condition": [true, false , false],
+                "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
+                "time": "2019-10-10 22:10:01",
+                "pComment": "good!",
+                "cComment": "sooo Good!"
+                }]
+        },
+        {
+            pid:"1234567892",
+            rec: [{
+                "id": "4dc68e17-7b8c-4ff2-a67a-c2f21d5d8973",
+                "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
+                "condition": [true, false , false],
+                "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
+                "time": "2019-10-10 22:10:01",
+                "pComment": "good!",
+                "cComment": "sooo Good!"
+            },
+            {
+                "id": "4dc68e17-7b8c-4ff2-a67a-c2f21d5d8974",
+                "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
+                "condition": [true, false , false],
+                "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
+                "time": "2019-10-10 22:10:01",
+                "pComment": "good!",
+                "cComment": "sooo Good!"
+            }]
+        },
+        {
+            pid:"1234567893",
+            rec: [{
+                "id": "4dc68e17-7b8c-4ff2-a67a-c2f21d5d8973",
+                "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
+                "condition": [true, false , false],
+                "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
+                "time": "2019-10-10 22:10:01",
+                "pComment": "good!",
+                "cComment": "sooo Good!"
+            },
+            {
+                "id": "4dc68e17-7b8c-4ff2-a67a-c2f21d5d8974",
+                "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
+                "condition": [true, false , false],
+                "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
+                "time": "2019-10-10 22:10:01",
+                "pComment": "good!",
+                "cComment": "sooo Good!"
+            }]
+        },
+        {
+            pid:"1234567894",
+            rec: [{
+                "id": "4dc68e17-7b8c-4ff2-a67a-c2f21d5d8973",
+                "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
+                "condition": [true, false , false],
+                "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
+                "time": "2019-10-10 22:10:01",
+                "pComment": "good!",
+                "cComment": "sooo Good!"
+            },
+            {
+                "id": "4dc68e17-7b8c-4ff2-a67a-c2f21d5d8974",
+                "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
+                "condition": [true, false , false],
+                "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
+                "time": "2019-10-10 22:10:01",
+                "pComment": "good!",
+                "cComment": "sooo Good!"
+            }]
+        },
+        
+    ]
 }
-function createData2(time, imageURL, leak, poop, urgent) {
-    return { time, imageURL, leak, poop, urgent };
+
+function getFakePatients(){
+    return Data.patients
 }
 
-const Data = [
-
-    {
-        patient: createData('0123000000', 12, true),
-        record: [createData2('2021-01-32 13:51:17', '', true, false, true),
-                createData2('2009-01-01 23:24:54', '', true, false, false)]
-    },
-
-    {
-        patient: createData('0123000020',  13, false),
-        record: [
-                createData2('2022-02-31 25:60:37', '', false, true, false),
-                createData2('2009-01-01 23:24:54', '', true, false, false),
-                createData2('2021-01-32 13:51:17', '', true, false, true),
-                createData2('2022-02-31 25:60:37', '', false, false, false),
-                createData2('2009-01-01 23:24:54', '', true, false, false),
-                createData2('2021-01-32 13:51:17', '', true, false, true),
-                createData2('2022-02-31 25:60:37', '', false, false, false),
-                createData2('2009-01-01 23:24:54', '', true, false, false),
-                createData2('2021-01-32 13:51:17', '', true, false, true),
-                createData2('2022-02-31 25:60:37', '', false, false, false),
-                createData2('2009-01-01 23:24:54', '', true, false, false),
-                createData2('2021-01-32 13:51:17', '', true, false, true),
-                createData2('2022-02-31 25:60:37', '', false, false, false),
-                createData2('2009-01-01 23:24:54', '', true, false, false),
-                createData2('2021-01-32 13:51:17', '', true, false, true),
-                createData2('2022-02-31 25:60:37', '', false, false, false),
-                createData2('2009-01-01 23:24:54', '', true, false, false)]
-    },
-
-    {
-        patient: createData('0123000002',14, false),
-        record: [createData2('2021-01-32 13:51:17', '', true, false, true),
-                createData2('2022-02-31 25:60:37', '', false, true, false),
-                createData2('2009-01-01 23:24:54', '', true, false, false),
-                createData2('2009-01-01 23:24:54', '', true, false, false)]
-    },
-
-    {
-        patient: createData('1233120003',15, false),
-        record: [
-                createData2('2021-01-32 13:51:17', '', true, false, true),
-                createData2('2022-02-31 25:60:37', '', false, false, false),
-                createData2('2009-01-01 23:24:54', '', true, false, false),
-                createData2('2021-01-32 13:51:17', '', true, false, true),
-                createData2('2022-02-31 25:60:37', '', false, false, false),
-                createData2('2009-01-01 23:24:54', '', true, false, false)]
-    },
-    {
-        patient: createData('1233120006',15, false),
-        record: [
-                createData2('2021-01-32 13:51:17', '', true, false, true),
-                createData2('2022-02-31 25:60:37', '', false, false, false),
-                createData2('2009-01-01 23:24:54', '', true, false, false),
-                createData2('2021-01-32 13:51:17', '', true, false, true),
-                createData2('2022-02-31 25:60:37', '', false, false, false),
-                createData2('2009-01-01 23:24:54', '', true, false, false)]
-    },
-    {
-        patient: createData('1233120004',15, false),
-        record: [
-                createData2('2021-01-32 13:51:17', '', true, false, true),
-                createData2('2022-02-31 25:60:37', '', false, false, false),
-                createData2('2009-01-01 23:24:54', '', true, false, false),
-                createData2('2021-01-32 13:51:17', '', true, false, true),
-                createData2('2022-02-31 25:60:37', '', false, false, false),
-                createData2('2009-01-01 23:24:54', '', true, false, false)]
-    },
-    {
-        patient: createData('1233120009',5, false),
-        record: [
-                createData2('2021-01-32 13:51:17', '', true, false, true),
-                createData2('2022-02-31 25:60:37', '', false, false, false),
-                createData2('2009-01-01 23:24:54', '', true, false, false),
-                createData2('2021-01-32 13:51:17', '', true, false, true),
-                createData2('2022-02-31 25:60:37', '', false, false, false),
-                createData2('2009-01-01 23:24:54', '', true, false, false),
-            ]
-    },
-
-]
-
-const FakeData = {
-    patients: Data.map(e => e.patient),
-    records: Data.map(e => e.record),
+function getFakeRecords(sid){
+    return Data.records.filter(r => r.pid === sid)[0].rec
 }
 
-function getFakeData(){
-    return FakeData
-}
-
-function getFakeRecords(id){
-    return FakeData.records[id]
-}
-
-export { getFakeData, getFakeRecords }
+export { getFakePatients, getFakeRecords }
