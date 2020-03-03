@@ -72,11 +72,17 @@ function SearchPanel(props){
                      </Grid>
                 </Grid>
             <Grid item className={ classes.sort } >
-                <Typography variant='overline' display='block'> Sort By </Typography>
-                <ButtonGroup variant='text'>
-                    <Button onClick={props.onSortByIdClick} color='primary'> ID </Button>
-                    <Button onClick={props.onSortByRecentClick} color='secondary'> Recent Update </Button>
-                </ButtonGroup>
+                <Grid container>
+                    <Grid item md={4} sm={2}>
+                        <Typography variant='overline' display='block'> Sort By </Typography>
+                    </Grid>
+                    <Grid item md={8} sm={10}>
+                        <ButtonGroup variant='text'>
+                            <Button onClick={props.onSortByIdClick} color='primary'> ID </Button>
+                            <Button onClick={props.onSortByRecentClick} color='secondary'> Recent Update </Button>
+                        </ButtonGroup>
+                    </Grid>
+                </Grid>
             </Grid>
         </div>
     )

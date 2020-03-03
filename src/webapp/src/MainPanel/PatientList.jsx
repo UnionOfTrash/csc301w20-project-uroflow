@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   container: {
-    maxHeight:400
+    maxHeight:450
   },
   head: {
     padding: theme.spacing(1),

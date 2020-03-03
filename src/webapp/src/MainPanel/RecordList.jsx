@@ -88,13 +88,13 @@ function RecordList(props) {
                   <Grid item xl={4} xs={4}>
                     <Opacity
                       fontSize="large"
-                      color={row.leak ? "error" : "disabled"}
+                      color={row.condition[0] ? "error" : "disabled"}
                     />
                   </Grid>
                   <Grid item xl={4} xs={4}>
                     <SvgIcon
                       fontSize="large"
-                      color={row.poop ? "error" : "disabled"}
+                      color={row.condition[1] ? "error" : "disabled"}
                     >
                       <path
                         d="M11.36 2c-.21 0-.49.12-.79.32C10 2.7 8.85 3.9 8.4 5.1c-.34.9-.35
@@ -117,7 +117,7 @@ function RecordList(props) {
                   <Grid item xl={4} xs={4}>
                     <Warning
                       fontSize="large"
-                      color={row.urgent ? "error" : "disabled"}
+                      color={row.condition[2] ? "error" : "disabled"}
                     />
                   </Grid>
                 </Grid>
