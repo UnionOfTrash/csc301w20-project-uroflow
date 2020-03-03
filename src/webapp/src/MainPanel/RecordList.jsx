@@ -1,64 +1,103 @@
-import React from 'react';
-import { Grid, SvgIcon } from '@material-ui/core';
-import { Button, ButtonGroup, } from '@material-ui/core';
-import { TableContainer, Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core';
-import { Typography } from '@material-ui/core';
-import { Opacity, Warning } from '@material-ui/icons';
-import { makeStyles } from '@material-ui/core/styles';
-
+import React from "react";
+import { Grid, SvgIcon } from "@material-ui/core";
+import { Button, ButtonGroup } from "@material-ui/core";
+import {
+  TableContainer,
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell
+} from "@material-ui/core";
+import { Typography } from "@material-ui/core";
+import { Opacity, Warning } from "@material-ui/icons";
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  DateRangePicker,
+  DateRange
+} from "@matharumanpreet00/react-daterange-picker";
 
 const useStyles = makeStyles(theme => ({
   container: {
-    maxHeight: window.innerHeight - theme.spacing(16),
+    maxHeight: window.innerHeight - theme.spacing(16)
   },
   head: {
     padding: theme.spacing(1),
-    textAlign: 'center',
+    textAlign: "center"
   },
   sort: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(1)
   },
   grid: {
-    alignItems: 'center',
-  },
+    alignItems: "center"
+  }
 }));
 
 function RecordList(props) {
-
-  const rows = props.records
+  const rows = props.records;
 
   const classes = useStyles();
 
+  const [datePikcerOpen, setDatePickerOpen] = React.useState(false);
+  const [dateRange, setDateRange] = React.useState({});
+
   return (
-    <TableContainer className={ classes.container } >
+    <TableContainer className={classes.container}>
       <Table stickyHeader>
         <TableHead>
           <TableRow>
-            <TableCell className={ classes.head } colSpan={4} >
-              <Typography variant='overline' display='block'> Sort By </Typography>
-              <ButtonGroup variant='text'>
-                <Button color='primary'> Time </Button>
-                <Button color='secondary'> Leak? </Button>
-                <Button color='secondary'> Poo? </Button>
-                <Button color='secondary'> Urgent? </Button>
+            <TableCell className={classes.head} colSpan={4}>
+              <Typography variant="overline" display="block">
+                {" "}
+                Filter By{" "}
+              </Typography>
+              <ButtonGroup variant="text">
+                <Button
+                  color="primary"
+                  onClick={() => {
+                    setDatePickerOpen(!datePikcerOpen);
+                  }}
+                >
+                  {" "}
+                  Date Range{" "}
+                </Button>
+                <Button color="primary"> Condition </Button>
               </ButtonGroup>
+              <DateRangePicker
+                open={datePikcerOpen}
+                onChange={range => setDateRange(range)}
+              />
             </TableCell>
           </TableRow>
+          <TableRow></TableRow>
+          <TableCell align="center">Uploaded Time</TableCell>
+          <TableCell align="center">Uroflow Preview</TableCell>
+          <TableCell align="center">Conditions</TableCell>
+          <TableCell align="center">Comments</TableCell>
         </TableHead>
         <TableBody>
-          {
-            rows.map(row => (
-              <TableRow hover key={0}>
-                <TableCell align='left'> { row.time } </TableCell>
-                <TableCell align='left'> <img src='/logo192.png' alt='' /> </TableCell>
-                <TableCell align='left'>
-                  <Grid container className={ classes.grid } >
-                    <Grid item xl={ 4 } xs={ 4 } >
-                      <Opacity fontSize='large' color={ row.leak ? 'error' : 'disabled' } />
-                    </Grid>
-                    <Grid item xl={ 4 } xs={ 4 } >
-                      <SvgIcon fontSize='large' color={ row.poop ? 'error' : 'disabled' } >
-                        <path d='M11.36 2c-.21 0-.49.12-.79.32C10 2.7 8.85 3.9 8.4 5.1c-.34.9-.35
+          {rows.map(row => (
+            <TableRow hover key={0}>
+              <TableCell align="left"> {row.time} </TableCell>
+              <TableCell align="left">
+                {" "}
+                <img src="/logo192.png" alt="" />{" "}
+              </TableCell>
+              <TableCell align="left">
+                <Grid container className={classes.grid}>
+                  <Grid item xl={4} xs={4}>
+                    <Opacity
+                      fontSize="large"
+                      color={row.leak ? "error" : "disabled"}
+                    />
+                  </Grid>
+                  <Grid item xl={4} xs={4}>
+                    <SvgIcon
+                      fontSize="large"
+                      color={row.poop ? "error" : "disabled"}
+                    >
+                      <path
+                        d="M11.36 2c-.21 0-.49.12-.79.32C10 2.7 8.85 3.9 8.4 5.1c-.34.9-.35
                                 1.72-.21 2.33c-.56.1-.97.28-1.13.35c-.51.22-1.59 1.18-1.69 2.67c-.03.52.04
                                 1.05.2 1.55c-.66.19-1.04.43-1.07.44c-.32.12-.85.49-1 .69c-.35.4-.58.87-.71
                                 1.37c-.29 1.09-.19 2.33.34 3.33c.29.56.69 1.17 1.13 1.6c1.44 1.48 3.92 2.04
@@ -71,27 +110,30 @@ function RecordList(props) {
                                 1.13a1 1 0 0 0 1.13.87c.56-.07.96-.58.9-1.13a1.01 1.01 0 0 0-1.03-.88m7.3.02c-.52.02-.94.42-.98.95a1
                                 1 0 0 0 .95 1.06a1.008 1.008 0 1 0 .14-2.01h-.11m-7.23 4.82c.29-.01.55.08.79.13c1.18.22
                                 2.2.25 2.69.25c.49 0 1.5-.03 2.67-.25c.41-.08.88-.25 1.25 0c.48.32.13 1.47-.61 2.25a4.53
-                                4.53 0 0 1-3.31 1.38c-1.78 0-2.86-.91-3.31-1.38c-.74-.78-1.09-1.93-.62-2.25c.14-.09.29-.13.45-.13z'/>
-                      </SvgIcon>
-                    </Grid>
-                    <Grid item xl={ 4 } xs={ 4 } >
-                      <Warning fontSize='large' color={ row.urgent ? 'error' : 'disabled' } />
-                    </Grid>
+                                4.53 0 0 1-3.31 1.38c-1.78 0-2.86-.91-3.31-1.38c-.74-.78-1.09-1.93-.62-2.25c.14-.09.29-.13.45-.13z"
+                      />
+                    </SvgIcon>
                   </Grid>
-                </TableCell>
-                <TableCell align='right'>
-                  <ButtonGroup variant='text'>
-                    <Button color='secondary'> Patient's Comments </Button>
-                    <Button color='secondary'> Clinician's Comments </Button>
-                  </ButtonGroup>
-                </TableCell>
-              </TableRow>
-            ))
-          }
+                  <Grid item xl={4} xs={4}>
+                    <Warning
+                      fontSize="large"
+                      color={row.urgent ? "error" : "disabled"}
+                    />
+                  </Grid>
+                </Grid>
+              </TableCell>
+              <TableCell align="right">
+                <ButtonGroup variant="text">
+                  <Button color="secondary"> Patient's Comments </Button>
+                  <Button color="secondary"> Clinician's Comments </Button>
+                </ButtonGroup>
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </TableContainer>
   );
 }
 
-export {RecordList};
+export { RecordList };
