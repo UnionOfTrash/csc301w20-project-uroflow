@@ -21,16 +21,21 @@ class MainPanel extends React.Component{
 
     componentDidMount(){
         Service.getPatients().then(res => {
+
+            const curP = res.sort((a, b) => {
+                const aid = parseInt(a.studyId)
+                const bid = parseInt(b.studyId)
+                return (aid-bid)
+            })
             this.setState({
                 allPatients:res,
-                currentPatients:res,
+                currentPatients:curP,
             })
             console.log(res)
         }).catch(e => console.log(e))
     }
 
     classes = this.props.classes
-
 
 
     onSearchClick = (e) => {
@@ -61,6 +66,37 @@ class MainPanel extends React.Component{
         })
     }
 
+    onSortByIdClick = () => {
+        const curP = this.state.currentPatients.sort((a, b) => {
+            const aid = parseInt(a.studyId)
+            const bid = parseInt(b.studyId)
+            return (aid-bid)
+        })
+
+        this.setState({
+            currentPatients:curP
+        })
+    }
+
+    onSortByRecentClick = () => {
+
+        const curP = this.state.currentPatients.sort((a,b) => {
+            const aid = parseInt(a.studyId)
+            const bid = parseInt(b.studyId)
+            if(a.hasNew && !b.hasNew){
+                return -1
+            }else if (!a.hasNew && b.hasNew){
+                return 1
+            }else{
+                return aid-bid
+            }
+        })
+
+        this.setState({
+            currentPatients:curP
+        })
+    }
+
     onDetailClick = (sid) => {
         
         const id = String(sid)
@@ -82,6 +118,8 @@ class MainPanel extends React.Component{
                         <SearchPanel
                             onSearchClick={this.onSearchClick}
                             onSearchChange={this.onSearchChange}
+                            onSortByIdClick={this.onSortByIdClick}
+                            onSortByRecentClick={this.onSortByRecentClick}
                         />
     
                         <PatientList 
