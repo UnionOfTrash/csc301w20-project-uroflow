@@ -40,22 +40,7 @@ function PatientList(props) {
 
   const rows = props.patients
 
-  const onDetailClick = (e) => {
-    
-  }
-
   const classes = useStyles();
-
-  function DetailButton(props){
-    const id = props.id
-
-    const buttonClick = () => {
-      props.buttonClick(id)
-    }
-    return(
-      <Button onClick={buttonClick} color='secondary'> Details </Button>
-    )
-  }
 
   return (
       <TableContainer className={ classes.container } >
@@ -77,10 +62,7 @@ function PatientList(props) {
                   <TableCell align='left'> <FiberManualRecord fontSize='small' color={ row.hasNew ? 'primary' : 'disabled' } /> </TableCell>
                   <TableCell align='right'>
                     <ButtonGroup variant='text'>
-                      <DetailButton
-                        id={row.studyId}
-                        buttonClick={props.onDetailClick}
-                      />
+                      <Button onClick={() => props.onDetailClick(row.studyId)} color='secondary'> Details </Button>
                     </ButtonGroup>
                   </TableCell>
                 </TableRow>
