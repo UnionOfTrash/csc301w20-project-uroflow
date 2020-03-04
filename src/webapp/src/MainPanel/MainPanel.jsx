@@ -97,6 +97,7 @@ class MainPanel extends React.Component{
         })
     }
 
+
     onDetailClick = (sid) => {
         
         const id = String(sid)
@@ -107,6 +108,16 @@ class MainPanel extends React.Component{
         }).catch(e => console.log(e))
     }
 
+
+
+    addNewClientHandler = (newClient) => {
+        // Backend...
+        const newPatientList = [...this.state.currentPatients, newClient]
+        this.setState({
+            currentPatients: newPatientList
+        })
+    }
+
     render(){
         return (
         
@@ -114,12 +125,12 @@ class MainPanel extends React.Component{
               <Grid item xl={ 4 } xs={ 4 } >
                 <Paper className={ this.classes.paper } >
                     <Grid container className={ this.classes.grid }>
-    
                         <SearchPanel
                             onSearchClick={this.onSearchClick}
                             onSearchChange={this.onSearchChange}
                             onSortByIdClick={this.onSortByIdClick}
                             onSortByRecentClick={this.onSortByRecentClick}
+                            addNewClient={this.addNewClientHandler}
                         />
     
                         <PatientList 
