@@ -127,7 +127,7 @@ function AddClientPanel(props){
                     name="study-id-input" 
                     id="study-id" 
                     value={studyId} 
-                    onChange={e => setStudyId(e.target.value)}
+                    onChange={e => setStudyId(e.target.value.replace(/[^\d]/,''))}
                     >
                     </input>
 
