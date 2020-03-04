@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Grid, Paper } from '@material-ui/core';
 
-import {PatientList, RecordList, SearchPanel} from "../MainPanel"
+import {PatientList, RecordList, SearchPanel, AddClientPanel} from "../MainPanel"
 
 import {Service} from '../Service'
 
@@ -16,6 +16,7 @@ class MainPanel extends React.Component{
             records:[],
             patientId:0,
             searchId:"",
+            addClientPanelOpen: false
         }
     }
 
@@ -113,15 +114,33 @@ class MainPanel extends React.Component{
     addNewClientHandler = (newClient) => {
         // Backend...
         const newPatientList = [...this.state.currentPatients, newClient]
+
+        this.setState({currentPatients: newPatientList}, function () {
+            this.onSortByIdClick()
+        });
+    }
+
+    openAddClientPanel = () => {
         this.setState({
-            currentPatients: newPatientList
+            addClientPanelOpen: true
+        })
+    }
+
+    closeAddClientPanel = () => {
+        this.setState({
+            addClientPanelOpen: false
         })
     }
 
     render(){
         return (
-        
             <Grid container className={ this.classes.grid } spacing={ 2 } >
+                <AddClientPanel
+                openStatus={this.state.addClientPanelOpen}
+                close={this.closeAddClientPanel}
+                addNewClientHandler={this.addNewClientHandler}
+                >
+                </AddClientPanel>
               <Grid item xl={ 4 } xs={ 4 } >
                 <Paper className={ this.classes.paper } >
                     <Grid container className={ this.classes.grid }>
@@ -130,7 +149,8 @@ class MainPanel extends React.Component{
                             onSearchChange={this.onSearchChange}
                             onSortByIdClick={this.onSortByIdClick}
                             onSortByRecentClick={this.onSortByRecentClick}
-                            addNewClient={this.addNewClientHandler}
+                            addClientPanelOpen={this.state.addClientPanelOpen}
+                            openAddClientPanel={this.openAddClientPanel}
                         />
     
                         <PatientList 
