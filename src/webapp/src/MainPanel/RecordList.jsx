@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function RecordList(props) {
-  const rows = props.records;
+  const records = props.records;
 
   const classes = useStyles();
 
@@ -77,9 +77,9 @@ function RecordList(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-            <TableRow hover key={row.id}>
-              <TableCell align="left"> {row.time} </TableCell>
+          {records.map(record => (
+            <TableRow hover key={record.id}>
+              <TableCell align="left"> {record.time} </TableCell>
               <TableCell align="left">
                 {" "}
                 <img src="/logo192.png" alt="" />{" "}
@@ -89,13 +89,13 @@ function RecordList(props) {
                   <Grid item xl={4} xs={4}>
                     <Opacity
                       fontSize="large"
-                      color={row.condition[0] ? "error" : "disabled"}
+                      color={record.condition[0] ? "error" : "disabled"}
                     />
                   </Grid>
                   <Grid item xl={4} xs={4}>
                     <SvgIcon
                       fontSize="large"
-                      color={row.condition[1] ? "error" : "disabled"}
+                      color={record.condition[1] ? "error" : "disabled"}
                     >
                       <path
                         d="M11.36 2c-.21 0-.49.12-.79.32C10 2.7 8.85 3.9 8.4 5.1c-.34.9-.35
@@ -118,7 +118,7 @@ function RecordList(props) {
                   <Grid item xl={4} xs={4}>
                     <Warning
                       fontSize="large"
-                      color={row.condition[2] ? "error" : "disabled"}
+                      color={record.condition[2] ? "error" : "disabled"}
                     />
                   </Grid>
                 </Grid>
