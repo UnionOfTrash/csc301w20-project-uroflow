@@ -18,7 +18,9 @@ class MainPanel extends React.Component{
             records:[],
             patientId:0,
             searchId:"",
-            addClientPanelOpen: false
+            addClientPanelOpen: false,
+            detailRecords:false,
+            changeRecords:false
         }
     }
 
@@ -103,11 +105,16 @@ class MainPanel extends React.Component{
 
 
     onDetailClick = (sid) => {
-        
+        this.setState({
+            detailRecords:true,
+            changeRecords:false
+        })
+
         const id = String(sid)
         Service.getRecords(id).then(res => {
             this.setState({
-                records:res
+                records:res,
+                changeRecords:true
             })
         }).catch(e => console.log(e))
     }
@@ -167,9 +174,14 @@ class MainPanel extends React.Component{
               </Grid>
               <Grid item xl={ 8 } xs={ 8 } >
                 <Paper className={ this.classes.paper } >
-                  <RecordList
-                    records={this.state.records}
-                  />
+                    {
+                        this.state.detailRecords? 
+                            this.state.changeRecords?<RecordList records={this.state.records}/>:<CircularProgress />
+                            :
+                            <div>
+                                    <h1>Welcome to Uroflow MainPanel</h1>
+                            </div>
+                    }
                 </Paper>
               </Grid>
             </Grid>
