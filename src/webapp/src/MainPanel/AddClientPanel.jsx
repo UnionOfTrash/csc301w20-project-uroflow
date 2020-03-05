@@ -1,8 +1,4 @@
 import React , {useState} from "react"
-import { Grid, Paper } from '@material-ui/core';
-import { Button, ButtonGroup, IconButton, InputBase } from '@material-ui/core';
-import { Typography } from '@material-ui/core';
-import { Search } from '@material-ui/icons';
 import Modal from '@material-ui/core/Modal';
 
 import { makeStyles } from '@material-ui/core/styles';

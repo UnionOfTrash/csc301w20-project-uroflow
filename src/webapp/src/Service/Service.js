@@ -13,8 +13,11 @@ export const Service = {
 function getPatients(){
     // return getFakePatients()
     return new Promise((resolve, reject) => {
-        const data = getFakePatients()
-        resolve(data)
+
+        setTimeout(() => {
+            const data = getFakePatients()
+            resolve(data)
+        }, 3000)
     })
 }
 
@@ -22,14 +25,19 @@ function getRecords(id){
 
     // return getFakeRecords(id)
     return new Promise((resolve, reject) => {
-        const data = getFakeRecords(id)
-        resolve(data)
+        setTimeout(() => {
+            const data = getFakeRecords(id)
+            resolve(data)
+
+        }, 1000)
+        
     })
 }
 function getCurveData(cid){
 
     return new Promise((res,rej) => {
-        const data = [
+        setTimeout(() => {
+            const data = [
                 [
                     0.13241234123,
                     3412332141431
@@ -39,6 +47,9 @@ function getCurveData(cid){
                     9.31289145914
                 ]
             ]
-        res(data)
+            res(data)
+
+        }, 1500)
+        
     })
 }

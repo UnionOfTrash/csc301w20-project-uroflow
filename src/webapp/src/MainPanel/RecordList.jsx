@@ -26,6 +26,7 @@ function getModalStyle() {
     top: '50%',
     left: '50%',
     transform: `translate(-${top}%, -${left}%)`,
+    outline:0
   };
 }
 
@@ -68,7 +69,7 @@ function RecordList(props) {
   // const [datePikcerOpen, setDatePickerOpen] = React.useState(false);
   const [dateRange, setDateRange] = React.useState({});
 
-  const [modalStyle] = React.useState(getModalStyle);
+  const modalStyle = getModalStyle();
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => {
@@ -98,27 +99,28 @@ function RecordList(props) {
         </Button>
         <Button color="primary"> Condition </Button>
       </ButtonGroup>
-      {/* <DateRangePicker
-        open={datePikcerOpen}
-        onChange={range => setDateRange(range)}
-      /> */}
-      <Modal
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-        open={open}
-        onClose={handleClose}
-      >
-        <div style={modalStyle} className={classes.paper}>
-          <div className={classes.modalheader}>
-          <h2>Select Date Range</h2>
-          <Button size='large' color='primary' className={classes.savebtn}>Save</Button>
+      <div className={classes.modal}>
+        <Modal
+          disableAutoFocus={true}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={open}
+          onClose={handleClose}
+        >
+          <div style={modalStyle} className={classes.paper}>
+            <div className={classes.modalheader}>
+            <h2>Select Date Range</h2>
+            <Button size='large' color='primary' className={classes.savebtn}>Save</Button>
+            </div>
+            <DateRangePicker
+            open={true}
+            onChange={range => setDateRange(range)}
+            />
           </div>
-          <DateRangePicker
-          open={true}
-          onChange={range => setDateRange(range)}
-          />
-        </div>
-      </Modal>
+        </Modal>
+
+      </div>
+      
       <TableContainer className={classes.container}>
         <Table>
           <TableHead>

@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { Grid, Paper } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import {PatientList, RecordList, SearchPanel, AddClientPanel} from "../MainPanel"
 
@@ -11,6 +12,7 @@ class MainPanel extends React.Component{
     constructor(props){
         super(props)
         this.state={
+            loadPatient:false,
             allPatients:[],
             currentPatients:[],
             records:[],
@@ -31,6 +33,7 @@ class MainPanel extends React.Component{
             this.setState({
                 allPatients:res,
                 currentPatients:curP,
+                loadPatient:true
             })
             console.log(res)
         }).catch(e => console.log(e))
@@ -151,12 +154,14 @@ class MainPanel extends React.Component{
                             onSortByRecentClick={this.onSortByRecentClick}
                             addClientPanelOpen={this.state.addClientPanelOpen}
                             openAddClientPanel={this.openAddClientPanel}
-                        />
-    
-                        <PatientList 
-                            patients={this.state.currentPatients}
-                            onDetailClick={this.onDetailClick}
-                        />
+                        /> 
+                        {
+                            this.state.loadPatient? <PatientList 
+                                                        patients={this.state.currentPatients}
+                                                        onDetailClick={this.onDetailClick}
+                                                    />:
+                                                <CircularProgress />
+                        }
                     </Grid>
                 </Paper>
               </Grid>
