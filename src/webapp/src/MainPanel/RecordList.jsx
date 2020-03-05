@@ -16,6 +16,18 @@ import {
   DateRangePicker,
   DateRange
 } from "@matharumanpreet00/react-daterange-picker";
+import Modal from '@material-ui/core/Modal';
+
+function getModalStyle() {
+  const top = 50;
+  const left = 50;
+
+  return {
+    top: '50%',
+    left: '50%',
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -30,6 +42,22 @@ const useStyles = makeStyles(theme => ({
   },
   grid: {
     alignItems: "center"
+  },
+  paper: {
+    position: 'absolute',
+    width: 'auto',
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+  modalheader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  savebtn: {
+    height: 'auto',
   }
 }));
 
@@ -38,8 +66,19 @@ function RecordList(props) {
 
   const classes = useStyles();
 
-  const [datePikcerOpen, setDatePickerOpen] = React.useState(false);
+  // const [datePikcerOpen, setDatePickerOpen] = React.useState(false);
   const [dateRange, setDateRange] = React.useState({});
+
+  const [modalStyle] = React.useState(getModalStyle);
+  const [open, setOpen] = React.useState(false);
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div>
@@ -50,19 +89,37 @@ function RecordList(props) {
       <ButtonGroup variant="text">
         <Button
           color="primary"
-          onClick={() => {
-            setDatePickerOpen(!datePikcerOpen);
-          }}
+          // onClick={() => {
+          //   setDatePickerOpen(!datePikcerOpen);
+          // }}
+          onClick={handleOpen}
         >
           {" "}
           Date Range{" "}
         </Button>
         <Button color="primary"> Condition </Button>
       </ButtonGroup>
-      <DateRangePicker
+      {/* <DateRangePicker
         open={datePikcerOpen}
         onChange={range => setDateRange(range)}
-      />
+      /> */}
+      <Modal
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        open={open}
+        onClose={handleClose}
+      >
+        <div style={modalStyle} className={classes.paper}>
+          <div className={classes.modalheader}>
+          <h2>Select Date Range</h2>
+          <Button size='large' color='primary' className={classes.savebtn}>Save</Button>
+          </div>
+          <DateRangePicker
+          open={true}
+          onChange={range => setDateRange(range)}
+          />
+        </div>
+      </Modal>
       <TableContainer className={classes.container}>
         <Table>
           <TableHead>
