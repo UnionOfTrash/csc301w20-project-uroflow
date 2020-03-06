@@ -116,9 +116,8 @@ function DoctorCommentModal(props){
                         <TextField defaultValue={props.cComment} id="outlined-basic" label="Comment" variant="outlined" onChange={(e) => props.setcComment(e.target.value)}/>
                       </form>
                       :
-                      <h3>{props.cComment} </h3> 
+                      <h3> {props.cComment} </h3> 
         }
-
         {
           showSave? 
                     <Button color="secondary" onClick={onSaveClick}>
@@ -129,11 +128,7 @@ function DoctorCommentModal(props){
                       Edit Comment
                     </Button> 
         }
-
-        
       </div>
-
-      
     </Modal>
   )
 
@@ -198,12 +193,9 @@ function CondModal(props){
                         fontSize="large"
                         color={selectUrgent}
                       />
-
               </Grid>
             </Grid>
-
           </div>
-
     </Modal>
   )
 }
@@ -225,6 +217,8 @@ function RecordList(props) {
   const [showPatientComment, setShowPatientComment] = React.useState(false)
   const [showDoctorComment, setShowDoctorComment] = React.useState(false)
   const [showCond, setShowCond] = React.useState(false)
+
+  const [condChips, setCondChips] = React.useState([false,false,false])
 
   const onPatientCommentClick = (id) => {
     setpComment(records.filter(r => r.id === id)[0].pComment)
