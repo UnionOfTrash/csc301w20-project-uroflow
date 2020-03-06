@@ -35,7 +35,9 @@ function getModalStyle() {
 
 const useStyles = makeStyles(theme => ({
   container: {
-    maxHeight: window.innerHeight - theme.spacing(20)
+    // maxHeight: window.innerHeight - theme.spacing(20),
+    height: '100%',
+    overflowY: 'auto'
   },
   head: {
     padding: theme.spacing(1),
@@ -61,6 +63,10 @@ const useStyles = makeStyles(theme => ({
   },
   savebtn: {
     height: 'auto',
+  },
+  colflex: {
+    display: 'flex',
+    flexDirection: 'column'
   }
 }));
 
@@ -109,7 +115,6 @@ function DoctorCommentModal(props){
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
         open={props.showDoctorComment} onClose={()=>props.setShowDoctorComment(false)}>
-
       <div style={props.modalStyle} className={props.classes.paper}>
         {
           showInput?  <form className={classes.root} noValidate autoComplete="off">
@@ -118,7 +123,6 @@ function DoctorCommentModal(props){
                       :
                       <h3>{props.cComment} </h3> 
         }
-
         {
           showSave? 
                     <Button color="secondary" onClick={onSaveClick}>
@@ -129,14 +133,9 @@ function DoctorCommentModal(props){
                       Edit Comment
                     </Button> 
         }
-
-        
       </div>
-
-      
     </Modal>
   )
-
 }
 
 function RecordList(props) {
@@ -177,7 +176,8 @@ function RecordList(props) {
   };
 
   return (
-    <div>
+    <>
+      <div>
       <Typography variant="overline" display="block">
         {" "}
         Filter By{" "}
@@ -212,7 +212,7 @@ function RecordList(props) {
           </div>
         </Modal>
       </div>
-
+    </div>
       <div className={classes.modal}>
         <PatientCommentModal modalStyle={modalStyle} classes={classes} pComment={pComment} showPatientComment={showPatientComment} setShowPatientComment={setShowPatientComment}/>
       </div>
@@ -253,7 +253,6 @@ function RecordList(props) {
                   >
                     <div style={modalStyle} className={classes.paper}><FlowCurve /></div>
                   </Modal>
-
 
                 </TableCell>
                 <TableCell align="left">
@@ -306,7 +305,7 @@ function RecordList(props) {
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
+    </>
   );
 }
 

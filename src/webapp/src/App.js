@@ -23,8 +23,8 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    minHeight: window.innerHeight - theme.spacing(15),
-    maxHeight: window.innerHeight - theme.spacing(15),
+    height: window.innerHeight - theme.spacing(15),
+    // maxHeight: window.innerHeight - theme.spacing(15),
   },
 }));
 
