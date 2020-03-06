@@ -121,26 +121,26 @@ class MainPanel extends React.Component{
 
 
 
-    addNewClientHandler = (newClient) => {
-        // Backend...
-        const newPatientList = [...this.state.currentPatients, newClient]
+    // addNewClientHandler = (newClient) => {
+    //     // Backend...
+    //     const newPatientList = [...this.state.currentPatients, newClient]
 
-        this.setState({currentPatients: newPatientList}, function () {
-            this.onSortByIdClick()
-        });
-    }
+    //     this.setState({currentPatients: newPatientList}, function () {
+    //         this.onSortByIdClick()
+    //     });
+    // }
 
-    openAddClientPanel = () => {
-        this.setState({
-            addClientPanelOpen: true
-        })
-    }
+    // openAddClientPanel = () => {
+    //     this.setState({
+    //         addClientPanelOpen: true
+    //     })
+    // }
 
-    closeAddClientPanel = () => {
-        this.setState({
-            addClientPanelOpen: false
-        })
-    }
+    // closeAddClientPanel = () => {
+    //     this.setState({
+    //         addClientPanelOpen: false
+    //     })
+    // }
 
     progressStyle = () => {
         return {
