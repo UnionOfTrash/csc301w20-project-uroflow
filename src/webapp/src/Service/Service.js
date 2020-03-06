@@ -1,4 +1,4 @@
-import {getFakePatients, getFakeRecords} from "./FakeData"
+import {getFakePatients, getFakeRecords, addFakePatient} from "./FakeData"
 import {authenticationService} from './Authentication'
 
 export const Service = {
@@ -90,4 +90,20 @@ function getCurveData(cid){
         }, 1500)
         
     })
+
+
+    function addPatient(data){
+
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+
+                if (addFakePatient(data) === 1){
+                    resolve("success")
+                }else{
+                    reject("fail")
+                }
+
+            }, 2000)
+        })
+    }
 }
