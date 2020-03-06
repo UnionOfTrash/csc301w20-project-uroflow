@@ -137,7 +137,7 @@ class MainPanel extends React.Component{
                 })
                 // console.log(res)
             }).catch(e => console.log(e))
-        }).catch(e => console.log(e))
+        }).catch(e => alert("The Study ID already exists."))
     }
 
     progressStyle = () => {
