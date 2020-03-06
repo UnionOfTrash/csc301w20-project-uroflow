@@ -119,26 +119,26 @@ class MainPanel extends React.Component{
 
 
 
-    // addNewClientHandler = (newClient) => {
-    //     // Backend...
-    //     const newPatientList = [...this.state.currentPatients, newClient]
+    addNewClientHandler = (newClient) => {
+        // Backend...
 
-    //     this.setState({currentPatients: newPatientList}, function () {
-    //         this.onSortByIdClick()
-    //     });
-    // }
+        Service.addPatient(newClient).then(() => {
+            Service.getPatients().then(res => {
 
-    // openAddClientPanel = () => {
-    //     this.setState({
-    //         addClientPanelOpen: true
-    //     })
-    // }
-
-    // closeAddClientPanel = () => {
-    //     this.setState({
-    //         addClientPanelOpen: false
-    //     })
-    // }
+                const curP = res.sort((a, b) => {
+                    const aid = parseInt(a.studyId)
+                    const bid = parseInt(b.studyId)
+                    return (aid-bid)
+                })
+                this.setState({
+                    allPatients:res,
+                    currentPatients:curP,
+                    loadPatient:true
+                })
+                // console.log(res)
+            }).catch(e => console.log(e))
+        }).catch(e => alert("The Study ID already exists."))
+    }
 
     progressStyle = () => {
         return {
@@ -174,6 +174,7 @@ class MainPanel extends React.Component{
                             onSearchChange={this.onSearchChange}
                             onSortByIdClick={this.onSortByIdClick}
                             onSortByRecentClick={this.onSortByRecentClick}
+                            addNewClientHandler={this.addNewClientHandler}
                             // addClientPanelOpen={this.state.addClientPanelOpen}
                             // openAddClientPanel={this.openAddClientPanel}
                         /> 

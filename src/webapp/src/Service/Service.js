@@ -92,15 +92,19 @@ function getCurveData(cid){
 }
 
 function addPatient(data){
+    //console.log(data)
 
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (addFakePatient(data) === 1){
                 resolve("success")
-            }else{
+            }
+            
+            else
+            {
                 reject("fail")
             }
 
-        }, 2000)
+        }, 0)
     })
 }
