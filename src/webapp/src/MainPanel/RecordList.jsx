@@ -52,7 +52,9 @@ function getStyles(name, personName, theme) {
 
 const useStyles = makeStyles(theme => ({
   container: {
-    maxHeight: window.innerHeight - theme.spacing(20)
+    // maxHeight: window.innerHeight - theme.spacing(20),
+    height: '100%',
+    overflowY: 'auto'
   },
   head: {
     padding: theme.spacing(1),
@@ -81,6 +83,10 @@ const useStyles = makeStyles(theme => ({
     width: "auto",
     flexDirection: "row-revserse",
     alignItems: "flex-end"
+  },
+  colflex: {
+    display: 'flex',
+    flexDirection: 'column',
   },
   cancelbtn: {
     height: "auto",
@@ -335,7 +341,8 @@ function RecordList(props) {
   // };
 
   return (
-    <div>
+    <>
+      <div>
       <Typography variant="overline" display="block">
         Filter By
       </Typography>
@@ -415,7 +422,7 @@ function RecordList(props) {
           handleChange={handleChange}
         />
       </div>
-
+    </div>
       <div className={classes.modal}>
         <PatientCommentModal
           modalStyle={modalStyle}
@@ -537,7 +544,7 @@ function RecordList(props) {
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
+    </>
   );
 }
 

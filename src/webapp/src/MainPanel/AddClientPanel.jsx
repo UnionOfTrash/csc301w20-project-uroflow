@@ -25,9 +25,12 @@ const genders = [
 const useStyles = makeStyles(theme => ({
     addButton: {
         margin: theme.spacing(0.5),
-        marginLeft: theme.spacing(1),
+        marginLeft: theme.spacing(4),
         // fullWidth: true,
-        color: 'white'
+        color: 'white',
+        height: '52px',
+        flexGrow: 1,
+        flexShrink: 0,
     },
 }))
 
@@ -43,21 +46,29 @@ function AddClientPanel(props) {
         setOpen(false);
     };
 
-    const [gender, setGender] = React.useState({});
+    const [studyId, setStudyId] = React.useState("")
+    const [gender, setGender] = React.useState("")
+    const [selectedDate, setSelectedDate] = React.useState("")
+    const [condition, setCondition] = React.useState("")
 
-    const handleChange = event => {
-        setGender(event.target.value);
-    };
-
-    const [selectedDate, setSelectedDate] = React.useState(new Date());
-
-    const handleDateChange = date => {
-        setSelectedDate(date);
-    };
+    const addClientHandler = () => {
+        const client = {
+            studyId: studyId,
+            gender: gender, 
+            selectedDate: selectedDate,
+            condition: condition
+        }
+        setStudyId("")
+        setGender("")
+        setSelectedDate("")
+        setCondition("")
+        props.addNewClientHandler(client)
+        handleClose()
+    }
 
 
     return (
-        <div>
+        <>
             <Button className={classes.addButton} variant="contained" color="primary" onClick={handleClickOpen}>
                 New Patient
         </Button>
@@ -67,27 +78,27 @@ function AddClientPanel(props) {
                     <DialogContentText>
                         Enter patient information below:
                     </DialogContentText>
-                    <TextField autoFocus margin="dense" id="name" label="Study ID" fullWidth />
-                    <TextField id="standard-select-gender" select fullWidth label="Gender" value={gender} onChange={handleChange}>
+                    <TextField value={studyId} autoFocus margin="dense" id="name" label="Study ID" fullWidth onChange={e => setStudyId(e.target.value)}/>
+                    <TextField value={gender} id="standard-select-gender" select fullWidth label="Gender" value={gender} onChange={e => setGender(e.target.value)}>
                         {genders.map(option => (
                             <MenuItem key={option.value} value={option.value}>
                                 {option.label}
                             </MenuItem>
                         ))}
                     </TextField>
-                    <TextField id="date" label="Date of Birth" type="date" className={classes.textField} InputLabelProps={{shrink: true,}} fullWidth />
-                    <TextField margin="dense" id="name" label="Condition" fullWidth />
+                    <TextField value={selectedDate} id="date" label="Date of Birth" type="date" className={classes.textField} InputLabelProps={{shrink: true,}} fullWidth onChange={e => setSelectedDate(e.target.value)}/>
+                    <TextField value={condition} margin="dense" id="name" label="Condition" fullWidth onChange={e => setCondition(e.target.value)}/>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
                         Cancel
             </Button>
-                    <Button onClick={handleClose} color="primary">
+                    <Button onClick={addClientHandler} color="primary">
                         Add
             </Button>
                 </DialogActions>
             </Dialog>
-        </div>
+        </>
     )
 }
 
