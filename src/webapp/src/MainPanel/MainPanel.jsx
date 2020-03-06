@@ -142,6 +142,17 @@ class MainPanel extends React.Component{
         })
     }
 
+    progressStyle = () => {
+        return {
+            display: 'flex',
+            width: '100%',
+            height: '100%',
+            justifyContent: 'center',
+            position: 'relative',
+            top: '50px'
+        }
+    }
+
     render(){
         return (
             <Grid container className={ this.classes.grid } spacing={ 2 } >
@@ -152,7 +163,7 @@ class MainPanel extends React.Component{
                 >
                 </AddClientPanel>
               <Grid item xl={ 4 } xs={ 4 } >
-                <Paper className={ this.classes.paper } >
+                <Paper className={ this.classes.paper }>
                     <Grid container className={ this.classes.grid }>
                         <SearchPanel
                             onSearchClick={this.onSearchClick}
@@ -167,7 +178,7 @@ class MainPanel extends React.Component{
                                                         patients={this.state.currentPatients}
                                                         onDetailClick={this.onDetailClick}
                                                     />:
-                                                <CircularProgress />
+                                                    <div style={this.progressStyle()}><CircularProgress /></div>
                         }
                     </Grid>
                 </Paper>
@@ -176,10 +187,10 @@ class MainPanel extends React.Component{
                 <Paper className={ this.classes.paper } >
                     {
                         this.state.detailRecords? 
-                            this.state.changeRecords?<RecordList records={this.state.records}/>:<CircularProgress />
+                            this.state.changeRecords?<RecordList records={this.state.records}/>: <div style={this.progressStyle()}><CircularProgress /></div>
                             :
                             <div>
-                                    <h1>Welcome to Uroflow MainPanel</h1>
+                                    <h1>Welcome to Uroflowg</h1>
                             </div>
                     }
                 </Paper>
