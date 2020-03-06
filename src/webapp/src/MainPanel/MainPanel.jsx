@@ -156,12 +156,12 @@ class MainPanel extends React.Component{
     render(){
         return (
             <Grid container className={ this.classes.grid } spacing={ 2 } >
-                <AddClientPanel
+                {/* <AddClientPanel
                 openStatus={this.state.addClientPanelOpen}
                 close={this.closeAddClientPanel}
                 addNewClientHandler={this.addNewClientHandler}
                 >
-                </AddClientPanel>
+                </AddClientPanel> */}
               <Grid item xl={ 4 } xs={ 4 } >
                 <Paper className={ this.classes.paper }>
                     <Grid container className={ this.classes.grid }>
@@ -170,8 +170,8 @@ class MainPanel extends React.Component{
                             onSearchChange={this.onSearchChange}
                             onSortByIdClick={this.onSortByIdClick}
                             onSortByRecentClick={this.onSortByRecentClick}
-                            addClientPanelOpen={this.state.addClientPanelOpen}
-                            openAddClientPanel={this.openAddClientPanel}
+                            // addClientPanelOpen={this.state.addClientPanelOpen}
+                            // openAddClientPanel={this.openAddClientPanel}
                         /> 
                         {
                             this.state.loadPatient? <PatientList 
@@ -190,7 +190,7 @@ class MainPanel extends React.Component{
                             this.state.changeRecords?<RecordList records={this.state.records}/>: <div style={this.progressStyle()}><CircularProgress /></div>
                             :
                             <div>
-                                    <h1>Welcome to Uroflowg</h1>
+                                    <h1>Welcome to Uroflow</h1>
                             </div>
                     }
                 </Paper>

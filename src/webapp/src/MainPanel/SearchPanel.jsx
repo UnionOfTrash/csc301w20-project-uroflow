@@ -5,9 +5,8 @@ import { Typography } from '@material-ui/core';
 import { Search } from '@material-ui/icons';
 
 import { makeStyles } from '@material-ui/core/styles';
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-  }
+
+import {AddClientPanel} from "../MainPanel"
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -80,7 +79,8 @@ function SearchPanel(props){
                         </Grid>
                     </Grid>
                     <Grid item xl={2} xs={4}>
-                        <Button onClick={openAddClientPanel} className={classes.addButton} variant='contained' color='secondary'> Add Client </Button>
+                        {/* <Button onClick={openAddClientPanel} className={classes.addButton} variant='contained' color='secondary'> Add Client </Button> */}
+                        <AddClientPanel />
                      </Grid>
                 </Grid>
             <Grid item className={ classes.sort } >
@@ -91,7 +91,7 @@ function SearchPanel(props){
                     <Grid item md={8} sm={10}>
                         <ButtonGroup variant='text'>
                             <Button onClick={props.onSortByIdClick} color='primary'> ID </Button>
-                            <Button onClick={props.onSortByRecentClick} color='secondary'> Recent Update </Button>
+                            <Button onClick={props.onSortByRecentClick} color='primary'> Recent Update </Button>
                         </ButtonGroup>
                     </Grid>
                 </Grid>
