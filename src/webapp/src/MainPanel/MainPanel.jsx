@@ -27,16 +27,14 @@ class MainPanel extends React.Component{
     componentDidMount(){
         Service.getPatients().then(res => {
 
-            const curP = res.sort((a, b) => {
-                const aid = parseInt(a.studyId)
-                const bid = parseInt(b.studyId)
-                return (aid-bid)
-            })
+            const curP = res.sort((a, b) => (parseInt(a.studyId)-parseInt(b.studyId)))
+
             this.setState({
                 allPatients:res,
                 currentPatients:curP,
                 loadPatient:true
             })
+
             // console.log(res)
         }).catch(e => console.log(e))
     }

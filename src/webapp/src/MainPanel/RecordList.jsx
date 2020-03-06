@@ -1,6 +1,6 @@
 import React from "react";
-import {Grid, SvgIcon } from "@material-ui/core";
-import TextField from '@material-ui/core/TextField';
+import { Grid, SvgIcon } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
 import { Button, ButtonGroup } from "@material-ui/core";
 import {
   TableContainer,
@@ -12,12 +12,20 @@ import {
 } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { Opacity, Warning } from "@material-ui/icons";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 import {
   DateRangePicker,
   DateRange
 } from "@matharumanpreet00/react-daterange-picker";
-import Modal from '@material-ui/core/Modal';
+import Modal from "@material-ui/core/Modal";
+import Input from "@material-ui/core/Input";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import ListItemText from "@material-ui/core/ListItemText";
+import Select from "@material-ui/core/Select";
+import Checkbox from "@material-ui/core/Checkbox";
+import Chip from "@material-ui/core/Chip";
 
 import FlowCurve from "../MainPanel/FlowCurve";
 
@@ -26,10 +34,19 @@ function getModalStyle() {
   const left = 50;
 
   return {
-    top: '50%',
-    left: '50%',
+    top: "50%",
+    left: "50%",
     transform: `translate(-${top}%, -${left}%)`,
-    outline:0
+    outline: 0
+  };
+}
+
+function getStyles(name, personName, theme) {
+  return {
+    fontWeight:
+      personName.indexOf(name) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium
   };
 }
 
@@ -50,28 +67,51 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center"
   },
   paper: {
-    position: 'absolute',
-    width: 'auto',
+    position: "absolute",
+    width: "auto",
     backgroundColor: theme.palette.background.paper,
-    borderRadius: '2%',
-    padding: theme.spacing(2, 4, 3),
+    borderRadius: "2%",
+    padding: theme.spacing(2, 4, 3)
   },
   modalheader: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center"
   },
   savebtn: {
-    height: 'auto',
+    height: "auto",
+    width: "auto",
+    flexDirection: "row-revserse",
+    alignItems: "flex-end"
   },
   colflex: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+  },
+  cancelbtn: {
+    height: "auto",
+    width: "auto",
+    flexDirection: "row-revserse",
+    alignItems: "flex-end"
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    maxWidth: 300
+  },
+  chips: {
+    display: "flex",
+    flexWrap: "wrap"
+  },
+  chip: {
+    margin: 2
+  },
+  noLabel: {
+    marginTop: theme.spacing(3)
   }
 }));
 
-function PatientCommentModal(props){
-
+function PatientCommentModal(props) {
   return (
     <Modal
       disableAutoFocus={true}
@@ -81,89 +121,187 @@ function PatientCommentModal(props){
       onClose={() => props.setShowPatientComment(false)}
     >
       <div style={props.modalStyle} className={props.classes.paper}>
-          <h3>{props.pComment} </h3>
+        <h3>{props.pComment} </h3>
       </div>
-
     </Modal>
-  )
+  );
 }
 
-function DoctorCommentModal(props){
-
+function DoctorCommentModal(props) {
   const useStyles = makeStyles(theme => ({
     root: {
-      '& > *': {
+      "& > *": {
         margin: theme.spacing(1),
-        width: 200,
-      },
-    },
+        width: 200
+      }
+    }
   }));
   const classes = useStyles();
 
-  const [showInput, setShowInput] = React.useState(false)
-  const [showSave, setShowSave] = React.useState(false)
+  const [showInput, setShowInput] = React.useState(false);
+  const [showSave, setShowSave] = React.useState(false);
 
   const onSaveClick = () => {
-    console.log(props.cComment)
-    setShowSave(false)
-    setShowInput(false)
-  }
+    console.log(props.cComment);
+    setShowSave(false);
+    setShowInput(false);
+  };
 
-  return(
-    <Modal 
-        disableAutoFocus={true}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-        open={props.showDoctorComment} onClose={()=>props.setShowDoctorComment(false)}>
+  return (
+    <Modal
+      disableAutoFocus={true}
+      aria-labelledby="simple-modal-title"
+      aria-describedby="simple-modal-description"
+      open={props.showDoctorComment}
+      onClose={() => props.setShowDoctorComment(false)}
+    >
       <div style={props.modalStyle} className={props.classes.paper}>
-        {
-          showInput?  <form className={classes.root} noValidate autoComplete="off">
-                        <TextField defaultValue={props.cComment} id="outlined-basic" label="Comment" variant="outlined" onChange={(e) => props.setcComment(e.target.value)}/>
-                      </form>
-                      :
-                      <h3>{props.cComment} </h3> 
-        }
-        {
-          showSave? 
-                    <Button color="secondary" onClick={onSaveClick}>
-                      Save Comment
-                    </Button>
-                    :
-                    <Button color="secondary" onClick={() => {setShowInput(true); setShowSave(true)}}>
-                      Edit Comment
-                    </Button> 
-        }
+        {showInput ? (
+          <form className={classes.root} noValidate autoComplete="off">
+            <TextField
+              defaultValue={props.cComment}
+              id="outlined-basic"
+              label="Comment"
+              variant="outlined"
+              onChange={e => props.setcComment(e.target.value)}
+            />
+          </form>
+        ) : (
+          <h3>{props.cComment} </h3>
+        )}
+
+        {showSave ? (
+          <Button color="secondary" onClick={onSaveClick}>
+            Save Comment
+          </Button>
+        ) : (
+          <Button
+            color="secondary"
+            onClick={() => {
+              setShowInput(true);
+              setShowSave(true);
+            }}
+          >
+            Edit Comment
+          </Button>
+        )}
       </div>
     </Modal>
-  )
+  );
+}
+
+function CondModal(props) {
+  const [selectLeak, setSelectLeak] = React.useState("disabled");
+  const [selectPoop, setSelectPoop] = React.useState("disabled");
+  const [selectUrgent, setSelectUrgent] = React.useState("disabled");
+
+  return (
+    <Modal
+      disableAutoFocus={true}
+      aria-labelledby="simple-modal-title"
+      aria-describedby="simple-modal-description"
+      open={props.showCond}
+      onClose={() => props.setShowCond(false)}
+    >
+      <div style={props.modalStyle} className={props.classes.paper}>
+        <div className={props.classes.modalheader}>
+          <h2>Select Conditions</h2>
+          <Button
+            size="large"
+            color="primary"
+            className={props.classes.savebtn}
+          >
+            Save
+          </Button>
+        </div>
+        <Grid container>
+          <Grid xl={4} xs={4}>
+            <Opacity
+              onClick={() => {
+                selectLeak === "disabled"
+                  ? setSelectLeak("error")
+                  : setSelectLeak("disabled");
+              }}
+              fontSize="large"
+              color={selectLeak}
+            />
+          </Grid>
+          <Grid xl={4} xs={4}>
+            <SvgIcon
+              onClick={() => {
+                selectPoop === "disabled"
+                  ? setSelectPoop("error")
+                  : setSelectPoop("disabled");
+              }}
+              fontSize="large"
+              color={selectPoop}
+            >
+              <path
+                d="M11.36 2c-.21 0-.49.12-.79.32C10 2.7 8.85 3.9 8.4 5.1c-.34.9-.35
+                                  1.72-.21 2.33c-.56.1-.97.28-1.13.35c-.51.22-1.59 1.18-1.69 2.67c-.03.52.04
+                                  1.05.2 1.55c-.66.19-1.04.43-1.07.44c-.32.12-.85.49-1 .69c-.35.4-.58.87-.71
+                                  1.37c-.29 1.09-.19 2.33.34 3.33c.29.56.69 1.17 1.13 1.6c1.44 1.48 3.92 2.04
+                                  5.88 2.36c2.39.4 4.89.26 7.12-.66c3.35-1.39 4.24-3.63
+                                  4.38-4.24c.29-1.39-.07-2.7-.22-3.02c-.22-.46-.58-.93-1.17-1.23c-.4-.25-.75-.38-1.01-.44c.26-.95-.11-1.7-.62-2.26c-.77-.82-1.56-.94-1.56-.94c.26-.5.36-1.1.22-1.68c-.16-.71-.55-1.16-1.06-1.46c-.52-.31-1.16-.46-1.82-.58c-.32-.06-1.65-.25-2.2-1.01c-.45-.62-.46-1.74-.58-2.07c-.05-.13-.12-.2-.26-.2M16
+                                  9.61c.07 0 .13.01.19.01c1.43.16 2.45 1.54 2.28 3.07c-.17 1.53-1.47 2.65-2.9
+                                  2.49c-1.43-.18-2.45-1.53-2.28-3.07c.16-1.45 1.35-2.55 2.71-2.5m-7.38 0c1.33.04
+                                  2.44 1.17 2.54 2.6c.12 1.54-.95 2.87-2.38 2.98h-.01c-1.43.11-2.69-1.05-2.81-2.59c-.11-1.54.96-2.87
+                                  2.39-2.98c.09-.01.18-.01.27-.01m.02 1.7c-.04 0-.07 0-.11.01c-.56.07-.96.58-.89
+                                  1.13a1 1 0 0 0 1.13.87c.56-.07.96-.58.9-1.13a1.01 1.01 0 0 0-1.03-.88m7.3.02c-.52.02-.94.42-.98.95a1
+                                  1 0 0 0 .95 1.06a1.008 1.008 0 1 0 .14-2.01h-.11m-7.23 4.82c.29-.01.55.08.79.13c1.18.22
+                                  2.2.25 2.69.25c.49 0 1.5-.03 2.67-.25c.41-.08.88-.25 1.25 0c.48.32.13 1.47-.61 2.25a4.53
+                                  4.53 0 0 1-3.31 1.38c-1.78 0-2.86-.91-3.31-1.38c-.74-.78-1.09-1.93-.62-2.25c.14-.09.29-.13.45-.13z"
+              />
+            </SvgIcon>
+          </Grid>
+          <Grid xl={4} xs={4}>
+            <Warning
+              onClick={() => {
+                selectUrgent === "disabled"
+                  ? setSelectUrgent("error")
+                  : setSelectUrgent("disabled");
+              }}
+              fontSize="large"
+              color={selectUrgent}
+            />
+          </Grid>
+        </Grid>
+      </div>
+    </Modal>
+  );
 }
 
 function RecordList(props) {
   const records = props.records;
 
   const classes = useStyles();
+  const theme = useTheme();
 
   // const [datePikcerOpen, setDatePickerOpen] = React.useState(false);
   const [dateRange, setDateRange] = React.useState({});
 
   const modalStyle = getModalStyle();
   const [open, setOpen] = React.useState(false);
+  const [openConditionModal, setOpenConditionModal] = React.useState(false);
+  const [selectedConditionData, setSelectedConditionData] = React.useState([]);
+  const [selectedDateRange, setSelectedDateRange] = React.useState([]);
 
-  const [pComment, setpComment] = React.useState("")
-  const [cComment, setcComment] = React.useState("")
+  const [pComment, setpComment] = React.useState("");
+  const [cComment, setcComment] = React.useState("");
 
-  const [showPatientComment, setShowPatientComment] = React.useState(false)
-  const [showDoctorComment, setShowDoctorComment] = React.useState(false)
+  const [showPatientComment, setShowPatientComment] = React.useState(false);
+  const [showDoctorComment, setShowDoctorComment] = React.useState(false);
+  const [showCond, setShowCond] = React.useState(false);
 
-  const onPatientCommentClick = (id) => {
-    setpComment(records.filter(r => r.id === id)[0].pComment)
-    setShowPatientComment(true)
-  }
+  const onPatientCommentClick = id => {
+    setpComment(records.filter(r => r.id === id)[0].pComment);
+    setShowPatientComment(true);
+  };
 
-  const onDoctorCommentClick = (id) => {
-    setcComment(records.filter(r => r.id === id)[0].cComment)
-    setShowDoctorComment(true)
-  }
+  const onDoctorCommentClick = id => {
+    setcComment(records.filter(r => r.id === id)[0].cComment);
+    setShowDoctorComment(true);
+  };
 
   const [openGraph, setOpenGraph] = React.useState(false);
 
@@ -175,23 +313,68 @@ function RecordList(props) {
     setOpenGraph(false);
   };
 
+  // followings are for the condition filter
+  const [conditionName, setConditionName] = React.useState([]);
+
+  const handleChange = event => {
+    setConditionName(event.target.value);
+    let selected = "";
+    event.target.value.map(name => {
+      selected += name + " ";
+    });
+    setSelectedConditionData([{ key: 0, label: selected }]);
+  };
+
+  const handleDelete = chipToDelete => () => {
+    setSelectedConditionData(chips =>
+      chips.filter(chip => chip.key !== chipToDelete.key)
+    );
+    //
+    setConditionName([]);
+    console.log("condition name: " + conditionName);
+  };
+
+  const handleChangeMultiple = event => {
+    const { options } = event.target;
+    const value = [];
+    for (let i = 0, l = options.length; i < l; i += 1) {
+      if (options[i].selected) {
+        value.push(options[i].value);
+      }
+    }
+    setConditionName(value);
+  };
+
   return (
     <>
       <div>
       <Typography variant="overline" display="block">
-        {" "}
-        Filter By{" "}
+        Filter By
       </Typography>
       <ButtonGroup variant="text">
-        <Button
-          color="primary"
-          onClick={() => setOpen(true)}
-        >
-          {" "}
-          Date Range{" "}
+        <Button color="primary" onClick={() => setOpen(true)}>
+          Date Range
         </Button>
-        <Button color="primary"> Condition </Button>
+        <Button color="primary" onClick={() => setOpenConditionModal(true)}>
+          Condition
+        </Button>
+        <Button color="primary" onClick={() => setShowCond(true)}>
+          {" "}
+          Condition{" "}
+        </Button>
       </ButtonGroup>
+
+      {selectedConditionData.map(data => {
+        return (
+          <Chip
+            key={data.key}
+            label={data.label}
+            onDelete={handleDelete(data)}
+            className={classes.chip}
+          />
+        );
+      })}
+
       <div className={classes.modal}>
         <Modal
           disableAutoFocus={true}
@@ -202,33 +385,118 @@ function RecordList(props) {
         >
           <div style={modalStyle} className={classes.paper}>
             <div className={classes.modalheader}>
-            <h2>Select Date Range</h2>
-            <Button size='large' color='primary' className={classes.savebtn}>Save</Button>
+              <h2>Select Date Range</h2>
+              {/* <Button
+                size="large"
+                color="primary"
+                className={classes.cancelbtn}
+                onClick={() => {
+                  setDateRange({});
+                }}
+              >
+                Clear
+              </Button> */}
+              <Button
+                size="large"
+                color="primary"
+                className={classes.savebtn}
+                onClick={() => {
+                  setDateRange(dateRange);
+                  setOpen(false);
+                }}
+              >
+                Save
+              </Button>
             </div>
             <DateRangePicker
-            open={true}
-            onChange={range => setDateRange(range)}
+              open={true}
+              onChange={range => {
+                setDateRange(range);
+              }}
+              initialDateRange={dateRange}
             />
           </div>
         </Modal>
+        <Modal
+          disableAutoFocus={true}
+          aria-labelledby="simple-modal-title"
+          aria-describedby="simple-modal-description"
+          open={openConditionModal}
+          onClose={() => setOpenConditionModal(false)}
+        >
+          <div style={modalStyle} className={classes.paper}>
+            <div className={classes.modalheader}>
+              <h2>Select Conditions</h2>
+            </div>
+            <FormControl className={classes.formControl}>
+              <InputLabel id="demo-mutiple-checkbox-label">
+                Conditions
+              </InputLabel>
+              <Select
+                labelId="demo-mutiple-checkbox-label"
+                id="demo-mutiple-checkbox"
+                multiple
+                value={conditionName}
+                onChange={handleChange}
+                input={<Input />}
+                renderValue={selected => selected.join(", ")}
+                // MenuProps={MenuProps}
+              >
+                {["Leak", "Poop", "Urgent"].map(name => (
+                  <MenuItem key={name} value={name}>
+                    <Checkbox checked={conditionName.indexOf(name) > -1} />
+                    <ListItemText primary={name} />
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <div>
+              <Button
+                size="large"
+                color="primary"
+                onClick={() => setOpenConditionModal(false)}
+              >
+                Save
+              </Button>
+            </div>
+          </div>
+        </Modal>
+      </div>
+      <div className={classes.modal}>
+        <CondModal
+          modalStyle={modalStyle}
+          classes={classes}
+          showCond={showCond}
+          setShowCond={setShowCond}
+        />
       </div>
     </div>
       <div className={classes.modal}>
-        <PatientCommentModal modalStyle={modalStyle} classes={classes} pComment={pComment} showPatientComment={showPatientComment} setShowPatientComment={setShowPatientComment}/>
+        <PatientCommentModal
+          modalStyle={modalStyle}
+          classes={classes}
+          pComment={pComment}
+          showPatientComment={showPatientComment}
+          setShowPatientComment={setShowPatientComment}
+        />
       </div>
 
       <div className={classes.modal}>
-        <DoctorCommentModal modalStyle={modalStyle} classes={classes} 
-                            cComment={cComment} setcComment={setcComment} showDoctorComment={showDoctorComment} setShowDoctorComment={setShowDoctorComment} />
+        <DoctorCommentModal
+          modalStyle={modalStyle}
+          classes={classes}
+          cComment={cComment}
+          setcComment={setcComment}
+          showDoctorComment={showDoctorComment}
+          setShowDoctorComment={setShowDoctorComment}
+        />
       </div>
-      
+
       <TableContainer className={classes.container}>
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell className={classes.head} colSpan={4}>
-                
-              </TableCell>
+              <TableCell className={classes.head} colSpan={4}></TableCell>
             </TableRow>
             <TableRow>
               <TableCell align="center">Uploaded Time</TableCell>
@@ -243,7 +511,13 @@ function RecordList(props) {
                 <TableCell align="left"> {record.time} </TableCell>
                 <TableCell align="left">
                   {" "}
-                  <Button onClick={handleOpenGraph}><img src="/flowcurve.png" style={{maxWidth:'200px'}}alt="" />{" "}</Button>
+                  <Button onClick={handleOpenGraph}>
+                    <img
+                      src="/flowcurve.png"
+                      style={{ maxWidth: "200px" }}
+                      alt=""
+                    />{" "}
+                  </Button>
                   <Modal
                     disableAutoFocus={true}
                     aria-labelledby="simple-modal-title"
@@ -251,9 +525,10 @@ function RecordList(props) {
                     open={openGraph}
                     onClose={handleCloseGraph}
                   >
-                    <div style={modalStyle} className={classes.paper}><FlowCurve /></div>
+                    <div style={modalStyle} className={classes.paper}>
+                      <FlowCurve />
+                    </div>
                   </Modal>
-
                 </TableCell>
                 <TableCell align="left">
                   <Grid container className={classes.grid}>
@@ -296,8 +571,20 @@ function RecordList(props) {
                 </TableCell>
                 <TableCell align="right">
                   <ButtonGroup variant="text">
-                    <Button color="secondary" onClick={() => onPatientCommentClick(record.id)}> Patient's Comments </Button>
-                    <Button color="secondary" onClick={() => onDoctorCommentClick(record.id)}> Clinician's Comments </Button>
+                    <Button
+                      color="secondary"
+                      onClick={() => onPatientCommentClick(record.id)}
+                    >
+                      {" "}
+                      Patient's Comments{" "}
+                    </Button>
+                    <Button
+                      color="secondary"
+                      onClick={() => onDoctorCommentClick(record.id)}
+                    >
+                      {" "}
+                      Clinician's Comments{" "}
+                    </Button>
                   </ButtonGroup>
                 </TableCell>
               </TableRow>

@@ -260,4 +260,32 @@ function getFakeRecords(sid){
     return Data.records.filter(r => r.pid === sid)[0].rec
 }
 
-export { getFakePatients, getFakeRecords }
+let id = "012341241234124123"
+
+function addFakePatient(data){
+
+    const studyid = data.studyId
+
+    if (Data.patients.map(p => p.studyId).includes(studyid)){
+        id = String(parseInt(id)+1)
+
+        Data.patients.push({
+            "id":id,
+            "studyId":studyid,
+            "numRecord":0,
+            "dob": data.dob,
+            "hasNew":false,
+            "gender": data.gender,
+            "condition": data.condition
+        })
+
+        return 1
+        
+    }else{
+        return -1
+    }
+
+
+}
+
+export { getFakePatients, getFakeRecords , addFakePatient}
