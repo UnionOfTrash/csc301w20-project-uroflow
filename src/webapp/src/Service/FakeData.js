@@ -263,17 +263,16 @@ function getFakeRecords(sid){
 let id = "012341241234124123"
 
 function addFakePatient(data){
-
-    const studyid = data.studyId
-
-    if (Data.patients.map(p => p.studyId).includes(studyid)){
-        id = String(parseInt(id)+1)
+    const studyId = data.studyId
+    console.log(Data)
+    // if (Data.patients.map(p => p.studyId).includes(studyId)){
+    //     id = String(parseInt(id)+1)
 
         Data.patients.push({
             "id":id,
-            "studyId":studyid,
+            "studyId":data.studyId,
             "numRecord":0,
-            "dob": data.dob,
+            "dob": data.selectedDate,
             "hasNew":false,
             "gender": data.gender,
             "condition": data.condition
@@ -281,9 +280,9 @@ function addFakePatient(data){
 
         return 1
         
-    }else{
-        return -1
-    }
+    // }else{
+    //     return -1
+    // }
 
 
 }

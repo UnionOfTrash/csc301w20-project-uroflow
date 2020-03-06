@@ -80,7 +80,7 @@ function SearchPanel(props){
                     </Grid>
                     <Grid item xl={2} xs={4}>
                         {/* <Button onClick={openAddClientPanel} className={classes.addButton} variant='contained' color='secondary'> Add Client </Button> */}
-                        <AddClientPanel />
+                        <AddClientPanel addNewClientHandler={props.addNewClientHandler}/>
                      </Grid>
                 </Grid>
             <Grid item className={ classes.sort } >
