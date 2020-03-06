@@ -19,6 +19,8 @@ import {
 } from "@matharumanpreet00/react-daterange-picker";
 import Modal from '@material-ui/core/Modal';
 
+import FlowCurve from "../MainPanel/FlowCurve";
+
 function getModalStyle() {
   const top = 50;
   const left = 50;
@@ -164,6 +166,16 @@ function RecordList(props) {
     setShowDoctorComment(true)
   }
 
+  const [openGraph, setOpenGraph] = React.useState(false);
+
+  const handleOpenGraph = () => {
+    setOpenGraph(true);
+  };
+
+  const handleCloseGraph = () => {
+    setOpenGraph(false);
+  };
+
   return (
     <div>
       <Typography variant="overline" display="block">
@@ -231,7 +243,18 @@ function RecordList(props) {
                 <TableCell align="left"> {record.time} </TableCell>
                 <TableCell align="left">
                   {" "}
-                  <img src="/logo192.png" alt="" />{" "}
+                  <Button onClick={handleOpenGraph}><img src="/flowcurve.png" style={{maxWidth:'200px'}}alt="" />{" "}</Button>
+                  <Modal
+                    disableAutoFocus={true}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                    open={openGraph}
+                    onClose={handleCloseGraph}
+                  >
+                    <div style={modalStyle} className={classes.paper}><FlowCurve /></div>
+                  </Modal>
+
+
                 </TableCell>
                 <TableCell align="left">
                   <Grid container className={classes.grid}>
