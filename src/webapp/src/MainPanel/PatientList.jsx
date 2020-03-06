@@ -46,10 +46,10 @@ function PatientList(props) {
         <Table stickyHeader>
           <TableHead>
             <TableRow>
-              <TableCell>StudyId</TableCell>
-              <TableCell align="right">RecNum</TableCell>
-              <TableCell align="right">New</TableCell>
-              <TableCell align="right">Detail</TableCell>
+              <TableCell align='left'>Study ID</TableCell>
+              <TableCell align="center">Records</TableCell>
+              <TableCell align="center">New</TableCell>
+              <TableCell align="center">Detail</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -57,9 +57,9 @@ function PatientList(props) {
               rows.map(row => (
                 <TableRow hover key={ row.studyId } >
                   <TableCell component='th' scope='row'> { row.studyId } </TableCell>
-                  <TableCell align='left'> { row.numRecord } </TableCell>
-                  <TableCell align='left'> <FiberManualRecord onClick={() => alert("click !")} fontSize='small' color={ row.hasNew ? 'primary' : 'disabled' } /> </TableCell>
-                  <TableCell align='right'>
+                  <TableCell align='center'> { row.numRecord } </TableCell>
+                  <TableCell align='center'> <FiberManualRecord onClick={() => alert("click !")} fontSize='small' color={ row.hasNew ? 'primary' : 'disabled' } /> </TableCell>
+                  <TableCell align='center'>
                     <ButtonGroup variant='text'>
                       <Button onClick={() => props.onDetailClick(row.studyId)} color='secondary'> Details </Button>
                     </ButtonGroup>
