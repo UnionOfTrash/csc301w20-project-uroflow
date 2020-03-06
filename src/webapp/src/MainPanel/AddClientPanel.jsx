@@ -100,7 +100,7 @@ function AddClientPanel(props) {
             id="standard-select-gender"
             select
             fullWidth
-            label="Sex"
+            label="Gender"
             value={gender}
             onChange={e => setGender(e.target.value)}
           >
@@ -124,9 +124,8 @@ function AddClientPanel(props) {
             value={condition}
             margin="dense"
             id="name"
-            label="Notes"
+            label="Condition"
             fullWidth
-            multiline
             onChange={e => setCondition(e.target.value)}
           />
         </DialogContent>

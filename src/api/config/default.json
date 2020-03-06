@@ -29,9 +29,9 @@
     }
   },
   "postgres": {
-    "database": "feathers_api",
-    "username": "postgres",
-    "host": "localhost",
-    "port": 5432
+    "database": "POSTGRES_DB",
+    "username": "POSTGRES_USER",
+    "password": "POSTGRES_PASSWORD",
+    "host": "POSTGRES_HOST"
   }
 }
