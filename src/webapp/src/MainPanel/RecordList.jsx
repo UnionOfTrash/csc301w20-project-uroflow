@@ -1,5 +1,6 @@
 import React from "react";
-import { Grid, SvgIcon } from "@material-ui/core";
+import {Grid, SvgIcon } from "@material-ui/core";
+import TextField from '@material-ui/core/TextField';
 import { Button, ButtonGroup } from "@material-ui/core";
 import {
   TableContainer,
@@ -61,6 +62,81 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+function PatientCommentModal(props){
+
+  return (
+    <Modal
+      disableAutoFocus={true}
+      aria-labelledby="simple-modal-title"
+      aria-describedby="simple-modal-description"
+      open={props.showPatientComment}
+      onClose={() => props.setShowPatientComment(false)}
+    >
+      <div style={props.modalStyle} className={props.classes.paper}>
+          <h3>{props.pComment} </h3>
+      </div>
+
+    </Modal>
+  )
+}
+
+function DoctorCommentModal(props){
+
+  const useStyles = makeStyles(theme => ({
+    root: {
+      '& > *': {
+        margin: theme.spacing(1),
+        width: 200,
+      },
+    },
+  }));
+  const classes = useStyles();
+
+  const [showInput, setShowInput] = React.useState(false)
+  const [showSave, setShowSave] = React.useState(false)
+
+  const onSaveClick = () => {
+    console.log(props.cComment)
+    setShowSave(false)
+    setShowInput(false)
+  }
+
+  return(
+    <Modal 
+        disableAutoFocus={true}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        open={props.showDoctorComment} onClose={()=>props.setShowDoctorComment(false)}>
+
+      <div style={props.modalStyle} className={props.classes.paper}>
+        {
+          showInput?  <form className={classes.root} noValidate autoComplete="off">
+                        <TextField defaultValue={props.cComment} id="outlined-basic" label="Comment" variant="outlined" onChange={(e) => props.setcComment(e.target.value)}/>
+                      </form>
+                      :
+                      <h3>{props.cComment} </h3> 
+        }
+
+        {
+          showSave? 
+                    <Button color="secondary" onClick={onSaveClick}>
+                      Save Comment
+                    </Button>
+                    :
+                    <Button color="secondary" onClick={() => {setShowInput(true); setShowSave(true)}}>
+                      Edit Comment
+                    </Button> 
+        }
+
+        
+      </div>
+
+      
+    </Modal>
+  )
+
+}
+
 function RecordList(props) {
   const records = props.records;
 
@@ -72,13 +148,21 @@ function RecordList(props) {
   const modalStyle = getModalStyle();
   const [open, setOpen] = React.useState(false);
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  const [pComment, setpComment] = React.useState("")
+  const [cComment, setcComment] = React.useState("")
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const [showPatientComment, setShowPatientComment] = React.useState(false)
+  const [showDoctorComment, setShowDoctorComment] = React.useState(false)
+
+  const onPatientCommentClick = (id) => {
+    setpComment(records.filter(r => r.id === id)[0].pComment)
+    setShowPatientComment(true)
+  }
+
+  const onDoctorCommentClick = (id) => {
+    setcComment(records.filter(r => r.id === id)[0].cComment)
+    setShowDoctorComment(true)
+  }
 
   return (
     <div>
@@ -89,10 +173,7 @@ function RecordList(props) {
       <ButtonGroup variant="text">
         <Button
           color="primary"
-          // onClick={() => {
-          //   setDatePickerOpen(!datePikcerOpen);
-          // }}
-          onClick={handleOpen}
+          onClick={() => setOpen(true)}
         >
           {" "}
           Date Range{" "}
@@ -105,7 +186,7 @@ function RecordList(props) {
           aria-labelledby="simple-modal-title"
           aria-describedby="simple-modal-description"
           open={open}
-          onClose={handleClose}
+          onClose={() => setOpen(false)}
         >
           <div style={modalStyle} className={classes.paper}>
             <div className={classes.modalheader}>
@@ -118,7 +199,15 @@ function RecordList(props) {
             />
           </div>
         </Modal>
+      </div>
 
+      <div className={classes.modal}>
+        <PatientCommentModal modalStyle={modalStyle} classes={classes} pComment={pComment} showPatientComment={showPatientComment} setShowPatientComment={setShowPatientComment}/>
+      </div>
+
+      <div className={classes.modal}>
+        <DoctorCommentModal modalStyle={modalStyle} classes={classes} 
+                            cComment={cComment} setcComment={setcComment} showDoctorComment={showDoctorComment} setShowDoctorComment={setShowDoctorComment} />
       </div>
       
       <TableContainer className={classes.container}>
@@ -185,8 +274,8 @@ function RecordList(props) {
                 </TableCell>
                 <TableCell align="right">
                   <ButtonGroup variant="text">
-                    <Button color="secondary"> Patient's Comments </Button>
-                    <Button color="secondary"> Clinician's Comments </Button>
+                    <Button color="secondary" onClick={() => onPatientCommentClick(record.id)}> Patient's Comments </Button>
+                    <Button color="secondary" onClick={() => onDoctorCommentClick(record.id)}> Clinician's Comments </Button>
                   </ButtonGroup>
                 </TableCell>
               </TableRow>

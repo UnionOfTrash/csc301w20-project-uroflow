@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Paper } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import {PatientList, RecordList, SearchPanel, AddClientPanel} from "../MainPanel"
+import {PatientList, RecordList, SearchPanel} from "../MainPanel"
 
 import {Service} from '../Service'
 
@@ -37,7 +37,7 @@ class MainPanel extends React.Component{
                 currentPatients:curP,
                 loadPatient:true
             })
-            console.log(res)
+            // console.log(res)
         }).catch(e => console.log(e))
     }
 
@@ -189,7 +189,7 @@ class MainPanel extends React.Component{
                         this.state.detailRecords? 
                             this.state.changeRecords?<RecordList records={this.state.records}/>: <div style={this.progressStyle()}><CircularProgress /></div>
                             :
-                            <div>
+                            <div style={{marginTop:"80px"}}>
                                     <h1>Welcome to Uroflow</h1>
                             </div>
                     }

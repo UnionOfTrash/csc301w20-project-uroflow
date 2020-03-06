@@ -117,7 +117,7 @@ const Data = {
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
                 "time": "2019-10-10 22:10:01",
-                "pComment": "good!",
+                "pComment": "1 good!",
                 "cComment": "sooo Good!"
             },
 
@@ -127,7 +127,7 @@ const Data = {
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
                 "time": "2019-10-10 22:10:01",
-                "pComment": "good!",
+                "pComment": "2 good!",
                 "cComment": "sooo Good!"
             }]
         },
@@ -139,7 +139,7 @@ const Data = {
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
                 "time": "2019-10-10 22:10:01",
-                "pComment": "good!",
+                "pComment": "1 good!",
                 "cComment": "sooo Good!"
                 }]
         },
@@ -151,7 +151,7 @@ const Data = {
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
                 "time": "2019-10-10 22:10:01",
-                "pComment": "good!",
+                "pComment": "1 good!",
                 "cComment": "sooo Good!"
             },
             {
@@ -160,7 +160,7 @@ const Data = {
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
                 "time": "2019-10-10 22:10:01",
-                "pComment": "good!",
+                "pComment": "2 good!",
                 "cComment": "sooo Good!"
             }]
         },
@@ -172,7 +172,7 @@ const Data = {
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
                 "time": "2019-10-10 22:10:01",
-                "pComment": "good!",
+                "pComment": "1 good!",
                 "cComment": "sooo Good!"
             },
             {
@@ -181,7 +181,7 @@ const Data = {
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
                 "time": "2019-10-10 22:10:01",
-                "pComment": "good!",
+                "pComment": "2 good!",
                 "cComment": "sooo Good!"
             }]
         },
@@ -193,7 +193,7 @@ const Data = {
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
                 "time": "2019-10-10 22:10:01",
-                "pComment": "good!",
+                "pComment": "1 good!",
                 "cComment": "sooo Good!"
             },
             {
@@ -202,7 +202,7 @@ const Data = {
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
                 "time": "2019-10-10 22:10:01",
-                "pComment": "good!",
+                "pComment": "2 good!",
                 "cComment": "sooo Good!"
             }]
         },
@@ -214,7 +214,7 @@ const Data = {
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
                 "time": "2019-10-10 22:10:01",
-                "pComment": "good!",
+                "pComment": "1 good!",
                 "cComment": "sooo Good!"
             },
             {
@@ -223,7 +223,7 @@ const Data = {
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
                 "time": "2019-10-10 22:10:01",
-                "pComment": "good!",
+                "pComment": "2 good!",
                 "cComment": "sooo Good!"
             }]
         },
@@ -235,8 +235,8 @@ const Data = {
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
                 "time": "2019-10-10 22:10:01",
-                "pComment": "good!",
-                "cComment": "sooo Good!"
+                "pComment": "1 good!",
+                "cComment": "2 sooo Good!"
             },
             {
                 "id": "4dc68e17-7b8c-4ff2-a67a-c2f21d5d8974",
@@ -244,8 +244,8 @@ const Data = {
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
                 "time": "2019-10-10 22:10:01",
-                "pComment": "good!",
-                "cComment": "sooo Good!"
+                "pComment": "1 good!",
+                "cComment": "2 sooo Good!"
             }]
         },
         
