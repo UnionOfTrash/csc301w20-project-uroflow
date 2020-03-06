@@ -1,6 +1,6 @@
 {
   "host": "localhost",
-  "port": 3030,
+  "port": 3010,
   "public": "../public/",
   "paginate": {
     "default": 10,
@@ -28,5 +28,10 @@
       "passwordField": "password"
     }
   },
-  "postgres": "postgres://postgres:@localhost:5432/feathers_api"
+  "postgres": {
+    "database": "feathers_api",
+    "username": "postgres",
+    "host": "localhost",
+    "port": 5432
+  }
 }

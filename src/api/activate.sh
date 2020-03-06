@@ -24,8 +24,13 @@ function remove() {
 }
 
 function run() {
+    if [ -z $1 ]; then
+        CMD=start
+    else
+        CMD=$1
+    fi
     printf "\e[32m running on port 3001 \e[m\n"
-    $DOCKER run -it --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp -p 3001:3001 node:12 npm run start
+    $DOCKER run -it --rm -v "$PWD":/usr/src/myapp -w /usr/src/myapp --network host node:12 npm run $CMD
 }
 
 function deactivate() {
