@@ -15,7 +15,8 @@ const useStyles = makeStyles(theme => ({
         square: true,
         padding: '2px 4px',
         display: 'flex',
-        flexGrow: 2
+        flexGrow: 2,
+        // height: '52px',
     },
     grid: {
         margin: theme.spacing(0.5),
@@ -74,7 +75,7 @@ function SearchPanel(props) {
             </div>
             <Grid item className={classes.sort} >
                 <Grid container>
-                    <Grid item md={4} sm={2}>
+                    <Grid item md={4} sm={2} style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                         <Typography variant='overline' display='block'> Sort By </Typography>
                     </Grid>
                     <Grid item md={8} sm={10}>
