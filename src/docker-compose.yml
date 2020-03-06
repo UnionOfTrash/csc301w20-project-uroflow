@@ -2,22 +2,32 @@ version: "3.4"
 
 services:
 
-  db:
+  postgres:
     image: postgres:12
     restart: always
     volumes:
-      - /var/docker/uroflow:/var/lib/postgresql/data
+      - /tmp/uroflow:/var/lib/postgresql/data
     ports:
       - 5432:5432
     environment:
-      POSTGRES_DB: feathers_api
-      POSTGRES_HOST_AUTH_METHOD: trust
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=uroflow
+      - POSTGRES_DB=uroflow
+      - POSTGRES_HOST_AUTH_METHOD=trust
 
   api:
     image: node:12
     restart: always
-    working_dir: /usr/src/myapp
     volumes:
       - ./api:/usr/src/myapp
-    network_mode: host
-    command: "npm run start"
+    working_dir: /usr/src/myapp
+    ports:
+      - 3010:3010
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DB=uroflow
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=uroflow
+    command: npm run start
+    depends_on:
+      - postgres
