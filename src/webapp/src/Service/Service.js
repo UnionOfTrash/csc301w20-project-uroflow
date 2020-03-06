@@ -100,10 +100,11 @@ function addPatient(data){
                 resolve("success")
             }
             
-            else{
+            else
+            {
                 reject("fail")
             }
 
-        }, 2000)
+        }, 0)
     })
 }

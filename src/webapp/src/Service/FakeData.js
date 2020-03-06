@@ -265,8 +265,8 @@ let id = "012341241234124123"
 function addFakePatient(data){
     const studyId = data.studyId
     console.log(Data)
-    // if (Data.patients.map(p => p.studyId).includes(studyId)){
-    //     id = String(parseInt(id)+1)
+    if (!(Data.patients.map(p => p.studyId).includes(studyId))){
+        id = String(parseInt(id)+1)
 
         Data.patients.push({
             "id":id,
@@ -277,12 +277,11 @@ function addFakePatient(data){
             "gender": data.gender,
             "condition": data.condition
         })
-
         return 1
         
-    // }else{
-    //     return -1
-    // }
+    }else{
+        return -1
+    }
 
 
 }

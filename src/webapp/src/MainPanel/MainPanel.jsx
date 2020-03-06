@@ -124,7 +124,6 @@ class MainPanel extends React.Component{
 
         Service.addPatient(newClient).then(() => {
             Service.getPatients().then(res => {
-                console.log("asfasfasfsaf")
 
                 const curP = res.sort((a, b) => {
                     const aid = parseInt(a.studyId)
@@ -138,37 +137,8 @@ class MainPanel extends React.Component{
                 })
                 // console.log(res)
             }).catch(e => console.log(e))
-            // const curP = res.sort((a, b) => {
-            //     const aid = parseInt(a.studyId)
-            //     const bid = parseInt(b.studyId)
-            //     return (aid-bid)
-            // })
-            // this.setState({
-            //     allPatients:res,
-            //     currentPatients:curP,
-            //     loadPatient:true
-            // })
-            // console.log(res)
         }).catch(e => console.log(e))
-        //Service.addPatient(newClient)
-        // const newPatientList = [...this.state.currentPatients, newClient]
-
-        // this.setState({currentPatients: newPatientList}, function () {
-        //     this.onSortByIdClick()
-        // });
     }
-
-    // openAddClientPanel = () => {
-    //     this.setState({
-    //         addClientPanelOpen: true
-    //     })
-    // }
-
-    // closeAddClientPanel = () => {
-    //     this.setState({
-    //         addClientPanelOpen: false
-    //     })
-    // }
 
     progressStyle = () => {
         return {
