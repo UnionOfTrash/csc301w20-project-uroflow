@@ -215,7 +215,7 @@ function CondModal(props) {
           </Button>
         </div>
         <Grid container>
-          <Grid xl={4} xs={4}>
+          <Grid item xl={4} xs={4}>
             <Opacity
               onClick={() => {
                 selectLeak === "disabled"
@@ -226,7 +226,7 @@ function CondModal(props) {
               color={selectLeak}
             />
           </Grid>
-          <Grid xl={4} xs={4}>
+          <Grid item xl={4} xs={4}>
             <SvgIcon
               onClick={() => {
                 selectPoop === "disabled"
@@ -254,7 +254,7 @@ function CondModal(props) {
               />
             </SvgIcon>
           </Grid>
-          <Grid xl={4} xs={4}>
+          <Grid item xl={4} xs={4}>
             <Warning
               onClick={() => {
                 selectUrgent === "disabled"
@@ -316,13 +316,8 @@ function RecordList(props) {
   // followings are for the condition filter
   const [conditionName, setConditionName] = React.useState([]);
 
-  const handleChange = event => {
-    setConditionName(event.target.value);
-    let selected = "";
-    event.target.value.map(name => {
-      selected += name + " ";
-    });
-    setSelectedConditionData([{ key: 0, label: selected }]);
+  const handleChange = cond => {
+    setSelectedConditionData([{ key: 0, label: cond }]);
   };
 
   const handleDelete = chipToDelete => () => {
@@ -334,16 +329,16 @@ function RecordList(props) {
     console.log("condition name: " + conditionName);
   };
 
-  const handleChangeMultiple = event => {
-    const { options } = event.target;
-    const value = [];
-    for (let i = 0, l = options.length; i < l; i += 1) {
-      if (options[i].selected) {
-        value.push(options[i].value);
-      }
-    }
-    setConditionName(value);
-  };
+  // const handleChangeMultiple = event => {
+  //   const { options } = event.target;
+  //   const value = [];
+  //   for (let i = 0, l = options.length; i < l; i += 1) {
+  //     if (options[i].selected) {
+  //       value.push(options[i].value);
+  //     }
+  //   }
+  //   setConditionName(value);
+  // };
 
   return (
     <>
@@ -417,50 +412,6 @@ function RecordList(props) {
             />
           </div>
         </Modal>
-        <Modal
-          disableAutoFocus={true}
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-          open={openConditionModal}
-          onClose={() => setOpenConditionModal(false)}
-        >
-          <div style={modalStyle} className={classes.paper}>
-            <div className={classes.modalheader}>
-              <h2>Select Conditions</h2>
-            </div>
-            <FormControl className={classes.formControl}>
-              <InputLabel id="demo-mutiple-checkbox-label">
-                Conditions
-              </InputLabel>
-              <Select
-                labelId="demo-mutiple-checkbox-label"
-                id="demo-mutiple-checkbox"
-                multiple
-                value={conditionName}
-                onChange={handleChange}
-                input={<Input />}
-                renderValue={selected => selected.join(", ")}
-                // MenuProps={MenuProps}
-              >
-                {["Leak", "Poop", "Urgent"].map(name => (
-                  <MenuItem key={name} value={name}>
-                    <Checkbox checked={conditionName.indexOf(name) > -1} />
-                    <ListItemText primary={name} />
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <div>
-              <Button
-                size="large"
-                color="primary"
-                onClick={() => setOpenConditionModal(false)}
-              >
-                Save
-              </Button>
-            </div>
-          </div>
-        </Modal>
       </div>
       <div className={classes.modal}>
         <CondModal
@@ -468,6 +419,7 @@ function RecordList(props) {
           classes={classes}
           showCond={showCond}
           setShowCond={setShowCond}
+          handleChange={handleChange}
         />
       </div>
     </div>
