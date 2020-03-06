@@ -51,8 +51,8 @@ function PatientList(props) {
       <Table stickyHeader>
         <TableHead>
           <TableRow>
-            <TableCell>StudyId</TableCell>
-            <TableCell align="center">RecNum</TableCell>
+            <TableCell>Study ID</TableCell>
+            <TableCell align="center">Records</TableCell>
             <TableCell align="center">New</TableCell>
             <TableCell align="center">Detail</TableCell>
           </TableRow>

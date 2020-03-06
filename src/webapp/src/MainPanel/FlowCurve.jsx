@@ -4,6 +4,12 @@ import Chart from "chart.js";
 let flowCurve
 
 export default class FlowCurve extends Component {
+
+    constructor(props){
+        super(props)
+
+    }
+
     chartRef = React.createRef();
 
     componentDidMount() {
@@ -16,8 +22,8 @@ export default class FlowCurve extends Component {
 
     containerStyle = () => {
         return {
-            width: '50vw',
-            height: '50vh',
+            width: '80vw',
+            height: '80vh',
             background: 'white',
             padding: '30px 20px 10px 20px',
             borderRadius: '10px',    
@@ -34,11 +40,11 @@ export default class FlowCurve extends Component {
             type: "line",
             data: {
                 //Bring in data
-                labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+                labels: this.props.label,
                 datasets: [
                     {
                         label: "flow",
-                        data: [0, 0.13, 0.13, 8.26, 14.09, 14.95, 17.23, 11.85, 2.10, 13.76, 42.70, 20.78, 21.89, 13.76, 1.74, 20.58, 23.45, 9.27, 0.49, 0, 0],
+                        data: this.props.data,
                         fill: false,
                         borderColor: "orange"
                     }
