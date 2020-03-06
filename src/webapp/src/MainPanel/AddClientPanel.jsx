@@ -25,9 +25,12 @@ const genders = [
 const useStyles = makeStyles(theme => ({
     addButton: {
         margin: theme.spacing(0.5),
-        marginLeft: theme.spacing(1),
+        marginLeft: theme.spacing(4),
         // fullWidth: true,
-        color: 'white'
+        color: 'white',
+        height: '52px',
+        flexGrow: 1,
+        flexShrink: 0,
     },
 }))
 
@@ -57,7 +60,7 @@ function AddClientPanel(props) {
 
 
     return (
-        <div>
+        <>
             <Button className={classes.addButton} variant="contained" color="primary" onClick={handleClickOpen}>
                 New Patient
         </Button>
@@ -87,7 +90,7 @@ function AddClientPanel(props) {
             </Button>
                 </DialogActions>
             </Dialog>
-        </div>
+        </>
     )
 }
 

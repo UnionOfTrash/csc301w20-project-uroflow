@@ -25,6 +25,7 @@ const useStyles = makeStyles(theme => ({
   input: {
     marginLeft: theme.spacing(1),
     flex: 1,
+    minWidth: '200px'
   },
   iconButton: {
     padding: 10,
