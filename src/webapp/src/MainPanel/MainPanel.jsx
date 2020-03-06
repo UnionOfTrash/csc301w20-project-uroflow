@@ -164,7 +164,7 @@ class MainPanel extends React.Component{
                 </AddClientPanel> */}
               <Grid item xl={ 4 } xs={ 4 } >
                 <Paper className={ this.classes.paper }>
-                    <Grid container className={ this.classes.grid }>
+                    <div  className={ this.classes.grid }>
                         <SearchPanel
                             onSearchClick={this.onSearchClick}
                             onSearchChange={this.onSearchChange}
@@ -180,7 +180,7 @@ class MainPanel extends React.Component{
                                                     />:
                                                     <div style={this.progressStyle()}><CircularProgress /></div>
                         }
-                    </Grid>
+                    </div>
                 </Paper>
               </Grid>
               <Grid item xl={ 8 } xs={ 8 } >

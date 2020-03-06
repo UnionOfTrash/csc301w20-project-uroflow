@@ -57,7 +57,7 @@ function PatientList(props) {
                 <TableRow hover key={ row.studyId } >
                   <TableCell component='th' scope='row'> { row.studyId } </TableCell>
                   <TableCell align='left'> { row.numRecord } </TableCell>
-                  <TableCell align='left'> <FiberManualRecord fontSize='small' color={ row.hasNew ? 'primary' : 'disabled' } /> </TableCell>
+                  <TableCell align='left'> <FiberManualRecord onClick={() => alert("click !")} fontSize='small' color={ row.hasNew ? 'primary' : 'disabled' } /> </TableCell>
                   <TableCell align='right'>
                     <ButtonGroup variant='text'>
                       <Button onClick={() => props.onDetailClick(row.studyId)} color='secondary'> Details </Button>
