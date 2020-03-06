@@ -7,6 +7,7 @@ export const Service = {
     getPatients,
     authenticationService,
     getCurveData,
+    addPatient,
 
 }
 
@@ -86,24 +87,20 @@ function getCurveData(cid){
                 ]
             ]
             res(data)
-
         }, 1500)
-        
     })
+}
 
+function addPatient(data){
 
-    function addPatient(data){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (addFakePatient(data) === 1){
+                resolve("success")
+            }else{
+                reject("fail")
+            }
 
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-
-                if (addFakePatient(data) === 1){
-                    resolve("success")
-                }else{
-                    reject("fail")
-                }
-
-            }, 2000)
-        })
-    }
+        }, 2000)
+    })
 }
