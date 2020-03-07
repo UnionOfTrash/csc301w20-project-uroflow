@@ -28,20 +28,36 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function App() {
+function App(){
 
+  const [currentUser, setCurrentUser] = React.useState(false)
+
+  React.useEffect(() => {
+
+    const user = localStorage.getItem("currentUser")
+    if (user){
+      setCurrentUser(user)
+    }
+
+  })
+  
   // Athorize User here
   const classes = useStyles();
 
   return (
-    <ThemeProvider theme={ theme } >
-      <div className={ classes.root } >
-        <Header />
-        <MainPanel
-          classes={ classes }
-        />
-      </div>
-    </ThemeProvider>
+    <>
+      {
+        (!currentUser)? <Login setUser={setCurrentUser}/> :
+                            <ThemeProvider theme={ theme } >
+                              <div className={ classes.root } >
+                                <Header />
+                                <MainPanel
+                                  classes={ classes }
+                                />
+                              </div>
+                            </ThemeProvider>
+      }
+    </>
   );
 }
 

@@ -1,11 +1,10 @@
 import {getFakePatients, getFakeRecords, addFakePatient, getFakeCurveData} from "./FakeData"
-import {authenticationService} from './Authentication'
+import {Authentication} from './Authentication'
 
 export const Service = {
-
+    Authentication,
     getRecords,
     getPatients,
-    authenticationService,
     getCurveData,
     addPatient,
 

@@ -12,6 +12,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { Service } from '../Service';
 
 function Copyright() {
   return (
@@ -46,9 +47,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function Login() {
+function Login(props) {
 
-    const [ email, setEmail ] = useState("")
+    const [ username, setUsername ] = useState("")
     const [password, setPassword] = useState("")
 
 
@@ -57,11 +58,16 @@ function Login() {
     const handleSubmit = (e) => {
             e.preventDefault();
             // TODO: here, pass email and password to the backend server
-            console.log("Email : " + email + " , Password : " + password)
+            Service.Authentication.login(username, password).then(res => {
+              if (res === 1){
+                window.localStorage.setItem("currentUser", res)
+                props.setUser(res)
+              }
+            }).catch(e => alert(e))
     }
 
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value)
+    const handleUsernameChange = (e) => {
+        setUsername(e.target.value)
     }
 
     const handlePasswordChange = (e) => {
@@ -80,15 +86,14 @@ function Login() {
             </Typography>
             <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
-                onChange={handleEmailChange}
+                onChange={handleUsernameChange}
                 variant="outlined"
                 margin="normal"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
+                id="username"
+                label="User name"
+                name="username"
                 autoFocus
             />
             <TextField
@@ -116,18 +121,6 @@ function Login() {
             >
                 Sign In
             </Button>
-            {/* <Grid container>
-                <Grid item xs>
-                <Link href="#" variant="body2">
-                    Forgot password?
-                </Link>
-                </Grid>
-                <Grid item>
-                <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                </Link>
-                </Grid>
-            </Grid> */}
             </form>
         </div>
         <Box mt={8}>
