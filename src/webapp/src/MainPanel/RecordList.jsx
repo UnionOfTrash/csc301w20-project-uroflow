@@ -12,19 +12,12 @@ import {
 } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { Opacity, Warning } from "@material-ui/icons";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import {
   DateRangePicker,
   DateRange
 } from "@matharumanpreet00/react-daterange-picker";
 import Modal from "@material-ui/core/Modal";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import ListItemText from "@material-ui/core/ListItemText";
-import Select from "@material-ui/core/Select";
-import Checkbox from "@material-ui/core/Checkbox";
 import Chip from "@material-ui/core/Chip";
 
 import FlowCurve from "../MainPanel/FlowCurve";
@@ -44,18 +37,9 @@ function getModalStyle() {
   };
 }
 
-function getStyles(name, personName, theme) {
-  return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium
-  };
-}
 
 const useStyles = makeStyles(theme => ({
   container: {
-    // maxHeight: window.innerHeight - theme.spacing(20),
     height: '100%',
     overflowY: 'auto'
   },
@@ -197,9 +181,14 @@ function DoctorCommentModal(props) {
 }
 
 function CondModal(props) {
-  const [selectLeak, setSelectLeak] = React.useState("disabled");
-  const [selectPoop, setSelectPoop] = React.useState("disabled");
-  const [selectUrgent, setSelectUrgent] = React.useState("disabled");
+
+  const conditions = props.conditions
+  const setConditions = props.setConditions
+
+  const onSaveClick = () => {
+    props.onConditionSaveClick()
+    props.setShowCond(false)
+  }
 
   return (
     <Modal
@@ -212,35 +201,31 @@ function CondModal(props) {
       <div style={props.modalStyle} className={props.classes.paper}>
         <div className={props.classes.modalheader}>
           <h2>Select Conditions</h2>
-          <Button
-            size="large"
-            color="primary"
-            className={props.classes.savebtn}
-          >
-            Save
-          </Button>
         </div>
         <Grid container>
           <Grid item xl={4} xs={4}>
             <Opacity
               onClick={() => {
-                selectLeak === "disabled"
-                  ? setSelectLeak("error")
-                  : setSelectLeak("disabled");
+                const c1 = conditions[1]
+                const c2 = conditions[2]
+                conditions[0] === "disabled"
+                  ? setConditions(["error", c1, c2])
+                  : setConditions(["disabled", c1, c2]);
               }}
               fontSize="large"
-              color={selectLeak}
+              color={conditions[0]}
             />
           </Grid>
           <Grid item xl={4} xs={4}>
             <SvgIcon
               onClick={() => {
-                selectPoop === "disabled"
-                  ? setSelectPoop("error")
-                  : setSelectPoop("disabled");
+                const c0 = conditions[0]
+                const c2 = conditions[2]
+                conditions[1] === "disabled" ? 
+                    setConditions([c0, "error", c2]) : setConditions([c0, "disabled", c2]);
               }}
               fontSize="large"
-              color={selectPoop}
+              color={conditions[1]}
             >
               <path
                 d="M11.36 2c-.21 0-.49.12-.79.32C10 2.7 8.85 3.9 8.4 5.1c-.34.9-.35
@@ -263,15 +248,30 @@ function CondModal(props) {
           <Grid item xl={4} xs={4}>
             <Warning
               onClick={() => {
-                selectUrgent === "disabled"
-                  ? setSelectUrgent("error")
-                  : setSelectUrgent("disabled");
+                const c0 = conditions[0]
+                const c1 = conditions[1]
+                conditions[2] === "disabled"
+                  ? setConditions([c0, c1, "error"])
+                  : setConditions([c0, c1, "disabled"]);
               }}
               fontSize="large"
-              color={selectUrgent}
+              color={conditions[2]}
             />
           </Grid>
         </Grid>
+        <div style={{
+          "display":"flex",
+          "justify-content":"center"
+        }}>
+          <Button
+            size="large"
+            color="primary"
+            onClick={onSaveClick}
+          >
+              Save
+          </Button>
+        </div>
+
       </div>
     </Modal>
   );
@@ -281,14 +281,13 @@ function RecordList(props) {
   const records = props.records;
 
   const classes = useStyles();
-  const theme = useTheme();
 
   // const [datePikcerOpen, setDatePickerOpen] = React.useState(false);
   const [dateRange, setDateRange] = React.useState({});
 
   const modalStyle = getModalStyle();
   const [open, setOpen] = React.useState(false);
-  const [openConditionModal, setOpenConditionModal] = React.useState(false);
+
   const [selectedConditionData, setSelectedConditionData] = React.useState([]);
   const [selectedDateRange, setSelectedDateRange] = React.useState([]);
 
@@ -329,31 +328,42 @@ function RecordList(props) {
   };
 
   // followings are for the condition filter
-  const [conditionName, setConditionName] = React.useState([]);
+  const [conditionName, setConditionName] = React.useState(["disabled", "disabled", "disabled"]);
 
-  const handleChange = cond => {
-    setSelectedConditionData([{ key: 0, label: cond }]);
+
+  const onConditionSaveClick = () => {
+
+    const data = []
+    const conditions = ["leak", "poop", "urgent"]
+    let id = 0
+    conditionName.forEach(e => {
+      if (e !== "disabled"){
+        data.push({key:id, label: conditions[id]})
+      }
+      id++;
+    });
+
+    setSelectedConditionData(data)
   };
 
   const handleDelete = chipToDelete => () => {
     setSelectedConditionData(chips =>
       chips.filter(chip => chip.key !== chipToDelete.key)
     );
-    //
-    setConditionName([]);
-    console.log("condition name: " + conditionName);
-  };
+    
+    let id = -1
+    const cond = conditionName.map(c => {
+      id++
+      if (id === chipToDelete.key){
+        return "disabled"
+      }else{
+        return c
+      }
+    })
 
-  // const handleChangeMultiple = event => {
-  //   const { options } = event.target;
-  //   const value = [];
-  //   for (let i = 0, l = options.length; i < l; i += 1) {
-  //     if (options[i].selected) {
-  //       value.push(options[i].value);
-  //     }
-  //   }
-  //   setConditionName(value);
-  // };
+    //
+    setConditionName(cond);
+  };
 
   return (
     <>
@@ -365,12 +375,8 @@ function RecordList(props) {
         <Button color="primary" onClick={() => setOpen(true)}>
           Date Range
         </Button>
-        <Button color="primary" onClick={() => setOpenConditionModal(true)}>
-          Condition
-        </Button>
         <Button color="primary" onClick={() => setShowCond(true)}>
-          {" "}
-          Condition{" "}
+          Condition
         </Button>
       </ButtonGroup>
 
@@ -434,7 +440,9 @@ function RecordList(props) {
           classes={classes}
           showCond={showCond}
           setShowCond={setShowCond}
-          handleChange={handleChange}
+          conditions={conditionName}
+          setConditions={setConditionName}
+          onConditionSaveClick={onConditionSaveClick}
         />
       </div>
     </div>
@@ -466,9 +474,9 @@ function RecordList(props) {
               <TableCell className={classes.head} colSpan={4}></TableCell>
             </TableRow>
             <TableRow>
-              <TableCell align="center">Uploaded Time</TableCell>
+              <TableCell align="center" style={{minWidth: '15%'}}>Uploaded Time</TableCell>
               <TableCell align="center">Uroflow Preview</TableCell>
-              <TableCell align="center" style={{width: '30%'}}>Conditions</TableCell>
+              <TableCell align="center" style={{width: '25%'}}>Conditions</TableCell>
               <TableCell align="center">Comments</TableCell>
             </TableRow>
           </TableHead>
