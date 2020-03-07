@@ -22,8 +22,8 @@ export default class FlowCurve extends Component {
 
     containerStyle = () => {
         return {
-            width: '80vw',
-            height: '80vh',
+            // width: '80vw',
+            // height: '80vh',
             background: 'white',
             padding: '30px 20px 10px 20px',
             borderRadius: '10px',    
@@ -50,16 +50,20 @@ export default class FlowCurve extends Component {
                     }
                 ]
             },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+              }
         });
     }
     render() {
         return (
-            <div style={this.containerStyle()}>
+            <>
                 <canvas
                     id="uroflow-curve"
                     ref={this.chartRef}
                 />
-            </div>
+            </>
         )
     }
 }

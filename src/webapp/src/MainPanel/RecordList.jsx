@@ -474,9 +474,9 @@ function RecordList(props) {
               <TableCell className={classes.head} colSpan={4}></TableCell>
             </TableRow>
             <TableRow>
-              <TableCell align="center">Uploaded Time</TableCell>
+              <TableCell align="center" style={{minWidth: '15%'}}>Uploaded Time</TableCell>
               <TableCell align="center">Uroflow Preview</TableCell>
-              <TableCell align="center" style={{width: '30%'}}>Conditions</TableCell>
+              <TableCell align="center" style={{width: '25%'}}>Conditions</TableCell>
               <TableCell align="center">Comments</TableCell>
             </TableRow>
           </TableHead>
