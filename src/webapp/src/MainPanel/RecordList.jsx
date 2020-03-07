@@ -12,19 +12,12 @@ import {
 } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { Opacity, Warning } from "@material-ui/icons";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import {
   DateRangePicker,
   DateRange
 } from "@matharumanpreet00/react-daterange-picker";
 import Modal from "@material-ui/core/Modal";
-import Input from "@material-ui/core/Input";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-import ListItemText from "@material-ui/core/ListItemText";
-import Select from "@material-ui/core/Select";
-import Checkbox from "@material-ui/core/Checkbox";
 import Chip from "@material-ui/core/Chip";
 
 import FlowCurve from "../MainPanel/FlowCurve";
@@ -44,18 +37,9 @@ function getModalStyle() {
   };
 }
 
-function getStyles(name, personName, theme) {
-  return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium
-  };
-}
 
 const useStyles = makeStyles(theme => ({
   container: {
-    // maxHeight: window.innerHeight - theme.spacing(20),
     height: '100%',
     overflowY: 'auto'
   },
@@ -297,7 +281,6 @@ function RecordList(props) {
   const records = props.records;
 
   const classes = useStyles();
-  const theme = useTheme();
 
   // const [datePikcerOpen, setDatePickerOpen] = React.useState(false);
   const [dateRange, setDateRange] = React.useState({});
@@ -355,20 +338,31 @@ function RecordList(props) {
     let id = 0
     conditionName.forEach(e => {
       if (e !== "disabled"){
-        data.push({key:0, label: conditions[id]})
+        data.push({key:id, label: conditions[id]})
       }
       id++;
     });
 
-    setSelectedConditionData([data])
+    setSelectedConditionData(data)
   };
 
   const handleDelete = chipToDelete => () => {
     setSelectedConditionData(chips =>
       chips.filter(chip => chip.key !== chipToDelete.key)
     );
+    
+    let id = -1
+    const cond = conditionName.map(c => {
+      id++
+      if (id === chipToDelete.key){
+        return "disabled"
+      }else{
+        return c
+      }
+    })
+
     //
-    setConditionName(["disabled", "disabled", "disabled"]);
+    setConditionName(cond);
   };
 
   return (
