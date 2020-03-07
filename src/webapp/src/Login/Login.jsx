@@ -52,17 +52,16 @@ function Login(props) {
     const [ username, setUsername ] = useState("")
     const [password, setPassword] = useState("")
 
-
     const classes = useStyles();
 
     const handleSubmit = (e) => {
             e.preventDefault();
-            // TODO: here, pass email and password to the backend server
+
             Service.Authentication.login(username, password).then(res => {
-              if (res === 1){
-                window.localStorage.setItem("currentUser", res)
-                props.setUser(res)
-              }
+              console.log(res)
+              window.localStorage.setItem("user", res.user.username)
+              window.localStorage.setItem("token", res.accessToken)
+              props.setUser(res.user.username)
             }).catch(e => alert(e))
     }
 
