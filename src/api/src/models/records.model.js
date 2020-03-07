@@ -5,26 +5,26 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function (app) {
   const sequelizeClient = app.get("sequelizeClient");
-  const users = sequelizeClient.define("users", {
+  const records = sequelizeClient.define("records", {
 
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    },
-    password: {
-      type: DataTypes.STRING,
+    condition: {
+      type: DataTypes.ARRAY(DataTypes.BOOLEAN),
       allowNull: false
     },
-    role: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 0
+    pcomment: {
+      type: DataTypes.TEXT
+    },
+    ccomment: {
+      type: DataTypes.TEXT
+    },
+    user_id: {
+      type: DataTypes.UUID,
+      allowNull: false
     }
 
   }, {
@@ -36,10 +36,10 @@ module.exports = function (app) {
   });
 
   // eslint-disable-next-line no-unused-vars
-  users.associate = function (models) {
+  records.associate = function (models) {
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
   };
 
-  return users;
+  return records;
 };

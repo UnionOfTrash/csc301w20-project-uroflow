@@ -12,28 +12,13 @@ module.exports = function (app) {
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
-    file_url: {
-      type: Sequelize.TEXT,
+    data: {
+      type: DataTypes.JSON,
       allowNull: false
-    },
-    file_type: {
-      type: Sequelize.TEXT,
-      allowNull: false
-    },
-    content_uri: {
-      type: Sequelize.TEXT,
-      allowNull: false
-    },
-    length: {
-      type: Sequelize.TEXT,
-      allowNull: false
-    },
-    description: {
-      type: Sequelize.TEXT,
-      allowNull: true
     },
     user_id: {
       type: Sequelize.UUID,
+      allowNull: false
     }
 
   }, {
@@ -48,6 +33,7 @@ module.exports = function (app) {
   audio.associate = function (models) {
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
+    audio.belongsTo(models['users'], { })
   };
 
   return audio;
