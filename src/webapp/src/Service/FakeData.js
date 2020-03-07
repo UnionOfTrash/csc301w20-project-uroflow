@@ -8,8 +8,8 @@ const Data = {
             "numRecord":2,
             "dob": "2010-10-10",
             "hasNew":true,
-            "gender": "Male",
-            "condition": "die"
+            "sex": "Male",
+            "note": "die"
         },
         {
             "id":"7c7f3fa1-12a9-4025-938a-668e0fb2739f",
@@ -17,8 +17,8 @@ const Data = {
             "numRecord":1,
             "dob": "2010-10-01",
             "hasNew":true,
-            "gender": "Famale",
-            "condition": "wanna die"
+            "sex": "Famale",
+            "note": "wanna die"
         },
         {
             "id":"7c7f3fa1-12a9-4025-938a-668e0fb2739a",
@@ -26,8 +26,8 @@ const Data = {
             "numRecord":2,
             "dob": "2010-10-20",
             "hasNew":false,
-            "gender": "Male",
-            "condition": "dont wanna die"
+            "sex": "Male",
+            "note": "dont wanna die"
         },
         {
             "id":"7c7f3fa1-12a9-4025-938a-668e0fb27391",
@@ -35,8 +35,8 @@ const Data = {
             "numRecord":1,
             "dob": "2010-10-01",
             "hasNew":true,
-            "gender": "Famale",
-            "condition": "wanna die"
+            "sex": "Famale",
+            "note": "wanna die"
         },
         {
             "id":"7c7f3fa1-12a9-4025-938a-668e0fb27392",
@@ -44,8 +44,8 @@ const Data = {
             "numRecord":2,
             "dob": "2010-10-20",
             "hasNew":false,
-            "gender": "Male",
-            "condition": "dont wanna die"
+            "sex": "Male",
+            "note": "dont wanna die"
         },
         {
             "id":"7c7f3fa1-12a9-4025-938a-668e0fb27393",
@@ -53,8 +53,8 @@ const Data = {
             "numRecord":1,
             "dob": "2010-10-01",
             "hasNew":true,
-            "gender": "Famale",
-            "condition": "wanna die"
+            "sex": "Famale",
+            "note": "wanna die"
         },
         {
             "id":"7c7f3fa1-12a9-4025-938a-668e0fb27394",
@@ -62,8 +62,8 @@ const Data = {
             "numRecord":2,
             "dob": "2010-10-20",
             "hasNew":false,
-            "gender": "Male",
-            "condition": "dont wanna die"
+            "sex": "Male",
+            "note": "dont wanna die"
         }
     ],
 

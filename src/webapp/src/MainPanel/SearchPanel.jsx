@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { Grid, Paper } from '@material-ui/core';
 import { Button, ButtonGroup, IconButton, InputBase } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
@@ -10,7 +10,6 @@ import { AddClientPanel } from "../MainPanel"
 
 const useStyles = makeStyles(theme => ({
     paper: {
-        padding: theme.spacing(1),
         color: theme.palette.text.secondary,
         square: true,
         padding: '2px 4px',
