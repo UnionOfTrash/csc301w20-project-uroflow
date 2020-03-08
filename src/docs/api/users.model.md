@@ -27,4 +27,3 @@ using integer for space saving and future modifiability
 true -- has been initialized \
 false -- the other way \
 if false the app should pop up a window to help users setup their password
-
