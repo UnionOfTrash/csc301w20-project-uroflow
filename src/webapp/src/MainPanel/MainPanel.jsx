@@ -120,24 +120,24 @@ class MainPanel extends React.Component{
 
 
     addNewClientHandler = (newClient) => {
-        // Backend...
+        return new Promise((resolve) => {
+            Service.addPatient(newClient).then(() => {
+                Service.getPatients().then(res => {
 
-        Service.addPatient(newClient).then(() => {
-            Service.getPatients().then(res => {
-
-                const curP = res.sort((a, b) => {
-                    const aid = parseInt(a.studyId)
-                    const bid = parseInt(b.studyId)
-                    return (aid-bid)
-                })
-                this.setState({
-                    allPatients:res,
-                    currentPatients:curP,
-                    loadPatient:true
-                })
-                // console.log(res)
-            }).catch(e => console.log(e))
-        }).catch(e => alert("The Study ID already exists."))
+                    const curP = res.sort((a, b) => {
+                        const aid = parseInt(a.studyId)
+                        const bid = parseInt(b.studyId)
+                        return (aid-bid)
+                    })
+                    this.setState({
+                        allPatients:res,
+                        currentPatients:curP,
+                        loadPatient:true
+                    })
+                }).catch(e => console.log(e))
+                resolve("success")
+            }).catch(() => alert("The Study ID already exists."))
+        })
     }
 
     progressStyle = () => {
@@ -160,23 +160,14 @@ class MainPanel extends React.Component{
     render(){
         return (
             <Grid container className={ this.classes.grid } spacing={ 2 } >
-                {/* <AddClientPanel
-                openStatus={this.state.addClientPanelOpen}
-                close={this.closeAddClientPanel}
-                addNewClientHandler={this.addNewClientHandler}
-                >
-                </AddClientPanel> */}
               <Grid item xl={ 4 } xs={ 4 } >
                 <Paper className={ this.classes.paper } style={this.colFlex}>
-                    {/* <div  className={ this.classes.grid } > */}
                         <SearchPanel
                             onSearchClick={this.onSearchClick}
                             onSearchChange={this.onSearchChange}
                             onSortByIdClick={this.onSortByIdClick}
                             onSortByRecentClick={this.onSortByRecentClick}
                             addNewClientHandler={this.addNewClientHandler}
-                            // addClientPanelOpen={this.state.addClientPanelOpen}
-                            // openAddClientPanel={this.openAddClientPanel}
                         /> 
                         {
                             this.state.loadPatient? <PatientList 
@@ -185,7 +176,6 @@ class MainPanel extends React.Component{
                                                     />:
                                                     <div style={this.progressStyle()}><CircularProgress /></div>
                         }
-                    {/* </div> */}
                 </Paper>
               </Grid>
               <Grid item xl={ 8 } xs={ 8 } >

@@ -70,7 +70,7 @@ function SearchPanel(props) {
                         <Search />
                     </IconButton>
                 </Paper>
-                <AddClientPanel className={classes.addButton} />
+                <AddClientPanel addNewClientHandler = {props.addNewClientHandler} className={classes.addButton} />
             </div>
             <Grid item className={classes.sort} >
                 <Grid container>
