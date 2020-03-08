@@ -58,12 +58,12 @@ export default class FlowCurve extends Component {
     }
     render() {
         return (
-            <>
+            <div style={this.containerStyle()}>
                 <canvas
                     id="uroflow-curve"
                     ref={this.chartRef}
                 />
-            </>
+            </div>
         )
     }
 }
