@@ -5,35 +5,39 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function (app) {
   const sequelizeClient = app.get("sequelizeClient");
-  const records = sequelizeClient.define("records", {
+  const patients = sequelizeClient.define("patients", {
 
     id: {
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
+    study_id: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    dob: {
+      type: DataTypes.DATEONLY,
+      allowNull: false
+    },
+    gender: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    num_records: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
+    },
+    has_new: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
     condition: {
-      type: DataTypes.ARRAY(DataTypes.BOOLEAN),
+      type: DataTypes.TEXT,
       allowNull: false
-    },
-    pcomment: {
-      type: DataTypes.TEXT
-    },
-    ccomment: {
-      type: DataTypes.TEXT
-    },
-    user_id: {
-      type: DataTypes.UUID,
-      allowNull: false
-    },
-    // audio_id: {
-    //   type: DataTypes.UUID,
-    //   allowNull: false
-    // },
-    // curve_id: {
-    //   type: DataTypes.UUID,
-    //   allowNull: false
-    // }
+    }
 
   }, {
     hooks: {

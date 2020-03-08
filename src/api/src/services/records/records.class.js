@@ -1,5 +1,5 @@
 const { Service } = require('feathers-sequelize');
 
-module.exports = class Users extends Service {
+module.exports = class Records extends Service {
 
 };
