@@ -289,7 +289,6 @@ function RecordList(props) {
 
   const classes = useStyles();
 
-  // const [datePikcerOpen, setDatePickerOpen] = React.useState(false);
   const [dateRange, setDateRange] = React.useState({});
 
   const modalStyle = getModalStyle();
@@ -462,6 +461,7 @@ function RecordList(props) {
                 color="primary"
                 className={classes.savebtn}
                 onClick={() => {
+                  console.log(dateRange)
                   setDateRange(dateRange);
                   setOpen(false);
                 }}
