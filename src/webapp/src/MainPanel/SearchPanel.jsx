@@ -59,7 +59,6 @@ const useStyles = makeStyles(theme => ({
 
 function SearchPanel(props) {
     const classes = useStyles()
-    const openAddClientPanel = props.openAddClientPanel
 
     return (
         <div>
