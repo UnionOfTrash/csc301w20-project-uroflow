@@ -10,6 +10,7 @@ module.exports = function (app) {
     id: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
       primaryKey: true
     },
     username: {
@@ -19,12 +20,17 @@ module.exports = function (app) {
     },
     password: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     role: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 0
+      defaultValue: 0,
+      allowNull: false
+    },
+    initialized: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+      allowNull: false
     }
 
   }, {
