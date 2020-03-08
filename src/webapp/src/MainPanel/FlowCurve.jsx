@@ -22,8 +22,8 @@ export default class FlowCurve extends Component {
 
     containerStyle = () => {
         return {
-            // width: '80vw',
-            // height: '80vh',
+            width: '80vw',
+            height: '80vh',
             background: 'white',
             padding: '30px 20px 10px 20px',
             borderRadius: '10px',    
