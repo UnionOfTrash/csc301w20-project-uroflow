@@ -69,6 +69,7 @@ const Data = {
 
     records:[
         {
+            //GMT -0400 timezone is used.
             pid : "1234567890",
             rec : [{
                 "id": "4dc68e17-7b8c-4ff2-a67a-c2f21d5d8970",
