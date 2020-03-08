@@ -261,7 +261,7 @@ function CondModal(props) {
         </Grid>
         <div style={{
           "display":"flex",
-          "justify-content":"center"
+          "justifyContent":"center"
         }}>
           <Button
             size="large"
@@ -281,11 +281,11 @@ function RecordList(props) {
 
   const records = props.records
 
-  const [currentRecords, setCurrentRecords] = React.useState()
+  const [currentRecords, setCurrentRecords] = React.useState([])
   
   React.useEffect(() => {
     setCurrentRecords(props.records)
-  })
+  }, [])
 
   const classes = useStyles();
 
@@ -337,25 +337,16 @@ function RecordList(props) {
   // followings are for the condition filter
   const [conditionName, setConditionName] = React.useState(["disabled", "disabled", "disabled"]);
 
+  const filterByCondition = (cond) => {
+    const isleak = (cond[0] === "disabled")? false:true
+    const ispoop = (cond[1] === "disabled")? false:true
+    const isurgent = (cond[2] === "disabled")? false:true
 
-  const onConditionSaveClick = () => {
+    setCurrentRecords(props.records.filter(r => {
 
-    const data = []
-    const conditions = ["leak", "poop", "urgent"]
-    let id = 0
-    conditionName.forEach(e => {
-      if (e !== "disabled"){
-        data.push({key:id, label: conditions[id]})
+      if (!isleak && !ispoop && !isurgent){
+        return true
       }
-      id++;
-    });
-    setSelectedConditionData(data)
-
-    const isleak = (conditionName[0] === "disabled")? false:true
-    const ispoop = (conditionName[1] === "disabled")? false:true
-    const isurgent = (conditionName[2] === "disabled")? false:true
-
-    setCurrentRecords(records.filter(r => {
 
       if (isleak && ispoop & isurgent){
         return r.condition[0]&&r.condition[1]&&r.condition[2]
@@ -377,25 +368,46 @@ function RecordList(props) {
         }
       }
     }))
+  }
+
+  const onConditionSaveClick = () => {
+
+    const data = []
+    const conditions = ["leak", "poop", "urgent"]
+    let id = 0
+    conditionName.forEach(e => {
+      if (e !== "disabled"){
+        data.push({key:id, label: conditions[id]})
+      }
+      id++;
+    });
+    setSelectedConditionData(data)
+    filterByCondition(conditionName)
+    
   };
 
   const handleDelete = chipToDelete => () => {
+
     setSelectedConditionData(chips =>
       chips.filter(chip => chip.key !== chipToDelete.key)
     );
-    
-    let id = -1
-    const cond = conditionName.map(c => {
-      id++
-      if (id === chipToDelete.key){
-        return "disabled"
-      }else{
-        return c
-      }
-    })
 
-    //
-    setConditionName(cond);
+    const cond = []
+    for (let id = 0; id < 3; id++){
+      if (id === chipToDelete.key){
+        cond.push("disabled")
+      }else{
+        cond.push(conditionName[id])
+      }
+    }
+
+    setConditionName(cond)
+
+    if (selectedConditionData.length === 0){
+      setCurrentRecords(props.records)
+    }else{
+      filterByCondition(cond)
+    }
   };
 
   return (
@@ -514,7 +526,7 @@ function RecordList(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {records.map(record => (
+            {currentRecords.map(record => (
               <TableRow hover key={record.id}>
                 <TableCell align="center"> {record.time} </TableCell>
                 <TableCell align="left">
