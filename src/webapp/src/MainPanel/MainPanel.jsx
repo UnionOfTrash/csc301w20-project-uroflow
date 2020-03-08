@@ -110,6 +110,7 @@ class MainPanel extends React.Component{
 
         const id = String(sid)
         Service.getRecords(id).then(res => {
+            console.log(res[0])
             this.setState({
                 records:res,
                 changeRecords:true

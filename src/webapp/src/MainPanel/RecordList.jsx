@@ -285,7 +285,7 @@ function RecordList(props) {
   
   React.useEffect(() => {
     setCurrentRecords(props.records)
-  }, [])
+  }, [props.records])
 
   const classes = useStyles();
 
@@ -361,7 +361,7 @@ function RecordList(props) {
         if (ispoop){
           return r.condition[1]
         }
-        if (isurgent){
+        else{
           return r.condition[2]
         }
       }
@@ -528,7 +528,7 @@ function RecordList(props) {
           <TableBody>
             {currentRecords.map(record => (
               <TableRow hover key={record.id}>
-                <TableCell align="center"> {record.time.toISOString().slice(0,10)} </TableCell>
+                <TableCell align="center"> {record.time.toLocaleDateString()} </TableCell>
                 <TableCell align="left">
                   {" "}
                   <Button onClick={() => handleOpenGraph(record.curveId)}>
