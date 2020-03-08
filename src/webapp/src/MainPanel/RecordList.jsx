@@ -296,7 +296,6 @@ function RecordList(props) {
   const [open, setOpen] = React.useState(false);
 
   const [selectedConditionData, setSelectedConditionData] = React.useState([]);
-  // const [selectedDateRange, setSelectedDateRange] = React.useState([]);
 
   const [pComment, setpComment] = React.useState("");
   const [cComment, setcComment] = React.useState("");
@@ -459,7 +458,7 @@ function RecordList(props) {
                 color="primary"
                 className={classes.savebtn}
                 onClick={() => {
-                  if(dateRange.length === 0) {
+                  if(dateRange.startDate === undefined) {
                     alert("Please select both start date and end date!")
                   }
                   else {
@@ -474,7 +473,7 @@ function RecordList(props) {
             <DateRangePicker
               open={true}
               onChange={range => {
-                setDateRange(range);
+                setDateRange(range)
               }}
               initialDateRange={dateRange}
             />
