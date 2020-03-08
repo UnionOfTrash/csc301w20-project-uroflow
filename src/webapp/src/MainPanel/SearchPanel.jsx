@@ -59,7 +59,6 @@ const useStyles = makeStyles(theme => ({
 
 function SearchPanel(props) {
     const classes = useStyles()
-    const openAddClientPanel = props.openAddClientPanel
 
     return (
         <div>
@@ -70,7 +69,7 @@ function SearchPanel(props) {
                         <Search />
                     </IconButton>
                 </Paper>
-                <AddClientPanel className={classes.addButton} />
+                <AddClientPanel addNewClientHandler = {props.addNewClientHandler} className={classes.addButton} />
             </div>
             <Grid item className={classes.sort} >
                 <Grid container>

@@ -295,7 +295,6 @@ function RecordList(props) {
   const [open, setOpen] = React.useState(false);
 
   const [selectedConditionData, setSelectedConditionData] = React.useState([]);
-  const [selectedDateRange, setSelectedDateRange] = React.useState([]);
 
   const [pComment, setpComment] = React.useState("");
   const [cComment, setcComment] = React.useState("");
@@ -366,6 +365,13 @@ function RecordList(props) {
           return r.condition[2]
         }
       }
+    }))
+  }
+
+
+  const filterByDateRange = () => {
+    setCurrentRecords(props.records.filter(r => {
+      return dateRange.startDate <= r.time && r.time <= dateRange.endDate
     }))
   }
 
@@ -446,24 +452,18 @@ function RecordList(props) {
           <div style={modalStyle} className={classes.paper}>
             <div className={classes.modalheader}>
               <h2>Select Date Range</h2>
-              {/* <Button
-                size="large"
-                color="primary"
-                className={classes.cancelbtn}
-                onClick={() => {
-                  setDateRange({});
-                }}
-              >
-                Clear
-              </Button> */}
               <Button
                 size="large"
                 color="primary"
                 className={classes.savebtn}
                 onClick={() => {
-                  console.log(dateRange)
-                  setDateRange(dateRange);
-                  setOpen(false);
+                  if(dateRange.startDate === undefined) {
+                    alert("Please select both start date and end date!")
+                  }
+                  else {
+                    filterByDateRange()
+                    setOpen(false);
+                  }
                 }}
               >
                 Save
@@ -472,7 +472,7 @@ function RecordList(props) {
             <DateRangePicker
               open={true}
               onChange={range => {
-                setDateRange(range);
+                setDateRange(range)
               }}
               initialDateRange={dateRange}
             />
@@ -528,7 +528,7 @@ function RecordList(props) {
           <TableBody>
             {currentRecords.map(record => (
               <TableRow hover key={record.id}>
-                <TableCell align="center"> {record.time} </TableCell>
+                <TableCell align="center"> {record.time.toISOString().slice(0,10)} </TableCell>
                 <TableCell align="left">
                   {" "}
                   <Button onClick={() => handleOpenGraph(record.curveId)}>

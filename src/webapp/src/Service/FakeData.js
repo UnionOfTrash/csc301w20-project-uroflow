@@ -69,13 +69,14 @@ const Data = {
 
     records:[
         {
+            //GMT -0400 timezone is used.
             pid : "1234567890",
             rec : [{
                 "id": "4dc68e17-7b8c-4ff2-a67a-c2f21d5d8970",
                 "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
-                "time": "2019-10-10 22:10:01",
+                "time": new Date("2019-10-10 22:10:01"),
                 "pComment": "1 good!",
                 "cComment": "sooo Good!"
             },
@@ -85,7 +86,7 @@ const Data = {
                 "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
-                "time": "2019-10-10 22:10:01",
+                "time": new Date("2019-10-10 22:10:01"),
                 "pComment": "2 good!",
                 "cComment": "sooo Good!"
             },
@@ -94,7 +95,7 @@ const Data = {
                 "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
                 "condition": [true, false , true],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
-                "time": "2019-10-06 22:10:01",
+                "time": new Date("2019-10-06 22:10:01"),
                 "pComment": "3 good!",
                 "cComment": "sooo Good!"
             }]
@@ -106,7 +107,7 @@ const Data = {
                 "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
-                "time": "2019-10-10 22:10:01",
+                "time": new Date("2019-10-10 22:10:01"),
                 "pComment": "1 good!",
                 "cComment": "sooo Good!"
                 }]
@@ -118,7 +119,7 @@ const Data = {
                 "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
-                "time": "2019-10-10 22:10:01",
+                "time": new Date("2019-10-10 22:10:01"),
                 "pComment": "1 good!",
                 "cComment": "sooo Good!"
             },
@@ -127,7 +128,7 @@ const Data = {
                 "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
-                "time": "2019-10-10 22:10:01",
+                "time": new Date("2019-10-10 22:10:01"),
                 "pComment": "2 good!",
                 "cComment": "sooo Good!"
             }]
@@ -139,7 +140,7 @@ const Data = {
                 "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
-                "time": "2019-10-10 22:10:01",
+                "time": new Date("2019-10-10 22:10:01"),
                 "pComment": "1 good!",
                 "cComment": "sooo Good!"
             },
@@ -148,7 +149,7 @@ const Data = {
                 "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
-                "time": "2019-10-10 22:10:01",
+                "time": new Date("2019-10-10 22:10:01"),
                 "pComment": "2 good!",
                 "cComment": "sooo Good!"
             }]
@@ -160,7 +161,7 @@ const Data = {
                 "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
-                "time": "2019-10-10 22:10:01",
+                "time": new Date("2019-10-10 22:10:01"),
                 "pComment": "1 good!",
                 "cComment": "sooo Good!"
             },
@@ -169,7 +170,7 @@ const Data = {
                 "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
-                "time": "2019-10-10 22:10:01",
+                "time": new Date("2019-10-10 22:10:01"),
                 "pComment": "2 good!",
                 "cComment": "sooo Good!"
             }]
@@ -181,7 +182,7 @@ const Data = {
                 "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
                 "condition": [true, true , true],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
-                "time": "2019-10-10 22:10:01",
+                "time": new Date("2019-10-10 22:10:01"),
                 "pComment": "1 good!",
                 "cComment": "sooo Good!"
             },
@@ -190,7 +191,7 @@ const Data = {
                 "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
-                "time": "2019-10-10 22:10:01",
+                "time": new Date("2019-10-10 22:10:01"),
                 "pComment": "2 good!",
                 "cComment": "sooo Good!"
             }]
@@ -202,7 +203,7 @@ const Data = {
                 "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
                 "condition": [true, true , true],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
-                "time": "2019-10-10 22:10:01",
+                "time": new Date("2019-10-10 22:10:01"),
                 "pComment": "1 good!",
                 "cComment": "2 sooo Good!"
             },
@@ -211,7 +212,7 @@ const Data = {
                 "audioId": "57110c8b-44c5-48b5-95d1-1091430a7b84",
                 "condition": [true, false , false],
                 "curveId": "08cd6b86-4f56-43a4-a706-f957cd53d7c4",
-                "time": "2019-10-10 22:10:01",
+                "time": new Date("2019-10-10 22:10:01"),
                 "pComment": "1 good!",
                 "cComment": "2 sooo Good!"
             }]

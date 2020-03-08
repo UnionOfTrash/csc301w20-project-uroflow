@@ -58,12 +58,14 @@ function AddClientPanel(props) {
       selectedDate: selectedDate,
       condition: condition
     };
-    setStudyId("");
-    setGender("");
-    setSelectedDate("");
-    setCondition("");
-    props.addNewClientHandler(client);
-    handleClose();
+    props.addNewClientHandler(client).then(() => {
+      setStudyId("")
+      setGender("")
+      setSelectedDate("")
+      setCondition("")
+      handleClose()
+    })
+
   };
 
   return (
