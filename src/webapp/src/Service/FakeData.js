@@ -231,7 +231,16 @@ function getFakePatients(){
 }
 
 function getFakeRecords(sid){
-    return Data.records.filter(r => r.pid === sid)[0].rec
+    //console.log(sid)
+    //console.log(Data.records)
+    let data = Data.records.filter(r => r.pid === sid)
+    console.log(data)
+    if(data.length === 0) {
+        return []
+    }
+    else {
+        return Data.records.filter(r => r.pid === sid)[0].rec
+    }
 }
 
 function getFakeCurveData(){

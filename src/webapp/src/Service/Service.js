@@ -24,6 +24,7 @@ function getPatients(){
 function getRecords(id){
 
     // return getFakeRecords(id)
+    // console.log(id)
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             const data = getFakeRecords(id)
