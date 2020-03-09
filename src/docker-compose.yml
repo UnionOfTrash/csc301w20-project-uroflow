@@ -28,12 +28,12 @@ services:
       - POSTGRES_DB=uroflow
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=uroflow
-    command: npm i && npm run start
+    command: npm run start
     depends_on:
       - postgres
 
   web:
-    images: node:12
+    image: node:12
     restart: always
     volumes:
       - ./webapp:/usr/src/myapp
@@ -42,7 +42,7 @@ services:
       - 3011:3000
     environment:
       - API_URL=http://api:3010
-    command: npm i && npm run start
+    command: npm run start
     depends_on:
       - postgres
       - api

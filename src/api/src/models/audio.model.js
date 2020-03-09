@@ -12,14 +12,6 @@ module.exports = function (app) {
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true
-    },
-    user_id: {
-      type: DataTypes.UUID,
-      allowNull: false
-    },
-    curve_id: {
-      type: DataTypes.UUID,
-      allowNull: true
     }
 
   }, {
@@ -34,8 +26,6 @@ module.exports = function (app) {
   audio.associate = function (models) {
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
-    audio.BelongsTo(models["users"], { foreignKey: "user_id" });
-    audio.HasOne(model["curve"], { foreignKey: "curve_id" });
   };
 
   return audio;

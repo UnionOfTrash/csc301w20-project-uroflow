@@ -50,9 +50,9 @@ module.exports = function (app) {
   records.associate = function (models) {
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
-    records.BelongsTo(models["user"], { foreignKey: "user_id" });
-    records.HasOne(models["audio"], { foreignKey: "audio_id" });
-    records.HasOne(models["curve"], { foreignKey: "curve_id" });
+    records.belongsTo(models["users"], { foreignKey: "user_id" });
+    records.belongsTo(models["audio"], { foreignKey: "audio_id" });
+    records.belongsTo(models["curve"], { foreignKey: "curve_id" });
   };
 
   return records;

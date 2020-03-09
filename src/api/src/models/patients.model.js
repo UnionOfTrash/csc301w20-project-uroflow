@@ -52,7 +52,7 @@ module.exports = function (app) {
   patients.associate = function (models) {
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
-    patients.HasOne(models["users"], { foreignKey: "id" });
+    patients.belongsTo(models["users"], { foreignKey: "id" });
   };
 
   return patients;
