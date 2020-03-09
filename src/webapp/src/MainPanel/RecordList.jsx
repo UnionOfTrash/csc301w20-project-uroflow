@@ -132,7 +132,7 @@ function DoctorCommentModal(props) {
   const [showSave, setShowSave] = React.useState(false);
 
   const onSaveClick = () => {
-    console.log(props.cComment);
+    // console.log(props.cComment);
     setShowSave(false);
     setShowInput(false);
   };
@@ -281,11 +281,7 @@ function RecordList(props) {
 
   const records = props.records
 
-  const [currentRecords, setCurrentRecords] = React.useState([])
-  
-  React.useEffect(() => {
-    setCurrentRecords(props.records)
-  }, [props.records])
+  const [currentRecords, setCurrentRecords] = React.useState(props.records)
 
   const classes = useStyles();
 
@@ -332,16 +328,21 @@ function RecordList(props) {
     setOpenGraph(false);
   };
 
+  const [dateRangeRecords, setDateRangeRecords] = React.useState(props.records)
+
   // followings are for the condition filter
   const [conditionName, setConditionName] = React.useState(["disabled", "disabled", "disabled"]);
 
-  const filterByCondition = (cond) => {
+  const filterByCondition = (cond, isDelete) => {
+
     const isleak = (cond[0] === "disabled")? false:true
     const ispoop = (cond[1] === "disabled")? false:true
     const isurgent = (cond[2] === "disabled")? false:true
 
-    setCurrentRecords(props.records.filter(r => {
+    const records = isDelete? dateRangeRecords : currentRecords
+    // console.log("records : ", records)
 
+    setCurrentRecords(records.filter(r => {
       if (!isleak && !ispoop && !isurgent){
         return true
       }
@@ -368,11 +369,12 @@ function RecordList(props) {
     }))
   }
 
-
   const filterByDateRange = () => {
-    setCurrentRecords(props.records.filter(r => {
-      return dateRange.startDate <= r.time && r.time <= dateRange.endDate
-    }))
+    const records = props.records.filter(r => {
+      return (dateRange.startDate <= r.time && r.time <= dateRange.endDate)
+    })
+    setCurrentRecords(records)
+    setDateRangeRecords(records)
   }
 
   const onConditionSaveClick = () => {
@@ -387,15 +389,18 @@ function RecordList(props) {
       id++;
     });
     setSelectedConditionData(data)
-    filterByCondition(conditionName)
-    
+    filterByDateRange()
+    filterByCondition(conditionName, false)
+
   };
 
   const handleDelete = chipToDelete => () => {
 
-    setSelectedConditionData(chips =>
-      chips.filter(chip => chip.key !== chipToDelete.key)
-    );
+    const chips = selectedConditionData.filter(c => {
+      return c.key !== chipToDelete.key
+    })
+
+    setSelectedConditionData(chips);
 
     const cond = []
     for (let id = 0; id < 3; id++){
@@ -409,9 +414,10 @@ function RecordList(props) {
     setConditionName(cond)
 
     if (selectedConditionData.length === 0){
-      setCurrentRecords(props.records)
+      filterByDateRange()
     }else{
-      filterByCondition(cond)
+      filterByDateRange()
+      filterByCondition(cond, true)
     }
   };
 
@@ -452,6 +458,21 @@ function RecordList(props) {
           <div style={modalStyle} className={classes.paper}>
             <div className={classes.modalheader}>
               <h2>Select Date Range</h2>
+              <Button 
+                size="large"
+                color="primary"
+                className={classes.savebtn}
+                onClick={() => {
+                  setCurrentRecords(props.records)
+                  // filterByCondition(conditionName, true);
+                  setSelectedConditionData([])
+                  setConditionName(["disabled", "disabled", "disabled"])
+                  setOpen(false)
+                  }}
+              >
+                Reset
+              </Button>
+
               <Button
                 size="large"
                 color="primary"
@@ -462,6 +483,9 @@ function RecordList(props) {
                   }
                   else {
                     filterByDateRange()
+                    // filterByCondition(conditionName, true)
+                    setSelectedConditionData([])
+                    setConditionName(["disabled", "disabled", "disabled"])
                     setOpen(false);
                   }
                 }}

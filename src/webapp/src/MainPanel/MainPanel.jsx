@@ -59,7 +59,7 @@ class MainPanel extends React.Component{
         const value = e.target.value
         const patients = this.state.allPatients
         const curPatients = patients.filter(p => {
-                console.log(p)
+                // console.log(p)
                 const pid = p.studyId.substring(0, value.length)
                 return (pid === value)
             })
@@ -110,7 +110,7 @@ class MainPanel extends React.Component{
 
         const id = String(sid)
         Service.getRecords(id).then(res => {
-            console.log(res[0])
+            // console.log(res[0])
             this.setState({
                 records:res,
                 changeRecords:true
