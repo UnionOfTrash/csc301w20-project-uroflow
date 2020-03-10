@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import Modal from "@material-ui/core/Modal";
+import React from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -102,8 +101,7 @@ function AddClientPanel(props) {
             id="standard-select-gender"
             select
             fullWidth
-            label="Gender"
-            value={gender}
+            label="Sex"
             onChange={e => setGender(e.target.value)}
           >
             {genders.map(option => (

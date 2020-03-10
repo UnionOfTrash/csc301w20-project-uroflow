@@ -21,7 +21,11 @@ function login(username, password) {
         body: JSON.stringify({ strategy:"local", username: username,  password:password })
     };
 
-    return fetch(`https://uroflow.unionoftra.sh/api/authentication`, requestOptions)
+    const APP_URL = "https://uroflow.unionoftra.sh"
+    // const url = process.env.API_URL + "/api/authentication"
+    const url = APP_URL + "/api/authentication"
+
+    return fetch(url, requestOptions)
     .then(res => {
         if (res.status === 201){
             return res.json()
@@ -39,10 +43,6 @@ function logout() {
     // remove user from local storage to log user out
     // window.localStorage.removeItem('currentUser');
     return
-}
-
-function getCurrentUser(){
-    return {user:"sqs"}
 }
 
 

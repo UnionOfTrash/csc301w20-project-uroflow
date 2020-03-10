@@ -14,8 +14,7 @@ import { Typography } from "@material-ui/core";
 import { Opacity, Warning } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 import {
-  DateRangePicker,
-  DateRange
+  DateRangePicker
 } from "@matharumanpreet00/react-daterange-picker";
 import Modal from "@material-ui/core/Modal";
 import Chip from "@material-ui/core/Chip";
