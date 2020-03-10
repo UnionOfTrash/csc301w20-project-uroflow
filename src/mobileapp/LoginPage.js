@@ -86,7 +86,7 @@ class LoginPage extends React.Component {
                         placeholder="Username"
                         autoCapitalize="none"
                         onChangeText={(username) => this.setState({ username: username })}
-                        value={this.username}
+                        value={this.state.username}
                     />
                     <TextInput
                         style={styles.input}
@@ -94,10 +94,10 @@ class LoginPage extends React.Component {
                         placeholder="Password"
                         autoCapitalize="none"
                         onChangeText={(password) => this.setState({ password: password })}
-                        value={this.password}
+                        value={this.state.password}
                     />
                     <View style={{width: '30%'}}>
-                        <Button style={{width: '100px'}} onPress={() => this.authenticate({ username: this.username, password: this.pass })} title="Login" />
+                        <Button style={{width: '100px'}} onPress={() => this.authenticate({ username: this.state.username, password: this.state.password })} title="Login" />
                     </View>
                     {/*<View style={{*/}
                         {/*marginTop: 15,*/}
