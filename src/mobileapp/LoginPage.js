@@ -10,7 +10,7 @@ class LoginPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            email: "",
+            username: "",
             password: "",
             isAuthenticated: false,
 
@@ -37,20 +37,20 @@ class LoginPage extends React.Component {
     }
 
     handleRegisterUser = () => {
-        console.log("Registering new user")
-        const { newEmail, newPass, passwordConfirmation } = this.state
+        // console.log("Registering new user")
+        // const { newEmail, newPass, passwordConfirmation } = this.state
 
-        if (newPass !== passwordConfirmation) {
-            return console.log('Your passwords do not match')
-        }
+        // if (newPass !== passwordConfirmation) {
+        //     return console.log('Your passwords do not match')
+        // }
 
-        app.service('users').create({ email: newEmail, password: newPass })
-          .then(() => this.authenticate({ strategy: 'local', email: newEmail, password: newPass }))
-          .catch(err => console.log("Registration Failure: ", err))
+        // app.service('users').create({ email: newEmail, password: newPass })
+        //   .then(() => this.authenticate({ strategy: 'local', email: newEmail, password: newPass }))
+        //   .catch(err => console.log("Registration Failure: ", err))
     }
 
     render() {
-        const { email, password, newEmail, newPass, passwordConfirmation } = this.state
+        const { username, password, newEmail, newPass, passwordConfirmation } = this.state
         return (
           <KeyboardAwareScrollView>
               <ScrollView>
@@ -83,21 +83,21 @@ class LoginPage extends React.Component {
                     </View>
                     <TextInput
                         style={styles.input}
-                        placeholder="Email"
+                        placeholder="Username"
                         autoCapitalize="none"
-                        onChangeText={(email) => this.setState({ email })}
-                        value={email}
+                        onChangeText={(username) => this.setState({ username: username })}
+                        value={this.username}
                     />
                     <TextInput
                         style={styles.input}
                         secureTextEntry={true}
                         placeholder="Password"
                         autoCapitalize="none"
-                        onChangeText={(password) => this.setState({ password })}
-                        value={password}
+                        onChangeText={(password) => this.setState({ password: password })}
+                        value={this.password}
                     />
                     <View style={{width: '30%'}}>
-                        <Button style={{width: '100px'}} onPress={() => this.authenticate({ email: email, password: password })} title="Login" />
+                        <Button style={{width: '100px'}} onPress={() => this.authenticate({ username: this.username, password: this.pass })} title="Login" />
                     </View>
                     {/*<View style={{*/}
                         {/*marginTop: 15,*/}
