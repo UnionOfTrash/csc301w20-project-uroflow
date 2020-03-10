@@ -4,7 +4,7 @@ import socketio from '@feathersjs/socketio-client'
 const auth = require('@feathersjs/authentication-client')
 import { AsyncStorage } from 'react-native'
 
-const socket = io('http://172.17.222.167:3030', { // Change to API_BASE_URL
+const socket = io('localhost:3010', { // Change to API_BASE_URL
   transports: ['websocket'],
   forceNew: true
 })
@@ -17,6 +17,6 @@ app.configure(socketio(socket))
     storageKey: 'auth'
   }))
 
-app.service("users").create({ email: 'dorin', password: 'dorin' })
+app.service("users").create({ userName: 'dorin', password: 'dorin' })
 
 export { app as default }
