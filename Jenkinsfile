@@ -1,19 +1,17 @@
 pipeline {
   agent {
-    node {
-      label '12'
+    docker {
+      image 'node:12'
+      args '--network=src_default'
     }
-
   }
   stages {
-    stage('test') {
+    stage('Build') {
       steps {
         dir(path: 'src/api') {
-          build(job: 'npm install', wait: true)
+          sh 'npm install'
         }
-
       }
     }
-
   }
 }
