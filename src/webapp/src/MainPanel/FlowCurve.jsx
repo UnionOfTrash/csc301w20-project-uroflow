@@ -7,7 +7,7 @@ export default class FlowCurve extends Component {
 
     constructor(props){
         super(props)
-
+        this.state={}
     }
 
     chartRef = React.createRef();

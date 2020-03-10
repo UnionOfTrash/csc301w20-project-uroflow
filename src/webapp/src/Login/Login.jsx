@@ -58,10 +58,12 @@ function Login(props) {
             e.preventDefault();
 
             Service.Authentication.login(username, password).then(res => {
-              console.log(res)
-              window.localStorage.setItem("user", res.user.username)
-              window.localStorage.setItem("token", res.accessToken)
-              props.setUser(res.user.username)
+              // console.log(res)
+              const user = res.user.username
+              const token = res.accessToken
+              window.localStorage.setItem("user", user)
+              window.localStorage.setItem("token", token)
+              props.setUser({user, token})
             }).catch(e => alert(e))
     }
 

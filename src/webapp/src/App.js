@@ -7,8 +7,6 @@ import theme from './theme';
 import MainPanel from './MainPanel/MainPanel';
 import Header from "./Header"
 
-import {Service} from './Service'
-
 import {Login} from "./Login"
 
 const useStyles = makeStyles(theme => ({
@@ -29,14 +27,21 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function App(){
+  const user = window.localStorage.getItem("user")
+  const token = window.localStorage.getItem("token")
 
-  const [currentUser, setCurrentUser] = React.useState(window.localStorage.getItem("user"))
+  const [currentUser, setCurrentUser] = React.useState({user, token})
 
   // React.useEffect(()=> {
+
   //   const user = window.localStorage.getItem("user")
-  //   if (!user){
-  //     setCurrentUser(user)
+  //   const token = window.localStorage.getItem("token")
+
+  //   if (!user || !token){
+  //     setCurrentUser(false)
+  //     return
   //   }
+
   // }, [])
   
   // Athorize User here
@@ -45,7 +50,7 @@ function App(){
   return (
     <>
       {
-        (!currentUser)? <Login setUser={setCurrentUser}/> :
+        (!currentUser.user||!currentUser.token)? <Login setUser={setCurrentUser}/> :
                             <ThemeProvider theme={ theme } >
                               <div className={ classes.root } >
                                 <Header setUser={setCurrentUser}/>
