@@ -1,0 +1,18 @@
+language: node_js
+dist: bionic
+
+branches:
+  only:
+    - dev
+
+node_js:
+  - 12
+env:
+  - DIR=./src/webapp
+
+install:
+  - cd $DIR
+  - npm install
+script:
+  - cd $DIR
+  - npm test
