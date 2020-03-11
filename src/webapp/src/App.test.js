@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import App from './App';
-import {PatientList, RecordList, SearchPanel} from "./MainPanel"
+import { PatientList, RecordList, SearchPanel } from "./MainPanel"
 import MainPanel from "./MainPanel"
 import {
   fireEvent,
@@ -17,95 +17,61 @@ import {
 import '@testing-library/jest-dom/extend-expect'
 // import { createMount } from "@material-ui/core/test-utils";
 import { Login } from "./Login";
-/* Sample : test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});*/
-
-
-test('Check if [ID] element in document', () => {
-  const { getByText } = render(<SearchPanel />);
-  const linkElement = getByText("ID");
-  expect(linkElement).toBeInTheDocument();
-});
-
-test('Check if [Add Patient] element not popup without clicking [New Patient] button',()=> {
-  const { getByText } = render(<SearchPanel />);
-  const leftClick = { button: 1 }
-  //fireEvent.click(getByText('New Patient'), leftClick)
-  expect(getByText("Add New Patient")).not.toBeNotInTheDocument();
-});
-
-test('Check if [Add Patient] element popup after clicking [New Patient] button',()=> {
-  const { getByText } = render(<SearchPanel />);
-  const leftClick = { button: 1 }
-  fireEvent.click(getByText('New Patient'), leftClick)
-  expect(getByText("Add New Patient")).toBeInTheDocument();
-});
-test('Check if [Sign in] element exists',()=> {
-  const { getByText } = render(<Login />);
-  const leftClick = { button: 1 }
-  fireEvent.click(getByText('Sign in'), leftClick)
-  expect(getByText("Sign in")).toBeInTheDocument();
-});
-
-
-describe('Check if [Sign in] works for username [even], password [even]', () => {
-  it('Login', async () => {
-    const { getByPlaceholderText } = render(<Login />);
-  const { getByText} = render(<Login />);
-
-  const leftClick = { button: 1 }
-  const unameInput= document.getElementById("username");
-
-  const pswdInput=  document.getElementById("password");
-
-  fireEvent.change(unameInput,  {target: { value: 'even' }} );
-  fireEvent.change(pswdInput,  {target: { value: 'even' }} );
-
-  const {getAllByText} = render(<SearchPanel />);
-  console.log(((document.getElementsByTagName('button'))[0]).type)
-
-  fireEvent.click((document.getElementsByTagName('button'))[0], leftClick);
-  const newPatientBtn = await waitForElement(() => getAllByText("new patient"))
-  expect(newPatientBtn.toBeInTheDocument())
+//Enzyme
+import Enzyme from 'enzyme';
+import { shallow, mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import { ContactsOutlined } from '@material-ui/icons';
+//npm install --save-dev enzyme
+//npm install --save-dev enzyme-adapter-react-16
+describe("Test by [Jest] module", () => {
+  it('Check if [ID] clickable element in document.', () => {
+    const { getByText } = render(<SearchPanel />);
+    const linkElement = getByText("ID");
+    expect(linkElement).toBeInTheDocument();
   });
-});
-/*
-test('Check if [Sign in] works for username [even], password [even]',()=> {
-  const { getByPlaceholderText } = render(<Login />);
-  const { getByText} = render(<Login />);
 
-  const leftClick = { button: 1 }
-  const unameInput= document.getElementById("username");
-  console.log(unameInput.name)
-  const pswdInput=  document.getElementById("password");
-  console.log(pswdInput.name)
-  fireEvent.change(unameInput,  {target: { value: 'even' }} );
-  fireEvent.change(pswdInput,  {target: { value: 'even' }} );
-  console.log(unameInput.value)
-  console.log(pswdInput.value)
-  const {getAllByText} = render(<SearchPanel />);
-  console.log(((document.getElementsByTagName('button'))[0]).type)
+  it('Check if [Add Patient] element popup after clicking [New Patient] button', () => {
+    const { getByText } = render(<SearchPanel />);
+    const leftClick = { button: 1 }
+    fireEvent.click(getByText('New Patient'), leftClick)
+    expect(getByText("Add New Patient")).toBeInTheDocument();
+  });
 
-  fireEvent.click((document.getElementsByTagName('button'))[0], leftClick);
-  const newPatientBtn = await waitForElement(() => getAllByText("new patient"))
-  expect(newPatientBtn.toBeInTheDocument())
+  it('Check if [Add Patient] element not popup without clicking [New Patient] button', () => {
+    const { getByText } = render(<SearchPanel />);
+    //const leftClick = { button: 1 }
+    //fireEvent.click(getByText('New Patient'), leftClick)
+    try { getByText("Add New Patient") }
+    catch (e) {
+      expect(true);
+    }
+    expect(false);
+  });
 
-});
+  it('Check if [Sign in] element exists', () => {
+    const { getByText } = render(<Login />);
+    const leftClick = { button: 1 }
+    fireEvent.click(getByText('Sign in'), leftClick)
+    expect(getByText("Sign in")).toBeInTheDocument();
+  });
+})
 
-/*test('Check if search function works by entering ID [0234567893] in the search bar',()=> {
+Enzyme.configure({ adapter: new Adapter() })
 
-  const { getAllByPlaceholderText } = render(<SearchPanel />);
-  const { getByText } = render(<PatientList />);
-  //const { getByText } = render(<SearchPanel />);
-  
-  const searchInputBar= (getAllByPlaceholderText('Search ID'))[0];
-  fireEvent.change(searchInputBar,  {target: { value: '0234567893' }} );
-  console.log(searchInputBar.value);
-  //?Material UI Issues
-  
-  expect(getByText("0234567893")).toBeInTheDocument();
-  expect(getByText("0234567892")).toBeInTheDocument();
-});*/
+describe('Test by [Enzyme] module', function () {
+  it('Check if [New Patient] button shown after login with correct credential', function () {
+    const wrapper = mount(<Login />);
+    wrapper.find('[id="username"]').at(0).simulate('change', { target: { value: 'even' } })
+    wrapper.find('[id="password"]').at(0).simulate('change', { target: { value: 'even' } })
+    wrapper.find('button').simulate('click');
+    const { getByText } = render(<SearchPanel />);
+    expect(getByText("New Patient")).toBeInTheDocument;
+  })
+  it('Check if search function works by entering ID [0234567893] in the search bar', () => {
+    const wrapper = mount(<SearchPanel />);
+    wrapper.find('[placeholder="Search ID"]').at(0).simulate('change', { target: { value: '0234567893' } })
+    expect(wrapper.contains(wrapper.find('[text="details"]')));
+  })
+
+})
