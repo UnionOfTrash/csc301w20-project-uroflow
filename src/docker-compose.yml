@@ -28,7 +28,7 @@ services:
       - POSTGRES_DB=uroflow
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=uroflow
-    command: npm run start
+    command: /bin/bash -c "npm i; npm run start"
     depends_on:
       - postgres
 

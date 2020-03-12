@@ -12,35 +12,40 @@ This project uses [Feathers](http://feathersjs.com). An open source web framewor
 
 2. Activate develop scripts
     ```bash
-    cd /path/to/api
-    source activate.sh
+    $ cd /path/to/api
+    $ source activate.sh
     ```
 
 3. Install node dependencies
     ```bash
-    setup
+    $ setup
     ```
 
 4. Run the application
     ```bash
-    run
+    $ run
     ```
 
 5. To exit the developing environment
     ```bash
-    deactivate
+    $ deactivate
     ```
 
 ### Extra Functions
 
-6. To add new npm packages
+* To add new npm packages
     ```bash
-    add PACKAGE_NAME
+    $ add PACKAGE_NAME
     ```
 
-7. To remove npm packages
+* To remove npm packages
     ```bash
-    remove PACKAGE_NAME
+    $ remove PACKAGE_NAME
+    ```
+
+* To run npm commands other than `npm run start`
+    ```bash
+    $ run CMD
     ```
 
 ## Testing
