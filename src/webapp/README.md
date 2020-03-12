@@ -1,33 +1,81 @@
+# WebApp for Clinicians
+
+> Uroflow WebApp for Clinicians v0.0.1
+
+## About
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Getting Started
 
-In the project directory, you can run:
+1. Make sure you have [Docker](https://docs.docker.com/get-docker/) installed.
 
-### `npm start`
+2. Activate develop scripts
+    ```bash
+    $ cd /path/to/webapp
+    $ source activate.sh
+    ```
 
-Runs the app in the development mode.<br />
+3. Install node dependencies
+    ```bash
+    $ setup
+    ```
+
+4. Run the application
+    ```bash
+    $ run
+    ```
+
+5. To exit the developing environment
+    ```bash
+    $ deactivate
+    ```
+
+### Extra Functions
+
+* To add new npm packages
+    ```bash
+    $ add PACKAGE_NAME
+    ```
+
+* To remove npm packages
+    ```bash
+    $ remove PACKAGE_NAME
+    ```
+
+* To run npm commands other than `npm run start`
+    ```bash
+    $ run CMD
+    ```
+
+### Available Commands
+
+CMD can be the following:
+
+#### `start`
+
+Runs the app in the development mode. \
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
+The page will reload if you make edits. \
 You will also see any lint errors in the console.
 
-### `npm test`
+#### `test`
 
-Launches the test runner in the interactive watch mode.<br />
+Launches the test runner in the interactive watch mode. \
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+#### `run build`
 
-Builds the app for production to the `build` folder.<br />
+Builds the app for production to the `build` folder. \
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
+The build is minified and the filenames include the hashes. \
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+#### `run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 

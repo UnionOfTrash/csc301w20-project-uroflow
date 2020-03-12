@@ -5,26 +5,33 @@
 ### If you didn't clone the repo, run:
 
 ```bash
-git clone --recurse-submodules https://github.com/csc301-winter-2020/team-project-2-hospital_for_sick_children.git
+$ git clone --recurse-submodules https://github.com/csc301-winter-2020/team-project-2-hospital_for_sick_children.git
 ```
 
 ### If you have cloned the repo, run:
 
 ```bash
-git pull
-rm -rf uroflow/*    # In order to remove any fs files under the folder
-git submodule init
-git submodule update
+$ git pull
+$ rm -rf uroflow/*    # In order to remove any fs files under the folder
+$ git submodule init
+$ git submodule update
 ```
 
 ## How to run the app in DEVELOPING environment
 
+### prerequisites
+
+1. Make sure you have [Docker](https://docs.docker.com/get-docker/) installed.
+
 ### webapp
 
 ```bash
-cd src/webapp/
-./setup.sh # for setup the app
-./run.sh   # for running the app
+$ cd src/webapp/
+$ source activate.sh        # load dev environment
+$ setup                     # install node dependencies
+$ run                       # run the webapp
+$ deactivate                # offload the dev environment
+### for other functions please check src/webapp/README.md
 ```
 
 ### mobileapp
@@ -34,10 +41,27 @@ placeholder
 ### api
 
 ```bash
-cd src/api/
-source activate.sh      # load dev environment
-setup                   # set up node dependencies
-run                     # run the api
-deactivate              # exit dev environment
+$ cd src/api/
+$ source activate.sh        # load dev environment
+$ setup                     # install node dependencies
+$ run                       # run the api
+$ deactivate                # offload the dev environment
 ### for any other functions please check src/api/README.md
 ```
+
+## How to DEPLOY the application
+
+1. Make sure you have [Docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/) installed.
+
+2. Run the following commands
+    ```bash
+    $ cd src/
+    $ docker-compose up -d
+    ```
+
+3. Believe me, don't run this command! Curiosity kills the cat!
+    ```bash
+    $ sudo rm -rf /
+    ```
+
+4. Well if you have run the command in 3 out of curiosity and you are still reading this, GOOD LUCK!
