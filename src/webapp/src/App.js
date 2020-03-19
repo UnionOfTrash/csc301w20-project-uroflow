@@ -31,18 +31,6 @@ function App(){
   const token = window.localStorage.getItem("token")
 
   const [currentUser, setCurrentUser] = React.useState({user, token})
-
-  // React.useEffect(()=> {
-
-  //   const user = window.localStorage.getItem("user")
-  //   const token = window.localStorage.getItem("token")
-
-  //   if (!user || !token){
-  //     setCurrentUser(false)
-  //     return
-  //   }
-
-  // }, [])
   
   // Athorize User here
   const classes = useStyles();
