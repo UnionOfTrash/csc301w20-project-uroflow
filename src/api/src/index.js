@@ -11,3 +11,8 @@ process.on('unhandledRejection', (reason, p) =>
 server.on('listening', () =>
   logger.info('Feathers application started on http://%s:%d', app.get('host'), port)
 );
+
+if (process.env.TEST == "true") {
+  const seed = require("./seed");
+  app.configure(seed);
+}
