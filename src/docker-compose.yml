@@ -25,6 +25,7 @@ services:
       - 3010:3010
     environment:
       - TEST=true
+      - UPLOAD_URL=../upload/
       - POSTGRES_HOST=postgres
       - POSTGRES_DB=uroflow
       - POSTGRES_USER=postgres
@@ -47,3 +48,9 @@ services:
     depends_on:
       - postgres
       - api
+
+volumes:
+
+  postgres_db:
+
+  audio_uploads:

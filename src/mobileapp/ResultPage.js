@@ -46,8 +46,10 @@ class ResultPage extends React.Component {
     const { file_url, description, content_uri, length } = this.state
     const file_arr = file_url.split(".")
     const file_type = file_arr[file_arr.length - 1]
+    const prefix = "data:audio/wav;base64,"
+    console.log(file_url);
 
-    app.service("audio").create({ file_url, description, content_uri, file_type, length })
+    app.service("upload").create({ uri: prefix + content_uri })
 
     this.props.navigation.navigate('History')
   };

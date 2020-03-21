@@ -11,12 +11,10 @@ const socket = io('https://uroflow.unionoftra.sh', { // Change to API_BASE_URL
 
 const app = feathers();
 
-app.configure(socketio(socket))
-  .configure(auth({
-    storage: AsyncStorage,
-    storageKey: 'auth'
-  }))
+app.configure(socketio(socket));
+app.configure(auth({
+  storage: AsyncStorage,
+  storageKey: 'auth'
+}));
 
-app.service("users").create({ username: 'dorin', password: 'dorin' })
-
-export { app as default }
+export default app;

@@ -15,4 +15,4 @@ server.on('listening', () =>
 if (process.env.TEST == "true") {
   const seed = require("./seed");
   app.configure(seed);
-}
+};
