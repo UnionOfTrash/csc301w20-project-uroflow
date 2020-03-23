@@ -12,27 +12,27 @@
     "test": "mocha test/ --recursive --exit"
   },
   "dependencies": {
-    "@feathersjs/authentication": "^4.4.3",
-    "@feathersjs/authentication-local": "^4.4.3",
-    "@feathersjs/configuration": "^4.4.3",
-    "@feathersjs/errors": "^4.4.3",
-    "@feathersjs/express": "^4.4.3",
-    "@feathersjs/feathers": "^4.4.3",
-    "@feathersjs/socketio": "^4.4.3",
-    "@feathersjs/transport-commons": "^4.4.3",
+    "@feathersjs/authentication": "^4.5.2",
+    "@feathersjs/authentication-local": "^4.5.2",
+    "@feathersjs/configuration": "^4.5.2",
+    "@feathersjs/errors": "^4.5.2",
+    "@feathersjs/express": "^4.5.2",
+    "@feathersjs/feathers": "^4.5.2",
+    "@feathersjs/socketio": "^4.5.2",
+    "@feathersjs/transport-commons": "^4.5.2",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
     "feathers-blob": "^2.2.0",
     "feathers-sequelize": "^6.1.0",
     "fs-blob-store": "^5.2.1",
-    "helmet": "^3.21.2",
-    "pg": "^7.14.0",
-    "sequelize": "^5.21.2",
+    "helmet": "^3.21.3",
+    "pg": "^7.18.2",
+    "sequelize": "^5.21.5",
     "serve-favicon": "^2.5.0",
     "winston": "^3.2.1"
   },
   "devDependencies": {
-    "axios": "^0.19.0",
-    "mocha": "^6.2.2"
+    "axios": "^0.19.2",
+    "mocha": "^7.1.1"
   }
 }
