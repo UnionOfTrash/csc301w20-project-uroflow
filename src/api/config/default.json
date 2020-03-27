@@ -2,7 +2,8 @@
   "host": "localhost",
   "port": 3010,
   "public": "../public/",
-  "upload": "UPLOAD_URL",
+  "audio": "../audios/",
+  "curve": "../curves/",
   "paginate": {
     "default": 10,
     "max": 50

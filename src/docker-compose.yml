@@ -20,12 +20,12 @@ services:
     restart: always
     volumes:
       - ./api:/usr/src/myapp
+      - audios:/usr/src/myapp/audios
     working_dir: /usr/src/myapp
     ports:
       - 3010:3010
     environment:
       - TEST=true
-      - UPLOAD_URL=../upload/
       - POSTGRES_HOST=postgres
       - POSTGRES_DB=uroflow
       - POSTGRES_USER=postgres
@@ -53,4 +53,4 @@ volumes:
 
   postgres_db:
 
-  audio_uploads:
+  audios:
