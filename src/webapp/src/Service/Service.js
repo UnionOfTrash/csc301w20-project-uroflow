@@ -1,11 +1,11 @@
 import {getFakePatients, getFakeRecords, addFakePatient, getFakeCurveData} from "./FakeData"
 import {Authentication} from './Authentication'
-
+import { readRemoteFile } from 'react-papaparse'
 const URL = "https://uroflow.unionoftra.sh/api/"
 
 const token = localStorage.getItem("token")
 
-const getHeader = {
+const GETHeader = {
     'Authorization': "Bearer " + token, 
     'Content-Type': 'application/json'
 }
@@ -24,7 +24,7 @@ function getPatients(){
 
     return fetch(url,{
         method: 'GET', 
-        headers: getHeader
+        headers: GETHeader
     }).then(res => {
 
         if(res.status === 401){
@@ -50,7 +50,7 @@ function getRecords(id){
 
     return fetch(url, {
         method:"GET",
-        headers:getHeader
+        headers:GETHeader
     }).then(res => {
 
         if(res.status === 401){
@@ -68,6 +68,39 @@ function getRecords(id){
     })
 }
 
+function getCurveData(cid){
+
+    const url = URL + "curve/" + cid + ".csv"
+    const curve = {
+        data:[],
+        label:[]
+    }
+    let firstRow = true
+
+    return new Promise((resolve, reject) => {
+        readRemoteFile(
+            url,
+            {
+
+                step: function(row) {
+                    // skip the first row
+                    if (firstRow){
+                        firstRow = false
+                    }else{
+                        const data = row.data
+                        curve.data.push(data[1])
+                        curve.label.push(data[2])
+                    }
+                },
+                complete: function(results) {
+                    resolve(curve)
+                }
+            }
+          )
+    })
+    
+}
+
 function addPatient(data){
     //console.log(data)
 
@@ -76,7 +109,6 @@ function addPatient(data){
             if (addFakePatient(data) === 1){
                 resolve("success")
             }
-            
             else
             {
                 reject("fail")
@@ -86,13 +118,3 @@ function addPatient(data){
     })
 }
 
-
-function getCurveData(cid){
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-
-            resolve(getFakeCurveData())
-
-        }, 1500)
-    })
-}

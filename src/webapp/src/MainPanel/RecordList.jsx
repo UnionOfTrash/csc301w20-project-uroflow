@@ -301,8 +301,8 @@ function RecordList(props) {
     setShowPatientComment(true);
   };
 
-  const onDoctorCommentClick = comment => {
-    setcComment(comment);
+  const onDoctorCommentClick = record => {
+    setcComment(record.ccomment);
     setShowDoctorComment(true);
   };
 
@@ -313,7 +313,9 @@ function RecordList(props) {
 
   const handleOpenGraph = (cid) => {
 
-    Service.getCurveData(cid).then(curveData => {
+    Service.getCurveData(cid)
+    .then(curveData => {
+      // console.log('Results:', curveData)
       setLabel(curveData.label)
       setData(curveData.data)
       setOpenGraph(true);
@@ -629,7 +631,7 @@ function RecordList(props) {
                     </Button>
                     <Button
                       color="secondary"
-                      onClick={() => onDoctorCommentClick(record.ccomment)}
+                      onClick={() => onDoctorCommentClick(record)}
                     >
                       {" "}
                       Clinician's Comments{" "}
