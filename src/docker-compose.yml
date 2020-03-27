@@ -26,9 +26,8 @@ services:
     ports:
       - 3012:3012
     environment:
-      - PORT=3012
       - MODEL_FILE=uroflow_fwdpass_20200311.py
-    command: /bin/bash -c "apt update; apt install -y ffmpeg; python3 -m pip install -r requirements.txt; python3 app.py"
+    command: /bin/bash -c "apt update; apt install -y ffmpeg; python3 -m pip install -r requirements.txt; gunicorn --bind 0.0.0.0:3012 app:app"
 
   api:
     image: node:12
