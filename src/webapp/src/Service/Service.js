@@ -1,37 +1,70 @@
 import {getFakePatients, getFakeRecords, addFakePatient, getFakeCurveData} from "./FakeData"
 import {Authentication} from './Authentication'
 
+const URL = "https://uroflow.unionoftra.sh/api/"
+
+const token = localStorage.getItem("token")
+
+const getHeader = {
+    'Authorization': "Bearer " + token, 
+    'Content-Type': 'application/json'
+}
+
 export const Service = {
     Authentication,
     getRecords,
     getPatients,
     getCurveData,
     addPatient,
-
 }
 
 function getPatients(){
-    // return getFakePatients()
-    return new Promise((resolve, reject) => {
 
-        setTimeout(() => {
-            const data = getFakePatients()
-            resolve(data)
-        }, 3000)
+    const url = URL + "patients"
+
+    return fetch(url,{
+        method: 'GET', 
+        headers: getHeader
+    }).then(res => {
+
+        if(res.status === 401){
+            // Do something here -> logout
+            return Promise.reject(401)
+        }
+
+        if (res.status === 200){
+            return res.json()
+        }else{
+            return Promise.reject("failed to fetch from server")
+        }
+
+    }).then(res => {
+        return res
     })
 }
 
 function getRecords(id){
 
-    // return getFakeRecords(id)
-    // console.log(id)
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            const data = getFakeRecords(id)
-            resolve(data)
+    // url needs a param patient-id fetch the records for that patient
+    const url = URL + "records"
 
-        }, 1000)
-        
+    return fetch(url, {
+        method:"GET",
+        headers:getHeader
+    }).then(res => {
+
+        if(res.status === 401){
+            return Promise.reject(401)
+        }
+
+        if (res.status === 200){
+            return res.json()
+        }else{
+            return Promise.reject("failed to fetch from server")
+        }
+
+    }).then(res => {
+        return res
     })
 }
 
@@ -52,6 +85,7 @@ function addPatient(data){
         }, 0)
     })
 }
+
 
 function getCurveData(cid){
     return new Promise((resolve, reject) => {

@@ -131,7 +131,6 @@ function DoctorCommentModal(props) {
   const [showSave, setShowSave] = React.useState(false);
 
   const onSaveClick = () => {
-    // console.log(props.cComment);
     setShowSave(false);
     setShowInput(false);
   };
@@ -278,8 +277,6 @@ function CondModal(props) {
 
 function RecordList(props) {
 
-  const records = props.records
-
   const [currentRecords, setCurrentRecords] = React.useState(props.records)
 
   const classes = useStyles();
@@ -298,13 +295,13 @@ function RecordList(props) {
   const [showDoctorComment, setShowDoctorComment] = React.useState(false);
   const [showCond, setShowCond] = React.useState(false);
 
-  const onPatientCommentClick = id => {
-    setpComment(records.filter(r => r.id === id)[0].pComment);
+  const onPatientCommentClick = comment => {
+    setpComment(comment);
     setShowPatientComment(true);
   };
 
-  const onDoctorCommentClick = id => {
-    setcComment(records.filter(r => r.id === id)[0].cComment);
+  const onDoctorCommentClick = comment => {
+    setcComment(comment);
     setShowDoctorComment(true);
   };
 
@@ -338,6 +335,10 @@ function RecordList(props) {
     const ispoop = (cond[1] === "disabled")? false:true
     const isurgent = (cond[2] === "disabled")? false:true
 
+    // console.log(isleak, ispoop, isurgent, isDelete)
+    // console.log(dateRangeRecords)
+    // console.log(currentRecords)
+
     const records = isDelete? dateRangeRecords : currentRecords
     // console.log("records : ", records)
 
@@ -369,9 +370,14 @@ function RecordList(props) {
   }
 
   const filterByDateRange = () => {
-    const records = props.records.filter(r => {
-      return (dateRange.startDate <= r.time && r.time <= dateRange.endDate)
-    })
+    let records = props.records
+
+    if (Object.keys(dateRange).length !== 0){
+      records = props.records.filter(r => {
+        return (dateRange.startDate <= r.time && r.time <= dateRange.endDate)
+      })
+    }
+
     setCurrentRecords(records)
     setDateRangeRecords(records)
   }
@@ -412,11 +418,12 @@ function RecordList(props) {
 
     setConditionName(cond)
 
-    if (selectedConditionData.length === 0){
-      filterByDateRange()
-    }else{
-      filterByDateRange()
+    filterByDateRange()
+
+    if (chips.length !== 0){
+
       filterByCondition(cond, true)
+
     }
   };
 
@@ -463,7 +470,8 @@ function RecordList(props) {
                 className={classes.savebtn}
                 onClick={() => {
                   setCurrentRecords(props.records)
-                  // filterByCondition(conditionName, true);
+                  setDateRange({})
+                  setDateRangeRecords(props.records)
                   setSelectedConditionData([])
                   setConditionName(["disabled", "disabled", "disabled"])
                   setOpen(false)
@@ -554,7 +562,7 @@ function RecordList(props) {
                 <TableCell align="center"> {record.time.toLocaleDateString()} </TableCell>
                 <TableCell align="left">
                   {" "}
-                  <Button onClick={() => handleOpenGraph(record.curveId)}>
+                  <Button onClick={() => handleOpenGraph(record.id)}>
                     <img
                       src="/flowcurve.png"
                       style={{ maxWidth: "200px" }}
@@ -613,14 +621,14 @@ function RecordList(props) {
                   <ButtonGroup variant="text">
                     <Button
                       color="secondary"
-                      onClick={() => onPatientCommentClick(record.id)}
+                      onClick={() => onPatientCommentClick(record.pcomment)}
                     >
                       {" "}
                       Patient's Comments{" "}
                     </Button>
                     <Button
                       color="secondary"
-                      onClick={() => onDoctorCommentClick(record.id)}
+                      onClick={() => onDoctorCommentClick(record.ccomment)}
                     >
                       {" "}
                       Clinician's Comments{" "}

@@ -59,24 +59,24 @@ function PatientList(props) {
         </TableHead>
         <TableBody>
           {rows.map(row => (
-            <TableRow hover key={row.studyId}>
+            <TableRow hover key={row.study_id}>
               <TableCell component="th" scope="row">
                 {" "}
-                {row.studyId}{" "}
+                {row.study_id}{" "}
               </TableCell>
-              <TableCell align="center"> {row.numRecord} </TableCell>
+              <TableCell align="center"> {row.num_records} </TableCell>
               <TableCell align="center">
                 {" "}
                 <FiberManualRecord
                   onClick={() => alert("click !")}
                   fontSize="small"
-                  color={row.hasNew ? "primary" : "disabled"}
+                  color={row.has_new ? "primary" : "disabled"}
                 />{" "}
               </TableCell>
               <TableCell align="center">
                 <ButtonGroup variant="text">
                   <Button
-                    onClick={() => props.onDetailClick(row.studyId)}
+                    onClick={() => props.onDetailClick(row.study_id)}
                     color="secondary"
                   >
                     {" "}

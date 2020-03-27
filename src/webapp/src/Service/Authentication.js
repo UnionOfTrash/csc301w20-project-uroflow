@@ -1,20 +1,10 @@
 
 export const Authentication = {
     login,
-    logout,
 };
 
 function login(username, password) {
 
-    // return new Promise((resolve,reject) => {
-    //     setTimeout(() => {
-    //         if (username==="even" && password==="123"){
-    //             resolve(1)
-    //         }else{
-    //             reject(-1)
-    //         }
-    //     }, 1000)
-    // })
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -38,11 +28,4 @@ function login(username, password) {
     }).catch(e => Promise.reject(e))
 
 }
-
-function logout() {
-    // remove user from local storage to log user out
-    // window.localStorage.removeItem('currentUser');
-    return
-}
-
 

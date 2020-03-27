@@ -27,7 +27,7 @@ class MainPanel extends React.Component{
     componentDidMount(){
         Service.getPatients().then(res => {
 
-            const curP = res.sort((a, b) => (parseInt(a.studyId)-parseInt(b.studyId)))
+            const curP = res.sort((a, b) => (parseInt(a.study_id)-parseInt(b.study_id)))
 
             this.setState({
                 allPatients:res,
@@ -41,11 +41,10 @@ class MainPanel extends React.Component{
 
     classes = this.props.classes
 
-
     onSearchClick = (e) => {
         e.preventDefault();
         const curP = this.state.allPatients.filter(p => {
-            const pid = p.studyId.substring(0, this.state.searchId.length)
+            const pid = p.study_id.substring(0, this.state.searchId.length)
             return (pid === this.state.searchId)
         })
         this.setState({
@@ -60,7 +59,7 @@ class MainPanel extends React.Component{
         const patients = this.state.allPatients
         const curPatients = patients.filter(p => {
                 // console.log(p)
-                const pid = p.studyId.substring(0, value.length)
+                const pid = p.study_id.substring(0, value.length)
                 return (pid === value)
             })
 
@@ -72,8 +71,8 @@ class MainPanel extends React.Component{
 
     onSortByIdClick = () => {
         const curP = this.state.currentPatients.sort((a, b) => {
-            const aid = parseInt(a.studyId)
-            const bid = parseInt(b.studyId)
+            const aid = parseInt(a.study_id)
+            const bid = parseInt(b.study_id)
             return (aid-bid)
         })
 
@@ -85,8 +84,8 @@ class MainPanel extends React.Component{
     onSortByRecentClick = () => {
 
         const curP = this.state.currentPatients.sort((a,b) => {
-            const aid = parseInt(a.studyId)
-            const bid = parseInt(b.studyId)
+            const aid = parseInt(a.study_id)
+            const bid = parseInt(b.study_id)
             if(a.hasNew && !b.hasNew){
                 return -1
             }else if (!a.hasNew && b.hasNew){
@@ -111,8 +110,13 @@ class MainPanel extends React.Component{
         const id = String(sid)
         Service.getRecords(id).then(res => {
             // console.log(res[0])
+            const rec = res.map(r => {
+                r.time = new Date(r.updatedAt)
+                return r
+            })
+
             this.setState({
-                records:res,
+                records:rec,
                 changeRecords:true
             })
         }).catch(e => console.log(e))
@@ -126,8 +130,8 @@ class MainPanel extends React.Component{
                 Service.getPatients().then(res => {
 
                     const curP = res.sort((a, b) => {
-                        const aid = parseInt(a.studyId)
-                        const bid = parseInt(b.studyId)
+                        const aid = parseInt(a.study_id)
+                        const bid = parseInt(b.study_id)
                         return (aid-bid)
                     })
                     this.setState({
