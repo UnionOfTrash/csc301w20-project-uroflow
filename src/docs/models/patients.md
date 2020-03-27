@@ -4,7 +4,7 @@
 
 | Name        | Type      | Default Value | Nullable |
 |:-----------:| ---------:| -------------:|:--------:|
-| id          | UUID      |               | No       |
+| id          | UUID      | UUIDv4        | No       |
 | study_id    | string    |               | No       |
 | dob         | date_only |               | No       |
 | sex         | string    |               | No       |
@@ -15,8 +15,6 @@
 ### Primary Key: id
 
 ### Unique Keys: study_id
-
-### Foreign Keys: id
 
 ## Additional Notes:
 

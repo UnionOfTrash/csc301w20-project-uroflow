@@ -15,6 +15,14 @@ module.exports = function (app) {
         role: 0,
         initialized: true
       });
+
+      const patientsService = app.service("patients");
+      await patientsService.create({
+        "study_id": "test_patient",
+        "dob": "2020-01-01",
+        "sex": "Male",
+        "condition": "all_good"
+      });
     }
   }, 2000);
 };

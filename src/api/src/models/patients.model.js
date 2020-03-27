@@ -9,6 +9,7 @@ module.exports = function (app) {
 
     id: {
       type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true
     },
@@ -52,7 +53,6 @@ module.exports = function (app) {
   patients.associate = function (models) {
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
-    patients.belongsTo(models["users"], { foreignKey: "id" });
   };
 
   return patients;

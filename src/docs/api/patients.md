@@ -1,8 +1,8 @@
-# Users API
+# Patients API
 
-## Path: ```/users```
+## Path: ```/patients```
 
-## Related Model: [users](../models/users.md)
+## Related Model: [patients](../models/patients.md)
 
 ## Supported HTTP Verbs: ```GET```, ```POST```, ```PUT```, ```PATCH```, ```DELETE```
 
@@ -18,13 +18,16 @@ response:
 [
   {
     "id": USERID,
-    "username": USERNAME,
-    "role": 0 / 1,
-    "initialized": true / false,
+    "study_id": STUDY_ID,
+    "dob": BIRTHDAY,
+    "sex": SEX,
+    "num_records": >= 0,
+    "has_new": true / false,
+    "condition": null / SOME_WORDS,
     "createdAt": TIMESTAMP,
     "updatedAt": TIMESTAMP
   }, ...
-] -- a list of users models
+] -- a list of patients models
 ```
 
 ### ```GET``` / ```get()``` and ```DELETE``` / ```remove()```:
@@ -36,13 +39,16 @@ response:
 [
   {
     "id": USERID,
-    "username": USERNAME,
-    "role": 0 / 1,
-    "initialized": true / false,
+    "study_id": STUDY_ID,
+    "dob": BIRTHDAY,
+    "sex": SEX,
+    "num_records": >= 0,
+    "has_new": true / false,
+    "condition": null / SOME_WORDS,
     "createdAt": TIMESTAMP,
     "updatedAt": TIMESTAMP
   }
-] -- though a list, it only contains one users model
+] -- though a list, it only contains one patients model
 ```
 
 ### ```POST``` / ```create()```:
@@ -50,10 +56,10 @@ response:
 request:
 ```json
 {
-  "username": USERNAME,
-  "password": PASSWORD, -- optional
-  "role": 0 / 1, -- optional, 0 by default, not recommended
-  "initialized": true / false -- optional, false by default, set to true if password is also sent
+  "study_id": STUDY_ID,
+  "dob": BIRTHDAY,
+  "sex": SEX,
+  "condition": SOME_WORDS -- optional, null by default
 }
 ```
 
@@ -61,12 +67,15 @@ response:
 ```json
 {
   "id": USERID,
-  "username": USERNAME,
-  "role": 0 / 1,
-  "initialized": true / false,
+  "study_id": STUDY_ID,
+  "dob": BIRTHDAY,
+  "sex": SEX,
+  "num_records": >= 0,
+  "has_new": true / false,
+  "condition": null / SOME_WORDS,
   "createdAt": TIMESTAMP,
   "updatedAt": TIMESTAMP
-} -- only a simple users model
+} -- only a simple patients model
 ```
 
 ### ```PUT``` / ```update()``` and ```PATCH``` / ```patch()```:
@@ -79,3 +88,4 @@ response: same as ```POST``` / ```create()```
 ## Additional Notes:
 
 1. For patients creation please use ```POST /patients``` or ```app.service("patients").create()```, this will automatically create a new users model
+2. ```USERID``` is guaranteed to be identical across patients table and users table
