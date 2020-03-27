@@ -15,12 +15,28 @@ services:
       - POSTGRES_DB=uroflow
       - POSTGRES_HOST_AUTH_METHOD=trust
 
+  model:
+    image: python:3.7
+    restart: always
+    volumes:
+      - ./pytorch_model:/usr/src/myapp
+      - audios:/usr/src/myapp/audios
+      - curves:/usr/src/myapp/curves
+    working_dir: /usr/src/myapp
+    ports:
+      - 3012:3012
+    environment:
+      - PORT=3012
+      - MODEL_FILE=uroflow_fwdpass_20200311.py
+    command: /bin/bash -c "apt update; apt install -y ffmpeg; python3 -m pip install -r requirements.txt; python3 app.py"
+
   api:
     image: node:12
     restart: always
     volumes:
       - ./api:/usr/src/myapp
       - audios:/usr/src/myapp/audios
+      - curves:/usr/src/myapp/curves
     working_dir: /usr/src/myapp
     ports:
       - 3010:3010
@@ -33,6 +49,7 @@ services:
     command: /bin/bash -c "npm i; npm run start"
     depends_on:
       - postgres
+      - model
 
   web:
     image: node:12
@@ -54,3 +71,5 @@ volumes:
   postgres_db:
 
   audios:
+
+  curves:
