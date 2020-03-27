@@ -36,7 +36,14 @@ class MainPanel extends React.Component{
             })
 
             // console.log(res)
-        }).catch(e => console.log(e))
+        }).catch(e => {
+            console.log(e)
+            if (e !==401){
+                alert(e)
+            }else{
+                this.props.setUser({})
+            }
+        })
     }
 
     classes = this.props.classes

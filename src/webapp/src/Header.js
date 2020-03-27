@@ -24,7 +24,7 @@ function Header(props) {
   const logout = () => {
     window.localStorage.removeItem('user');
     window.localStorage.removeItem('token');
-    props.setUser("")
+    props.setUser({})
   }
 
   return (

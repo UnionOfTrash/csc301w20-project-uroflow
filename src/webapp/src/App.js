@@ -44,6 +44,7 @@ function App(){
                                 <Header setUser={setCurrentUser}/>
                                 <MainPanel
                                   classes={ classes }
+                                  setUser={setCurrentUser}
                                 />
                               </div>
                             </ThemeProvider>
