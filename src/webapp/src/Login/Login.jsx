@@ -63,7 +63,9 @@ function Login(props) {
               const token = res.accessToken
               window.localStorage.setItem("user", user)
               window.localStorage.setItem("token", token)
-              props.setUser({user, token})
+              setTimeout(() => {
+                props.setUser({user, token})
+              }, 1000)
             }).catch(e => alert(e))
     }
 
