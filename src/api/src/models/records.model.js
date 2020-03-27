@@ -25,17 +25,9 @@ module.exports = function (app) {
       type: DataTypes.TEXT,
       allowNull: true
     },
-    user_id: {
+    patient_id: {
       type: DataTypes.UUID,
       allowNull: false
-    },
-    audio_id: {
-      type: DataTypes.UUID,
-      allowNull: false
-    },
-    curve_id: {
-      type: DataTypes.UUID,
-      allowNull: true
     }
 
   }, {
@@ -50,9 +42,7 @@ module.exports = function (app) {
   records.associate = function (models) {
     // Define associations here
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
-    records.belongsTo(models["users"], { foreignKey: "user_id" });
-    records.belongsTo(models["audio"], { foreignKey: "audio_id" });
-    records.belongsTo(models["curve"], { foreignKey: "curve_id" });
+    records.belongsTo(models["patients"], { foreignKey: "patient_id" });
   };
 
   return records;

@@ -5,7 +5,13 @@ module.exports = {
     all: [ authenticate("jwt") ],
     find: [],
     get: [],
-    create: [],
+    create: [ (context) => {
+      if (!context.data.patient_id) {
+        context.data = Object.assign({}, context.data, { patient_id: context.params.user.id });
+      }
+
+      return context;
+    } ],
     update: [],
     patch: [],
     remove: []
@@ -15,7 +21,24 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [ async (context) => {
+      const result = context.result;
+      const upload = context.app.service("upload");
+      const patients = context.app.service("patients");
+
+      await upload.create({
+        id: `${result.id}.wav`,
+        uri: context.data.uri
+      });
+
+      const patient = await patients.get(context.data.patient_id);
+      await patients.patch(patient.id, {
+        num_records: patient.num_records + 1,
+        has_new: true
+      });
+
+      return context;
+    } ],
     update: [],
     patch: [],
     remove: []

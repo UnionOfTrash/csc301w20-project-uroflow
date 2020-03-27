@@ -1,28 +1,37 @@
 module.exports = function (app) {
   setTimeout(async () => {
     const usersService = app.service("users");
-    const usersList = await usersService.find();
-    if (usersList.length == 0) {
+    const patientsService = app.service("patients");
+    const recordsService = app.service("records");
+
+    if ((await usersService.find()).length == 0) {
       await usersService.create({
-        username: "default_clinician",
-        password: "default_clinician",
+        username: "test_clinician",
+        password: "test_clinician",
         role: 1,
         initialized: true
       });
-      await usersService.create({
-        username: "default_patient",
-        password: "default_patient",
-        role: 0,
-        initialized: true
-      });
 
-      const patientsService = app.service("patients");
-      await patientsService.create({
+      const testPatient = await patientsService.create({
         "study_id": "test_patient",
         "dob": "2020-01-01",
         "sex": "Male",
         "condition": "all_good"
       });
+      await usersService.patch(testPatient.id, {
+        password: "test_patient",
+        initialized: true
+      });
+
+      const fs = require("fs");
+      const audio_file = fs.readFileSync("/usr/src/myapp/test/test.wav");
+      await recordsService.create({
+        "condition": [true, true, true],
+        "uri": "data:audio/wav;base64," + Buffer.from(audio_file).toString("base64"),
+        "pcomment": "all_good",
+        "ccomment": "all_good",
+        "patient_id": testPatient.id
+      })
     }
   }, 2000);
 };

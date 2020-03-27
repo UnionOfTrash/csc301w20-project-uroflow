@@ -21,7 +21,7 @@ module.exports = {
 
       await users.create({
         id: result.id,
-        username: result.study_id,
+        username: result.study_id
       });
 
       return context;
