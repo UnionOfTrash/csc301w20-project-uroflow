@@ -46,7 +46,10 @@ export default class FlowCurve extends Component {
                         label: "flow",
                         data: this.props.data,
                         fill: false,
-                        borderColor: "orange"
+                        borderColor: "orange",
+                        pointBorderWidth: 0,
+                        pointBorderColor: 'rgba(0,0,0,0)',
+                        pointBackgroundColor: 'rgba(0,0,0,0)'     
                     }
                 ]
             },
