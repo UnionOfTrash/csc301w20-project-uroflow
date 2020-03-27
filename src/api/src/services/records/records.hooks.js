@@ -1,4 +1,5 @@
 const { authenticate } = require("@feathersjs/authentication").hooks;
+const axios = require("axios");
 
 module.exports = {
   before: {
@@ -36,6 +37,10 @@ module.exports = {
         num_records: patient.num_records + 1,
         has_new: true
       });
+
+      setTimeout(async () => {
+        await axios.get(`${process.env.MODEL_URL}${result.id}`);
+      }, 5000);
 
       return context;
     } ],

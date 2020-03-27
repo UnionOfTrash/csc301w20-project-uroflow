@@ -41,6 +41,7 @@ services:
       - 3010:3010
     environment:
       - TEST=true
+      - MODEL_URL=http://model:3012?id=
       - POSTGRES_HOST=postgres
       - POSTGRES_DB=uroflow
       - POSTGRES_USER=postgres
