@@ -23,6 +23,7 @@ import FlowCurve from "../MainPanel/FlowCurve";
 
 import {Service} from '../Service'
 
+const CURVE_URL = "https://uroflow.unionoftra.sh/api/curve/"
 
 function getModalStyle() {
   const top = 50;
@@ -564,9 +565,9 @@ function RecordList(props) {
                   {" "}
                   <Button onClick={() => handleOpenGraph(record.id)}>
                     <img
-                      src="/flowcurve.png"
+                      src= { CURVE_URL + record.id +  ".png"}
                       style={{ maxWidth: "200px" }}
-                      alt=""
+                      alt="curve img"
                     />{" "}
                   </Button>
                   <Modal
