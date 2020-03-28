@@ -14,10 +14,10 @@ node_js:
   - 12
 env:
   - DIR=./src/webapp
+  - DIR=./src/api
 
 install:
   - cd $DIR
   - npm install
 script:
-  - cd $DIR
   - npm test

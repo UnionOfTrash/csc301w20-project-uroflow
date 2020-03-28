@@ -4,7 +4,13 @@ const axios = require("axios");
 module.exports = {
   before: {
     all: [ authenticate("jwt") ],
-    find: [],
+    find: [ (context) => {
+      if (context.params.user) {
+        context.params.query = Object.assign({}, context.params.query, { patient_id: context.params.user.id });
+      }
+
+      return context;
+    } ],
     get: [],
     create: [ (context) => {
       if (!context.data.patient_id) {

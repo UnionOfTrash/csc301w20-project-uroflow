@@ -3,7 +3,13 @@ const { authenticate } = require("@feathersjs/authentication").hooks;
 module.exports = {
   before: {
     all: [ authenticate("jwt") ],
-    find: [],
+    find: [ (context) => {
+      if (context.params.user && context.params.user.role == 0) {
+        context.params.query = Object.assign({}, context.params.query, { id: context.params.user.id });
+      }
+
+      return context;
+    } ],
     get: [],
     create: [],
     update: [],
