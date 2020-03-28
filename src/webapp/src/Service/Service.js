@@ -155,7 +155,7 @@ function updateCComment(recordId, cComment) {
         if (res.status === 200){
             return Promise.resolve("success")
         }else{
-            return Promise.reject("failed to post to server")
+            return Promise.reject("failed to patch to server")
         }
 
     }).then(res => {
