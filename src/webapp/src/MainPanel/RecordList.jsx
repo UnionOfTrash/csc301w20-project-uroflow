@@ -132,8 +132,20 @@ function DoctorCommentModal(props) {
   const [showSave, setShowSave] = React.useState(false);
 
   const onSaveClick = () => {
-    setShowSave(false);
-    setShowInput(false);
+
+    Service.updateCComment(props.recordId, props.cComment)
+    .then(() => {
+      // console.log('Results:', curveData)
+      setShowSave(false);
+      setShowInput(false);
+    })
+
+
+
+
+
+
+
   };
 
   return (
@@ -185,6 +197,7 @@ function CondModal(props) {
   const setConditions = props.setConditions
 
   const onSaveClick = () => {
+
     props.onConditionSaveClick()
     props.setShowCond(false)
   }
@@ -277,6 +290,7 @@ function CondModal(props) {
 }
 
 function RecordList(props) {
+  console.log(props.records)
 
   const [currentRecords, setCurrentRecords] = React.useState(props.records)
 
@@ -291,6 +305,7 @@ function RecordList(props) {
 
   const [pComment, setpComment] = React.useState("");
   const [cComment, setcComment] = React.useState("");
+  const [recordId, setRecordId] = React.useState("");
 
   const [showPatientComment, setShowPatientComment] = React.useState(false);
   const [showDoctorComment, setShowDoctorComment] = React.useState(false);
@@ -303,6 +318,8 @@ function RecordList(props) {
 
   const onDoctorCommentClick = record => {
     setcComment(record.ccomment);
+    setRecordId(record.id)
+
     setShowDoctorComment(true);
   };
 
@@ -541,6 +558,7 @@ function RecordList(props) {
           classes={classes}
           cComment={cComment}
           setcComment={setcComment}
+          recordId={recordId}
           showDoctorComment={showDoctorComment}
           setShowDoctorComment={setShowDoctorComment}
         />
@@ -561,6 +579,8 @@ function RecordList(props) {
           </TableHead>
           <TableBody>
             {currentRecords.map(record => (
+
+              
               <TableRow hover key={record.id}>
                 <TableCell align="center"> {record.time.toLocaleDateString()} </TableCell>
                 <TableCell align="left">
@@ -639,6 +659,8 @@ function RecordList(props) {
                   </ButtonGroup>
                 </TableCell>
               </TableRow>
+
+
             ))}
           </TableBody>
         </Table>

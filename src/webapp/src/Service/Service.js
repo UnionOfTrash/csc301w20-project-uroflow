@@ -15,12 +15,18 @@ const POSTHeader = {
     'Content-Type': 'application/json'
 }
 
+const PATCHHeader = {
+    'Authorization': "Bearer " + token, 
+    'Content-Type': 'application/json'
+}
+
 export const Service = {
     Authentication,
     getRecords,
     getPatients,
     getCurveData,
     addPatient,
+    updateCComment,
 }
 
 function getPatients(){
@@ -107,14 +113,6 @@ function getCurveData(cid){
 }
 
 function addPatient(data){
-    //console.log(data)
-    // data {
-    //     studyId: studyId,
-    //     gender: gender,
-    //     selectedDate: selectedDate,
-    //     condition: condition
-    // }
-
     
     const url = URL + "patients"
     
@@ -138,8 +136,30 @@ function addPatient(data){
     }).then(res => {
         return res
     })
+}
 
-    
+function updateCComment(recordId, cComment) {
+    const url = URL + "records" + "/" + recordId
+    const data = {"ccomment": cComment}
+    return fetch(url, {
+        method:"PATCH",
+        headers: PATCHHeader,
+        body: JSON.stringify(data),
 
+    }).then(res => {
+
+        if(res.status === 401){
+            return Promise.reject(401)
+        }
+
+        if (res.status === 200){
+            return Promise.resolve("success")
+        }else{
+            return Promise.reject("failed to post to server")
+        }
+
+    }).then(res => {
+        return res
+    })
 }
 
