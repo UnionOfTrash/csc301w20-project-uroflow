@@ -10,6 +10,11 @@ const GETHeader = {
     'Content-Type': 'application/json'
 }
 
+const POSTHeader = {
+    'Authorization': "Bearer " + token, 
+    'Content-Type': 'application/json'
+}
+
 export const Service = {
     Authentication,
     getRecords,
@@ -103,18 +108,38 @@ function getCurveData(cid){
 
 function addPatient(data){
     //console.log(data)
+    // data {
+    //     studyId: studyId,
+    //     gender: gender,
+    //     selectedDate: selectedDate,
+    //     condition: condition
+    // }
 
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            if (addFakePatient(data) === 1){
-                resolve("success")
-            }
-            else
-            {
-                reject("fail")
-            }
+    
+    const url = URL + "patients"
+    
+    return fetch(url, {
+        method:"POST",
+        headers:POSTHeader,
+        body: JSON.stringify(data),
 
-        }, 0)
+    }).then(res => {
+
+        if(res.status === 401){
+            return Promise.reject(401)
+        }
+
+        if (res.status === 201){
+            return Promise.resolve("success")
+        }else{
+            return Promise.reject("failed to post to server")
+        }
+
+    }).then(res => {
+        return res
     })
+
+    
+
 }
 

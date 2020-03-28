@@ -12,11 +12,11 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const genders = [
   {
-    value: "M",
+    value: "Male",
     label: "Male"
   },
   {
-    value: "F",
+    value: "Female",
     label: "Female"
   }
 ];
@@ -52,11 +52,11 @@ function AddClientPanel(props) {
 
   const addClientHandler = () => {
     const client = {
-      studyId: studyId,
-      gender: gender,
-      selectedDate: selectedDate,
+      study_id: studyId,
+      sex: gender,
+      dob: selectedDate,
       condition: condition
-    };
+    }
     props.addNewClientHandler(client).then(() => {
       setStudyId("")
       setGender("")
