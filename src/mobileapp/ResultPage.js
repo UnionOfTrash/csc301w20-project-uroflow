@@ -1,11 +1,12 @@
 import React from "react";
 import { Audio } from "expo-av";
-import { Text, View, Alert, TextInput, ScrollView, StyleSheet, Dimensions, TouchableHighlight } from "react-native";
+import { Text, View, Alert, TextInput, ScrollView, StyleSheet, Dimensions, TouchableHighlight, Modal, Button } from "react-native";
 import app from "./feathers-client.js"
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as Font from "expo-font";
+import CheckBox from 'react-native-check-box';
 
 const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window')
 
@@ -17,6 +18,10 @@ class ResultPage extends React.Component {
       content_uri: this.props.navigation.getParam("contentURI"),
       length: this.props.navigation.getParam("length"),
       description: "",
+      modalVisabled: true,
+      isCheckedUrgent: false,
+      isCheckedLeak: false,
+      isCheckedPoop: false,
     };
   }
 
@@ -78,6 +83,34 @@ class ResultPage extends React.Component {
     );
   };
 
+  statusPressed = () =>{
+    this.setState({modalVisabled: true});
+  };
+
+ closeModal = () => {
+    Alert.alert(
+      "Save Status",
+      "Are you sure you want to save this uroflow status? ",
+      [
+        {
+          text: "Cancel",
+          onPress: () => {
+            console.log("Send: Cancel Pressed");
+          },
+          style: "cancel"
+        },
+        {
+          text: "Save",
+          onPress: () => {
+            console.log("Send: Send Pressed");
+            this.setState({modalVisabled: false});
+          }
+        }
+      ],
+      { cancelable: false }
+    );
+  };
+
   _onRecordPressed = () => {
     this._stopRecordingAndEnablePlayback();
   };
@@ -117,6 +150,55 @@ class ResultPage extends React.Component {
                   </TouchableHighlight>
                 </View>
               </View>
+              <Modal
+                    animationType='slide' 
+                    transparent={true} 
+                    visible={this.state.modalVisabled} 
+                    onRequestClose={() => { this.closeModal; }} 
+                    onShow={()=>{console.log('modal on');}}
+                >
+                    <View style={styles.modalLayer}>
+                        <View style={styles.modalContainer}>
+                            <Text style={styles.modalTitleStyle}>Please Select Your Status</Text>
+                            <CheckBox
+                              style={{flex: 1, padding: 10}}
+                              onClick={()=>{
+                                this.setState({
+                                    isCheckedUrgent:!this.state.isCheckedUrgent
+                                })
+                              }}
+                              isChecked={this.state.isCheckedUrgent}
+                              leftText={"Urgent"}
+                              leftTextStyle = {styles.checkboxStyle}
+                            />
+                            <CheckBox
+                              style={{flex: 1, padding: 10}}
+                              onClick={()=>{
+                                this.setState({
+                                    isCheckedLeak:!this.state.isCheckedLeak
+                                })
+                              }}
+                              isChecked={this.state.isCheckedLeak}
+                              leftText={"Leak"}
+                              leftTextStyle = {styles.checkboxStyle}
+                            />
+                            <CheckBox
+                              style={{flex: 1, padding: 10}}
+                              onClick={()=>{
+                                this.setState({
+                                    isCheckedPoop:!this.state.isCheckedPoop
+                                })
+                              }}
+                              isChecked={this.state.isCheckedPoop}
+                              leftText={"Poop"}
+                              leftTextStyle = {styles.checkboxStyle}
+                            />
+                            <TouchableHighlight style={styles.saveButton} onPress={this.closeModal}>
+                              <Text style={{color: '#ffffff', fontFamily: 'Avenir-Heavy', fontSize: 16}}> SAVED </Text>
+                            </TouchableHighlight>
+                        </View>
+                    </View>
+                </Modal>
             </LinearGradient>
           </View>
         </ScrollView>
@@ -176,6 +258,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#3f51b5',
     padding: 10
   },
+  saveButton: {
+    alignItems: 'center',
+    width: '98%',
+    margin: 10,
+    borderRadius: 30,
+    backgroundColor: '#3f51b5',
+    padding: 10
+  },
   microphone: {
     backgroundColor: '#b71c1c',
     width: 200,
@@ -206,6 +296,32 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     alignItems: 'center',
   },
+  modalLayer: {
+    backgroundColor: 'rgba(0, 0, 0, 0.45)',
+    flex: 1,
+    justifyContent: 'center',
+    padding: 32
+  },
+  modalContainer: {
+      height: 300,
+      backgroundColor: 'white',
+      justifyContent: 'center'
+  },
+  modalTitleStyle: {
+      textAlign: 'center',
+      fontFamily: 'Avenir-Heavy',
+      fontSize: 26
+  },
+  modalButtonStyle: {
+      paddingLeft: 30,
+      paddingRight: 30,
+      marginTop: 30
+  },
+  checkboxStyle: {
+    textAlign: 'left',
+    fontFamily: 'Avenir-Heavy',
+    fontSize: 36
+},
 })
 
 export default ResultPage;

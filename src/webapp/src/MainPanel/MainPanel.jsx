@@ -34,14 +34,15 @@ class MainPanel extends React.Component{
                 currentPatients:curP,
                 loadPatient:true
             })
-
             // console.log(res)
         }).catch(e => {
             console.log(e)
             if (e !==401){
                 alert(e)
             }else{
+                Service.Authentication.logout()
                 this.props.setUser({})
+                alert(e)
             }
         })
     }

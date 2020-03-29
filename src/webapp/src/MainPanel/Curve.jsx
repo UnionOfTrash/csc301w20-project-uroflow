@@ -70,10 +70,10 @@ export default class Curve extends Component {
                         },
                         ticks: {
                             callback: function (value, index, values) {
-                                // if (value == 1.0) {
+                                // if (value === 1.0) {
                                 //     return value
                                 // }
-                                if (value == 15.0) {
+                                if (value === 15.0) {
                                     return value
                                 } else {
                                     return null
