@@ -22,7 +22,7 @@ function getPatients(){
             'Content-Type': 'application/json'
         }
     }).then(res => {
-        console.log(res)
+        // console.log(res)
         if(res.status === 401){
             // Do something here -> logout
             return Promise.reject("401: Unauthorized")
@@ -41,45 +41,45 @@ function getPatients(){
 
 function getRecords(id){
 
-    return Promise.resolve(
-        [{
-            "id": "ed4485c1-4e3e-48e8-bd7c-6695d966f06e",
-            "condition": [
-            true,
-            false,
-            true
-            ],
-            "pcomment":  "SOME_WORDS",
-            "ccomment":  "SOME_WORDS",
-            "patient_id": "test_patient",
-            "createdAt": "2010-10-11",
-            "updatedAt": "2020-01-02"
-        }]
-    )
+    // return Promise.resolve(
+    //     [{
+    //         "id": "ed4485c1-4e3e-48e8-bd7c-6695d966f06e",
+    //         "condition": [
+    //         true,
+    //         false,
+    //         true
+    //         ],
+    //         "pcomment":  "SOME_WORDS",
+    //         "ccomment":  "SOME_WORDS",
+    //         "patient_id": "test_patient",
+    //         "createdAt": "2010-10-11",
+    //         "updatedAt": "2020-01-02"
+    //     }]
+    // )
 
     // url needs a param patient-id fetch the records for that patient
     //  TODO: replace this when records are ready to fetch
-    // const url = URL + "records"
+    const url = URL + "records/?patient_id=" + id
 
-    // return fetch(url, {
-    //     method:"GET",
-    //     headers:{
-    //         'Authorization': "Bearer " + window.localStorage.getItem("token"), 
-    //         'Content-Type': 'application/json'
-    //     }
-    // }).then(res => {
+    return fetch(url, {
+        method:"GET",
+        headers:{
+            'Authorization': "Bearer " + window.localStorage.getItem("token"), 
+            'Content-Type': 'application/json'
+        }
+    }).then(res => {
 
-    //     if(res.status === 401){
-    //         return Promise.reject(401)
-    //     }
+        if(res.status === 401){
+            return Promise.reject(401)
+        }
 
-    //     if (res.status === 200){
-    //         return res.json()
-    //     }else{
-    //         return Promise.reject("failed to fetch from server")
-    //     }
+        if (res.status === 200){
+            return res.json()
+        }else{
+            return Promise.reject("failed to fetch from server")
+        }
 
-    // })
+    })
 }
 
 function getCurveData(cid){
