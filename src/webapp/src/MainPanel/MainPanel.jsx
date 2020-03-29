@@ -34,7 +34,6 @@ class MainPanel extends React.Component{
                 currentPatients:curP,
                 loadPatient:true
             })
-
             // console.log(res)
         }).catch(e => {
             console.log(e)
@@ -42,6 +41,7 @@ class MainPanel extends React.Component{
                 alert(e)
             }else{
                 this.props.setUser({})
+                alert(e)
             }
         })
     }

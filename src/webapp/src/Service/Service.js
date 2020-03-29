@@ -1,24 +1,6 @@
-import {getFakePatients, getFakeRecords, addFakePatient, getFakeCurveData} from "./FakeData"
-import {Authentication} from './Authentication'
+import { Authentication } from './Authentication'
 import { readRemoteFile } from 'react-papaparse'
 const URL = "https://uroflow.unionoftra.sh/api/"
-
-const token = localStorage.getItem("token")
-
-const GETHeader = {
-    'Authorization': "Bearer " + token, 
-    'Content-Type': 'application/json'
-}
-
-const POSTHeader = {
-    'Authorization': "Bearer " + token, 
-    'Content-Type': 'application/json'
-}
-
-const PATCHHeader = {
-    'Authorization': "Bearer " + token, 
-    'Content-Type': 'application/json'
-}
 
 export const Service = {
     Authentication,
@@ -35,18 +17,21 @@ function getPatients(){
 
     return fetch(url,{
         method: 'GET', 
-        headers: GETHeader
+        headers: {
+            'Authorization': "Bearer " + window.localStorage.getItem("token"), 
+            'Content-Type': 'application/json'
+        }
     }).then(res => {
-
+        console.log(res)
         if(res.status === 401){
             // Do something here -> logout
-            return Promise.reject(401)
+            return Promise.reject("401: Unauthorized")
         }
 
         if (res.status === 200){
             return res.json()
         }else{
-            return Promise.reject("failed to fetch from server")
+            return Promise.reject("failed to fetch patients from server")
         }
 
     }).then(res => {
@@ -61,7 +46,10 @@ function getRecords(id){
 
     return fetch(url, {
         method:"GET",
-        headers:GETHeader
+        headers:{
+            'Authorization': "Bearer " + window.localStorage.getItem("token"), 
+            'Content-Type': 'application/json'
+        }
     }).then(res => {
 
         if(res.status === 401){
@@ -81,7 +69,7 @@ function getRecords(id){
 
 function getCurveData(cid){
 
-    const url = URL + "curve/" + cid + ".csv"
+    const url = URL + "curve/" + toString(cid) + ".csv"
     const curve = {
         data:[],
         label:[]
@@ -92,7 +80,6 @@ function getCurveData(cid){
         readRemoteFile(
             url,
             {
-
                 step: function(row) {
                     // skip the first row
                     if (firstRow){
@@ -118,7 +105,10 @@ function addPatient(data){
     
     return fetch(url, {
         method:"POST",
-        headers:POSTHeader,
+        headers:{
+            'Authorization': "Bearer " + window.localStorage.getItem("token"), 
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify(data),
 
     }).then(res => {
@@ -139,11 +129,14 @@ function addPatient(data){
 }
 
 function updateCComment(recordId, cComment) {
-    const url = URL + "records" + "/" + recordId
+    const url = URL + "records" + "/" + toString(recordId) 
     const data = {"ccomment": cComment}
     return fetch(url, {
         method:"PATCH",
-        headers: PATCHHeader,
+        headers: {
+            'Authorization': "Bearer " + window.localStorage.getItem("token"), 
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify(data),
 
     }).then(res => {

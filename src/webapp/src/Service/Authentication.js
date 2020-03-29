@@ -23,8 +23,10 @@ function login(username, password) {
             return Promise.reject("fail in authentication")
         }
     })
-    .then(user => {
-        return user;
+    .then(data => {
+        window.localStorage.setItem("user", data.user.username)
+        window.localStorage.setItem("token", data.accessToken)
+        return data;
     }).catch(e => Promise.reject(e))
 
 }
