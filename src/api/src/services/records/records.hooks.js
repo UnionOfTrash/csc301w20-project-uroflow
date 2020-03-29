@@ -5,7 +5,7 @@ module.exports = {
   before: {
     all: [ authenticate("jwt") ],
     find: [ (context) => {
-      if (context.params.user) {
+      if (context.params.user && context.params.user.role == 0) {
         context.params.query = Object.assign({}, context.params.query, { patient_id: context.params.user.id });
       }
 
