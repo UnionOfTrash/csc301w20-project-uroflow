@@ -290,7 +290,7 @@ function CondModal(props) {
 }
 
 function RecordList(props) {
-  console.log(props.records)
+  // console.log(props.records)
 
   const [currentRecords, setCurrentRecords] = React.useState(props.records)
 
