@@ -40,6 +40,7 @@ class MainPanel extends React.Component{
             if (e !==401){
                 alert(e)
             }else{
+                Service.Authentication.logout()
                 this.props.setUser({})
                 alert(e)
             }

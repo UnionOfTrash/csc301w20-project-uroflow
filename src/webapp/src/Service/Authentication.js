@@ -1,6 +1,7 @@
 
 export const Authentication = {
     login,
+    logout
 };
 
 function login(username, password) {
@@ -31,3 +32,8 @@ function login(username, password) {
 
 }
 
+
+function logout(){
+    window.localStorage.removeItem("token")
+    window.localStorage.removeItem("user")
+}
