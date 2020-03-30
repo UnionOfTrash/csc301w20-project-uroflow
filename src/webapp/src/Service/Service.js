@@ -1,24 +1,6 @@
-import {getFakePatients, getFakeRecords, addFakePatient, getFakeCurveData} from "./FakeData"
-import {Authentication} from './Authentication'
+import { Authentication } from './Authentication'
 import { readRemoteFile } from 'react-papaparse'
 const URL = "https://uroflow.unionoftra.sh/api/"
-
-const token = localStorage.getItem("token")
-
-const GETHeader = {
-    'Authorization': "Bearer " + token, 
-    'Content-Type': 'application/json'
-}
-
-const POSTHeader = {
-    'Authorization': "Bearer " + token, 
-    'Content-Type': 'application/json'
-}
-
-const PATCHHeader = {
-    'Authorization': "Bearer " + token, 
-    'Content-Type': 'application/json'
-}
 
 export const Service = {
     Authentication,
@@ -35,18 +17,21 @@ function getPatients(){
 
     return fetch(url,{
         method: 'GET', 
-        headers: GETHeader
+        headers: {
+            'Authorization': "Bearer " + window.localStorage.getItem("token"), 
+            'Content-Type': 'application/json'
+        }
     }).then(res => {
-
+        // console.log(res)
         if(res.status === 401){
             // Do something here -> logout
-            return Promise.reject(401)
+            return Promise.reject("401: Unauthorized")
         }
 
         if (res.status === 200){
             return res.json()
         }else{
-            return Promise.reject("failed to fetch from server")
+            return Promise.reject("failed to fetch patients from server")
         }
 
     }).then(res => {
@@ -56,12 +41,32 @@ function getPatients(){
 
 function getRecords(id){
 
+    // return Promise.resolve(
+    //     [{
+    //         "id": "ed4485c1-4e3e-48e8-bd7c-6695d966f06e",
+    //         "condition": [
+    //         true,
+    //         false,
+    //         true
+    //         ],
+    //         "pcomment":  "SOME_WORDS",
+    //         "ccomment":  "SOME_WORDS",
+    //         "patient_id": "test_patient",
+    //         "createdAt": "2010-10-11",
+    //         "updatedAt": "2020-01-02"
+    //     }]
+    // )
+
     // url needs a param patient-id fetch the records for that patient
-    const url = URL + "records"
+    //  TODO: replace this when records are ready to fetch
+    const url = URL + "records/?patient_id=" + id
 
     return fetch(url, {
         method:"GET",
-        headers:GETHeader
+        headers:{
+            'Authorization': "Bearer " + window.localStorage.getItem("token"), 
+            'Content-Type': 'application/json'
+        }
     }).then(res => {
 
         if(res.status === 401){
@@ -74,8 +79,6 @@ function getRecords(id){
             return Promise.reject("failed to fetch from server")
         }
 
-    }).then(res => {
-        return res
     })
 }
 
@@ -92,7 +95,6 @@ function getCurveData(cid){
         readRemoteFile(
             url,
             {
-
                 step: function(row) {
                     // skip the first row
                     if (firstRow){
@@ -118,7 +120,10 @@ function addPatient(data){
     
     return fetch(url, {
         method:"POST",
-        headers:POSTHeader,
+        headers:{
+            'Authorization': "Bearer " + window.localStorage.getItem("token"), 
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify(data),
 
     }).then(res => {
@@ -139,11 +144,14 @@ function addPatient(data){
 }
 
 function updateCComment(recordId, cComment) {
-    const url = URL + "records" + "/" + recordId
+    const url = URL + "records/" + recordId
     const data = {"ccomment": cComment}
     return fetch(url, {
         method:"PATCH",
-        headers: PATCHHeader,
+        headers: {
+            'Authorization': "Bearer " + window.localStorage.getItem("token"), 
+            'Content-Type': 'application/json'
+        },
         body: JSON.stringify(data),
 
     }).then(res => {

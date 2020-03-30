@@ -76,7 +76,7 @@ function PatientList(props) {
               <TableCell align="center">
                 <ButtonGroup variant="text">
                   <Button
-                    onClick={() => props.onDetailClick(row.study_id)}
+                    onClick={() => props.onDetailClick(row.id)}
                     color="secondary"
                   >
                     {" "}

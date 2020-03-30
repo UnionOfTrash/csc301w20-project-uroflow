@@ -23,7 +23,8 @@ module.exports = function (app) {
       allowNull: false
     },
     sex: {
-      type: DataTypes.STRING,
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
       allowNull: false
     },
     num_records: {

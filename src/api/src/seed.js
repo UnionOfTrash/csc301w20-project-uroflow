@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 module.exports = function (app) {
   setTimeout(async () => {
     const usersService = app.service("users");
@@ -12,26 +14,40 @@ module.exports = function (app) {
         initialized: true
       });
 
-      const testPatient = await patientsService.create({
-        "study_id": "test_patient",
-        "dob": "2020-01-01",
-        "sex": "Male",
-        "condition": "all_good"
+      const testPatient1 = await patientsService.create({
+        "study_id": "test_patient1",
+        "dob": "2020-01-02"
       });
-      await usersService.patch(testPatient.id, {
-        password: "test_patient",
+      await usersService.patch(testPatient1.id, {
+        password: "test_patient1",
         initialized: true
       });
-
-      const fs = require("fs");
-      const audio_file = fs.readFileSync("/usr/src/myapp/test/test.wav");
+      const testAudio1 = fs.readFileSync("/usr/src/myapp/test/test1.wav");
       await recordsService.create({
-        "condition": [true, true, true],
-        "uri": "data:audio/wav;base64," + Buffer.from(audio_file).toString("base64"),
+        "condition": [true, false, true],
+        "uri": "data:audio/wav;base64," + Buffer.from(testAudio1).toString("base64"),
         "pcomment": "all_good",
-        "ccomment": "all_good",
-        "patient_id": testPatient.id
-      })
+        "patient_id": testPatient1.id
+      });
+
+      const testPatient2 = await patientsService.create({
+        "study_id": "test_patient2",
+        "dob": "1999-05-31",
+        "sex": false,
+        "condition": "dying"
+      });
+      await usersService.patch(testPatient2.id, {
+        password: "test_patient2",
+        initialized: true
+      });
+      const testAudio2 = fs.readFileSync("/usr/src/myapp/test/test2.wav");
+      await recordsService.create({
+        "condition": [false, false, true],
+        "uri": "data:audio/wav;base64," + Buffer.from(testAudio2).toString("base64"),
+        "pcomment": "sounds not so good",
+        "ccomment": "yeah agreed",
+        "patient_id": testPatient2.id
+      });
     }
   }, 2000);
 };
