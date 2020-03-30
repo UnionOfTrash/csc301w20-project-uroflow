@@ -22,8 +22,8 @@ export default class Curve extends Component {
 
     containerStyle = () => {
         return {
-            width: '40vw',
-            height: '40vh',
+            width: '100%',
+            minHeight: '55vh',
             // background: 'white',
             // padding: '30px 20px 10px 20px',
             // borderRadius: '10px',
@@ -32,7 +32,6 @@ export default class Curve extends Component {
 
     buildChart = () => {
         const myChartRef = this.chartRef.current.getContext("2d");
-        const { data, average, labels } = this.props;
 
         if (typeof curve !== "undefined") curve.destroy();
 
@@ -46,7 +45,7 @@ export default class Curve extends Component {
                         label: "flow",
                         data: this.props.data,
                         fill: false,
-                        borderColor: "orange",
+                        borderColor: "#4eb4da",
                         pointBorderWidth: 0,
                         pointBorderColor: 'rgba(0,0,0,0)',
                         pointBackgroundColor: 'rgba(0,0,0,0)'
@@ -60,7 +59,8 @@ export default class Curve extends Component {
                     yAxes: [{
                         scaleLabel: {
                             display: true,
-                            labelString: 'Flow Rate (mL/second)'
+                            // labelString: 'Flow Rate (mL/second)'
+                            labelString: this.props.yaxis
                         },
                     }],
                     xAxes: [{
@@ -69,15 +69,13 @@ export default class Curve extends Component {
                             labelString: 'Time (second)'
                         },
                         ticks: {
-                            callback: function (value, index, values) {
-                                if (value % 2 == 0) {
-                                    return value
-                                } else {
-                                    return null
-                                }
-                            }
+                            stepSize: 1,
+                            beginAtZero: true,
                         }
                     }],
+                },
+                legend: {
+                    display: false,
                 }
             }
         });
@@ -90,7 +88,6 @@ export default class Curve extends Component {
                 <canvas
                     id="uroflow-curve"
                     ref={this.chartRef}
-                    style={{width: '40vw', height: '40vh'}}
                 />
             </div>
         )
