@@ -7,7 +7,7 @@
 | id          | UUID      | UUIDv4        | No       |
 | study_id    | string    |               | No       |
 | dob         | date_only |               | No       |
-| sex         | string    |               | No       |
+| sex         | boolean   | true          | No       |
 | num_records | integer   | 0             | No       |
 | has_new     | boolean   | false         | No       |
 | condition   | text      |               | Yes      |
@@ -20,13 +20,5 @@
 
 ### Sex:
 
-sex could either be "Male" or "Female"
-
-### Num_Records:
-
-will be updated every time a new record is added to the database
-
-### Has_New:
-
-will be changed to true if a new record id added \
-triggered false when any clinician has viewed the record
+true -- Male
+false -- Female

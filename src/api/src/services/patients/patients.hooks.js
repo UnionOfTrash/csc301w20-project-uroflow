@@ -11,10 +11,22 @@ module.exports = {
       return context;
     } ],
     get: [],
-    create: [],
+    create: [ (context) => {
+      if (context.params.user && context.params.user.role == 0) {
+        throw new Error("Patients are not allowed to create new patients");
+      }
+
+      return context;
+    } ],
     update: [],
     patch: [],
-    remove: []
+    remove: [ (context) => {
+      if (context.params.user && context.params.user.role == 0) {
+        throw new Error("Patients are not allowed to delete patients");
+      }
+
+      return context;
+    } ]
   },
 
   after: {
@@ -23,18 +35,46 @@ module.exports = {
     get: [],
     create: [ async (context) => {
       const result = context.result;
-      const users = context.app.service("users");
+      const usersService = context.app.service("users");
 
-      await users.create({
+      await usersService.create({
         id: result.id,
         username: result.study_id
       });
 
       return context;
     } ],
-    update: [],
-    patch: [],
-    remove: []
+    update: [ async (context) => {
+      const result = context.result;
+      const usersService = context.app.service("users");
+
+      await usersService.patch(result.id, {
+        username: result.study_id
+      });
+
+      return context;
+    } ],
+    patch: [ async (context) => {
+      const data = context.data;
+      if ("study_id" in data) {
+        const result = context.result;
+        const usersService = context.app.service("users");
+
+        await usersService.patch(result.id, {
+          username: result.study_id
+        });
+      }
+
+      return context;
+    } ],
+    remove: [ async (context) => {
+      const result = context.result;
+      const usersService = context.app.service("users");
+
+      await usersService.remove(result.id);
+
+      return context;
+    } ]
   },
 
   error: {
