@@ -8,6 +8,7 @@ export const Service = {
     getPatients,
     getCurveData,
     addPatient,
+    updatePatientNewRecord,
     updateCComment,
 }
 
@@ -143,6 +144,29 @@ function addPatient(data){
     })
 }
 
+function updatePatientNewRecord(hasNew, pid){
+    const url = URL + 'patients/' + pid
+    const data = {"has_new" : hasNew}
+    return fetch(url, {
+        method:"PATCH",
+        headers:{
+            'Authorization': "Bearer " + window.localStorage.getItem("token"), 
+            'Content-Type': 'application/json'
+        },
+        body:JSON.stringify(data)
+    }).then(res => {
+        if(res.status === 401){
+            return Promise.reject(401)
+        }
+
+        if (res.status === 200){
+            return Promise.resolve("success")
+        }else{
+            return Promise.reject("failed to patch to server")
+        }
+    })
+}
+
 function updateCComment(recordId, cComment) {
     const url = URL + "records/" + recordId
     const data = {"ccomment": cComment}
@@ -166,8 +190,6 @@ function updateCComment(recordId, cComment) {
             return Promise.reject("failed to patch to server")
         }
 
-    }).then(res => {
-        return res
     })
 }
 

@@ -41,6 +41,51 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+function PatientRow(props){
+
+  const row = props.row
+  
+  const [hasNew, setHasNew] = React.useState(row.has_new)
+
+  return (
+      <>
+        <TableCell component="th" scope="row">
+          {" "}
+          {row.study_id}{" "}
+        </TableCell>
+        <TableCell align="center"> {row.num_records} </TableCell>
+        <TableCell align="center">
+          {" "}
+          <FiberManualRecord
+            onClick={() => {
+              if (!hasNew){
+                props.onNewRecordClick(row.id)
+                setHasNew(true)
+              }
+            }}
+            fontSize="small"
+            color={hasNew ? "primary" : "disabled"}
+          />{" "}
+        </TableCell>
+        <TableCell align="center">
+          <ButtonGroup variant="text">
+            <Button
+              onClick={() => {
+                props.onDetailClick(row.id, hasNew)
+                setHasNew(false)
+              }}
+              color="secondary"
+            >
+              {" "}
+              Details{" "}
+            </Button>
+          </ButtonGroup>
+        </TableCell>
+      </>
+  )
+}
+
+
 function PatientList(props) {
   const rows = props.patients;
 
@@ -60,31 +105,13 @@ function PatientList(props) {
         <TableBody>
           {rows.map(row => (
             <TableRow hover key={row.study_id}>
-              <TableCell component="th" scope="row">
-                {" "}
-                {row.study_id}{" "}
-              </TableCell>
-              <TableCell align="center"> {row.num_records} </TableCell>
-              <TableCell align="center">
-                {" "}
-                <FiberManualRecord
-                  onClick={() => alert("click !")}
-                  fontSize="small"
-                  color={row.has_new ? "primary" : "disabled"}
-                />{" "}
-              </TableCell>
-              <TableCell align="center">
-                <ButtonGroup variant="text">
-                  <Button
-                    onClick={() => props.onDetailClick(row.id)}
-                    color="secondary"
-                  >
-                    {" "}
-                    Details{" "}
-                  </Button>
-                </ButtonGroup>
-              </TableCell>
+              <PatientRow
+                row={row}
+                onNewRecordClick={props.onNewRecordClick}
+                onDetailClick={props.onDetailClick}
+              />
             </TableRow>
+            
           ))}
         </TableBody>
       </Table>

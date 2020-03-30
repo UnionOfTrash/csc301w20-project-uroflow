@@ -20,14 +20,29 @@ class MainPanel extends React.Component{
             searchId:"",
             addClientPanelOpen: false,
             detailRecords:false,
-            changeRecords:false
+            changeRecords:false,
+            hasNewRecChanged:false
         }
+    }
+
+    setHasNewRecChanged = (changed) => {
+        this.setState({
+            hasNewRecChanged:changed
+        })
     }
 
     componentDidMount(){
         Service.getPatients().then(res => {
 
-            const curP = res.sort((a, b) => (parseInt(a.study_id)-parseInt(b.study_id)))
+            const curP = res.sort((a, b) => {
+                if(a.has_new && !b.has_new){
+                    return -1
+                }else if (!a.has_new && b.has_new){
+                    return 1
+                }else{
+                    return a.study_id.localeCompare(a.study_id)
+                }
+            })
 
             this.setState({
                 allPatients:res,
@@ -37,13 +52,9 @@ class MainPanel extends React.Component{
             // console.log(res)
         }).catch(e => {
             console.log(e)
-            if (e !==401){
-                alert(e)
-            }else{
-                Service.Authentication.logout()
-                this.props.setUser({})
-                alert(e)
-            }
+            Service.Authentication.logout()
+            this.props.setUser({})
+            alert(e)
         })
     }
 
@@ -78,28 +89,92 @@ class MainPanel extends React.Component{
     }
 
     onSortByIdClick = () => {
-        const curP = this.state.currentPatients.sort((a, b) => {
-            const aid = parseInt(a.study_id)
-            const bid = parseInt(b.study_id)
-            return (aid-bid)
-        })
 
-        this.setState({
-            currentPatients:curP
-        })
+        const patients = this.state.currentPatients
+
+        if (this.state.hasNewRecChanged){
+
+            this.setState({
+                loadPatient:false
+            })
+
+            Service.getPatients().then(res => {
+
+                const SearchPatients = res.filter(p => {
+                    // console.log(p)
+                    const value = this.state.searchId
+                    const pid = p.study_id.substring(0, value.length)
+                    return (pid === value)
+                })
+
+                const curP = SearchPatients.sort((a, b) => {
+                    return (a.study_id.localeCompare(b.study_id))
+                })
+
+                this.setState({
+                    allPatients:res,
+                    currentPatients:curP,
+                    hasNewRecChanged:false,
+                    loadPatient:true
+                })
+
+            })
+        }else{
+            const curP = patients.sort((a, b) => {
+                return (a.study_id.localeCompare(b.study_id))
+            })
+            this.setState({
+                currentPatients:curP
+            })
+        }
     }
 
     onSortByRecentClick = () => {
 
-        const curP = this.state.currentPatients.sort((a,b) => {
-            const aid = parseInt(a.study_id)
-            const bid = parseInt(b.study_id)
-            if(a.hasNew && !b.hasNew){
+        const patients = this.state.currentPatients
+
+        if (this.state.hasNewRecChanged){
+
+            this.setState({
+                loadPatient:false
+            })
+
+            Service.getPatients().then(res => {
+
+                const SearchPatients = res.filter(p => {
+                    const value = this.state.searchId
+                    const pid = p.study_id.substring(0, value.length)
+                    return (pid === value)
+                })
+
+                const curP = SearchPatients.sort((a,b) => {
+                    if(a.has_new && !b.has_new){
+                        return -1
+                    }else if (!a.has_new && b.has_new){
+                        return 1
+                    }else{
+                        return a.study_id.localeCompare(b.study_id)
+                    }
+                })
+
+                this.setState({
+                    allPatients:res,
+                    currentPatients:curP,
+                    hasNewRecChanged:false,
+                    loadPatient:true
+                })
+
+            })
+
+        }
+
+        const curP = patients.sort((a,b) => {
+            if(a.has_new && !b.has_new){
                 return -1
-            }else if (!a.hasNew && b.hasNew){
+            }else if (!a.has_new && b.has_new){
                 return 1
             }else{
-                return aid-bid
+                return a.study_id.localeCompare(b.study_id)
             }
         })
 
@@ -109,13 +184,13 @@ class MainPanel extends React.Component{
     }
 
 
-    onDetailClick = (sid) => {
+    onDetailClick = (pid, hasNew) => {
         this.setState({
             detailRecords:true,
             changeRecords:false
         })
 
-        const id = String(sid)
+        const id = String(pid)
         Service.getRecords(id).then(res => {
             // console.log(res[0])
             const rec = res.map(r => {
@@ -127,9 +202,31 @@ class MainPanel extends React.Component{
                 records:rec,
                 changeRecords:true
             })
+
+            if (hasNew){
+                Service.updatePatientNewRecord(false, pid)
+                .then(res => {
+                    console.log(res)
+                    this.setHasNewRecChanged(true)
+                })
+            }
+
         }).catch(e => console.log(e))
     }
 
+    onNewRecordClick = (pid) => {
+        Service.updatePatientNewRecord(true, pid).then(res => {
+            console.log("update hasNew record successfully")
+
+
+          }).catch(e => {
+            if (e === 401){
+                console.log(e)
+                Service.Authentication.logout()
+                this.props.setUser({})
+            }
+          })
+    }
 
 
     addNewClientHandler = (newClient) => {
@@ -186,6 +283,7 @@ class MainPanel extends React.Component{
                             this.state.loadPatient? <PatientList 
                                                         patients={this.state.currentPatients}
                                                         onDetailClick={this.onDetailClick}
+                                                        onNewRecordClick={this.onNewRecordClick}
                                                     />:
                                                     <div style={this.progressStyle()}><CircularProgress /></div>
                         }
