@@ -155,13 +155,13 @@ export default function FlowCurve(props) {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <Curve data={rate} label={time} yaxis="Flow Rate (mL/second)" />
+        <Curve data={rate} label={time} yaxis="Flow Rate (mL/second)" datalabel="flow rate"/>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <Curve data={accelerationData} label={time} yaxis="Flow Acceleration (mL/second²)" />
+        <Curve data={accelerationData} label={time} yaxis="Flow Acceleration (mL/second²)" datalabel="flow acceleration"/>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <Curve data={volumeData} label={time} yaxis="Volume Voided (mL)" />
+        <Curve data={volumeData} label={time} yaxis="Volume Voided (mL)" datalabel="volume voided" />
       </TabPanel>
       <div className={classes.stats}>
         <div className={classes.statsItem}>Max Flow: {stats.max}mL/sec</div>

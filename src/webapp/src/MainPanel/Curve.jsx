@@ -42,7 +42,8 @@ export default class Curve extends Component {
                 labels: this.props.label,
                 datasets: [
                     {
-                        label: "flow",
+                        // label: "flow",
+                        label: this.props.datalabel,
                         data: this.props.data,
                         fill: false,
                         borderColor: "#4eb4da",
@@ -76,6 +77,9 @@ export default class Curve extends Component {
                 },
                 legend: {
                     display: false,
+                },
+                tooltips: {
+                    displayColors: false
                 }
             }
         });
