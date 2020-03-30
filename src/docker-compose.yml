@@ -6,7 +6,7 @@ services:
     image: postgres:12
     restart: always
     volumes:
-      - /tmp/uroflow:/var/lib/postgresql/data
+      - postgres_db:/var/lib/postgresql/data
     ports:
       - 5432:5432
     environment:
