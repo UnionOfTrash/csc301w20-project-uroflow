@@ -12,11 +12,11 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const genders = [
   {
-    value: "Male",
+    value: true,
     label: "Male"
   },
   {
-    value: "Female",
+    value: false,
     label: "Female"
   }
 ];
