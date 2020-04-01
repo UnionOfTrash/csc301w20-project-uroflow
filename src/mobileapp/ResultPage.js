@@ -59,7 +59,7 @@ class ResultPage extends React.Component {
     }
   }
 
-  sendAudio = () => {
+  sendAudio = async () => {
     const {
       content_uri,
       isCheckedLeak,
@@ -70,15 +70,12 @@ class ResultPage extends React.Component {
     const prefix = "data:audio/wav;base64,";
 
     const result = await app.service("records").create({
-      condition: [
-        isCheckedLeak,
-        isCheckedPoop,
-        isCheckedUrgent
-      ],
+      condition: [isCheckedLeak, isCheckedPoop, isCheckedUrgent],
       uri: prefix + content_uri,
       pcomment: comment
     });
     console.log(result);
+    alert("You have successfully uploaded.");
   };
 
   sendPressed = () => {
