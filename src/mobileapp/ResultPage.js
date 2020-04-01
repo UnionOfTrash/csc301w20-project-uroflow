@@ -61,30 +61,24 @@ class ResultPage extends React.Component {
 
   sendAudio = () => {
     const {
-      file_url,
       content_uri,
-      length,
       isCheckedLeak,
       isCheckedPoop,
       isCheckedUrgent,
       comment
     } = this.state;
-    const file_arr = file_url.split(".");
-    const file_type = file_arr[file_arr.length - 1];
     const prefix = "data:audio/wav;base64,";
 
-    app
-      .service("record")
-      .create({
-        condition: [isCheckedLeak, isCheckedPoop, isCheckedUrgent],
-        uri: prefix + content_uri,
-        pcomment: comment
-      })
-      .then(result => {
-        console.log(result);
-        this.props.navigation.navigate("RecordPage");
-      })
-      .catch(err => console.log(err));
+    const result = await app.service("records").create({
+      condition: [
+        isCheckedLeak,
+        isCheckedPoop,
+        isCheckedUrgent
+      ],
+      uri: prefix + content_uri,
+      pcomment: comment
+    });
+    console.log(result);
   };
 
   sendPressed = () => {
