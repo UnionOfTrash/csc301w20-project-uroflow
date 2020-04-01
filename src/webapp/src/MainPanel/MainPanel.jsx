@@ -40,7 +40,7 @@ class MainPanel extends React.Component{
                 }else if (!a.has_new && b.has_new){
                     return 1
                 }else{
-                    return a.study_id.localeCompare(a.study_id)
+                    return a.study_id.localeCompare(b.study_id)
                 }
             })
 

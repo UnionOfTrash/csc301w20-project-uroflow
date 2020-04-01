@@ -70,8 +70,12 @@ export default class Curve extends Component {
                             labelString: 'Time (second)'
                         },
                         ticks: {
-                            stepSize: 1,
-                            beginAtZero: true,
+                            autoSkip: false,
+                            callback: function(tick){
+                                if (tick%1 === 0){
+                                    return tick
+                                }
+                            }
                         }
                     }],
                 },

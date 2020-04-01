@@ -91,7 +91,7 @@ export default function FlowCurve(props) {
     for (let i = 0; i < time.length - 1; i++) {
       const dataPoint = ((rate[i + 1] - rate[i]) / (time[i + 1] - time[i]))
       acceleration.push(parseFloat(dataPoint.toFixed(2)))
-      console.log(dataPoint)
+      // console.log(dataPoint)
     }
     return acceleration
   }
@@ -131,8 +131,8 @@ export default function FlowCurve(props) {
         rateAtTwo = rate[i]
       }
     }
-    console.log(total)
-    console.log(time.length)
+    // console.log(total)
+    // console.log(time.length)
     return {
       max: parseFloat(parseFloat(max).toFixed(2)),
       average: parseFloat((total / time.length).toFixed(2)),
@@ -166,8 +166,8 @@ export default function FlowCurve(props) {
       <div className={classes.stats}>
         <div className={classes.statsItem}>Max Flow: {stats.max}mL/sec</div>
         <div className={classes.statsItem}>Average Flow: {stats.average}mL/sec</div>
-        <div className={classes.statsItem}>Time Interval: {stats.timeInterval}sec</div>
-        <div className={classes.statsItem}>Total Voided: {stats.totalVoid}mL</div>
+        <div className={classes.statsItem}>Flow Time: {stats.timeInterval}sec</div>
+        <div className={classes.statsItem}>Voided Volume: {stats.totalVoid}mL</div>
         <div className={classes.statsItem}>Flow at 2 sec: {stats.rateAtTwo}mL/sec</div>
       </div>
     </div>
