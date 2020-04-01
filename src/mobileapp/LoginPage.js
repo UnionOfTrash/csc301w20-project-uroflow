@@ -13,6 +13,7 @@ class LoginPage extends React.Component {
             username: "",
             password: "",
             isAuthenticated: false,
+            authenticateFail: false,
 
             newEmail: '',
             newPass: '',
@@ -32,6 +33,7 @@ class LoginPage extends React.Component {
           .catch((err) => {
               console.log("LoginPage: API call failed: ", err)
               this.setState({ isAuthenticated: false })
+              this.setState({authenticateFail: true})
             }
           )
     }
@@ -96,6 +98,16 @@ class LoginPage extends React.Component {
                         onChangeText={(password) => this.setState({ password: password })}
                         value={this.state.password}
                     />
+
+                    {this.state.authenticateFail && <View>
+                        <Text style={{
+                            fontSize: 16,
+                            color: "red"
+                        }}>
+                            Incorrect username or password. 
+                        </Text>
+                    </View>}
+
                     <View style={{width: '30%'}}>
                         <Button style={{width: '100px'}} onPress={() => this.authenticate({ username: this.state.username, password: this.state.password })} title="Login" />
                     </View>

@@ -166,8 +166,8 @@ export default function FlowCurve(props) {
       <div className={classes.stats}>
         <div className={classes.statsItem}>Max Flow: {stats.max}mL/sec</div>
         <div className={classes.statsItem}>Average Flow: {stats.average}mL/sec</div>
-        <div className={classes.statsItem}>Time Interval: {stats.timeInterval}sec</div>
-        <div className={classes.statsItem}>Total Voided: {stats.totalVoid}mL</div>
+        <div className={classes.statsItem}>Flow Time: {stats.timeInterval}sec</div>
+        <div className={classes.statsItem}>Voided Volume: {stats.totalVoid}mL</div>
         <div className={classes.statsItem}>Flow at 2 sec: {stats.rateAtTwo}mL/sec</div>
       </div>
     </div>
