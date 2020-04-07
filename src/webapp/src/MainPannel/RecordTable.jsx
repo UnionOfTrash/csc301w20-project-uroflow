@@ -158,6 +158,9 @@ class RecordTable extends React.Component{
             options: {
                 filter: true,
                 customFilterListOptions: { render: v => `Leak: ${v}` },
+                filterOptions: {
+                    names: ["yes", "no"]
+                },
                 sort: false,
             }
         },
@@ -167,6 +170,9 @@ class RecordTable extends React.Component{
             options: {
                 filter: true,
                 customFilterListOptions: { render: v => `Poop: ${v}` },
+                filterOptions: {
+                    names: ["yes", "no"]
+                },
                 sort: false,
             }
         },
@@ -176,6 +182,9 @@ class RecordTable extends React.Component{
             options: {
                 filter: true,
                 customFilterListOptions: { render: v => `Urgent: ${v}` },
+                filterOptions: {
+                    names: ["yes", "no"]
+                },
                 sort: false,
             }
         },
