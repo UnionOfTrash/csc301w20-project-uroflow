@@ -2,12 +2,14 @@ import React from 'react';
 import { Grid, Paper } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import {PatientList, RecordList, SearchPanel} from "../MainPanel"
+import {PatientList, SearchPannel} from "."
+
+import RecordTable from "./RecordTable"
 
 import {Service} from '../Service'
 
 
-class MainPanel extends React.Component{
+class MainPannel extends React.Component{
 
     constructor(props){
         super(props)
@@ -18,7 +20,7 @@ class MainPanel extends React.Component{
             records:[],
             patientId:0,
             searchId:"",
-            addClientPanelOpen: false,
+            addClientPannelOpen: false,
             detailRecords:false,
             changeRecords:false,
             hasNewRecChanged:false
@@ -272,7 +274,7 @@ class MainPanel extends React.Component{
             <Grid container className={ this.classes.grid } spacing={ 2 } >
               <Grid item xl={ 4 } xs={ 4 } >
                 <Paper className={ this.classes.paper } style={this.colFlex}>
-                        <SearchPanel
+                        <SearchPannel
                             onSearchClick={this.onSearchClick}
                             onSearchChange={this.onSearchChange}
                             onSortByIdClick={this.onSortByIdClick}
@@ -293,7 +295,10 @@ class MainPanel extends React.Component{
                 <Paper className={ this.classes.paper } style={this.colFlex}>
                     {
                         this.state.detailRecords? 
-                            this.state.changeRecords?<RecordList records={this.state.records}/>: <div style={this.progressStyle()}><CircularProgress /></div>
+                            this.state.changeRecords?
+                                <RecordTable records={this.state.records}/>
+                                : 
+                                <div style={this.progressStyle()}><CircularProgress /></div>
                             :
                             <div style={{marginTop:"80px"}}>
                                     <h1>Welcome to Uroflow</h1>
@@ -307,4 +312,4 @@ class MainPanel extends React.Component{
 }
 
 
-export default MainPanel
+export default MainPannel

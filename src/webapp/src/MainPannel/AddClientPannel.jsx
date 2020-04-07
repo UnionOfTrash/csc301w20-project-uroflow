@@ -33,7 +33,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function AddClientPanel(props) {
+function AddClientPannel(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -142,4 +142,4 @@ function AddClientPanel(props) {
   );
 }
 
-export { AddClientPanel };
+export { AddClientPannel };

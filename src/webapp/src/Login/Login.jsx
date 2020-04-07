@@ -19,7 +19,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://www.sickkids.ca/">
-        sickkids
+        UrowFlow
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -107,10 +107,6 @@ function Login(props) {
                 id="password"
                 autoComplete="current-password"
             />
-            {/* <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-            /> */}
             <Button
                 type="submit"
                 fullWidth

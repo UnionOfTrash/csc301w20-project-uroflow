@@ -1,0 +1,5 @@
+export * from './PatientList'
+export * from './RecordList'
+export * from './MainPannel'
+export * from './SearchPannel'
+export * from './AddClientPannel'

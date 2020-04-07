@@ -6,7 +6,7 @@ import { Search } from '@material-ui/icons';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import { AddClientPanel } from "../MainPanel"
+import { AddClientPannel } from "."
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -57,7 +57,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function SearchPanel(props) {
+function SearchPannel(props) {
     const classes = useStyles()
 
     return (
@@ -69,7 +69,7 @@ function SearchPanel(props) {
                         <Search />
                     </IconButton>
                 </Paper>
-                <AddClientPanel addNewClientHandler = {props.addNewClientHandler} className={classes.addButton} />
+                <AddClientPannel addNewClientHandler = {props.addNewClientHandler} className={classes.addButton} />
             </div>
             <Grid item className={classes.sort} >
                 <Grid container>
@@ -88,4 +88,4 @@ function SearchPanel(props) {
     )
 }
 
-export { SearchPanel }
+export { SearchPannel }

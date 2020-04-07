@@ -7,17 +7,17 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-import Curve from "../MainPanel/Curve";
+import Curve from "../MainPannel/Curve";
 
-function TabPanel(props) {
+function TabPannel(props) {
   const { children, value, index, ...other } = props;
 
   return (
     <Typography
       component="div"
-      role="tabpanel"
+      role="tabpannel"
       hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
+      id={`simple-tabpannel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
@@ -26,7 +26,7 @@ function TabPanel(props) {
   );
 }
 
-TabPanel.propTypes = {
+TabPannel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.any.isRequired,
   value: PropTypes.any.isRequired,
@@ -35,7 +35,7 @@ TabPanel.propTypes = {
 function a11yProps(index) {
   return {
     id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    'aria-controls': `simple-tabpannel-${index}`,
   };
 }
 
@@ -154,15 +154,15 @@ export default function FlowCurve(props) {
           <Tab label="Volume Voided" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
+      <TabPannel value={value} index={0}>
         <Curve data={rate} label={time} yaxis="Flow Rate (mL/second)" datalabel="flow rate"/>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
+      </TabPannel>
+      <TabPannel value={value} index={1}>
         <Curve data={accelerationData} label={time} yaxis="Flow Acceleration (mL/second²)" datalabel="flow acceleration"/>
-      </TabPanel>
-      <TabPanel value={value} index={2}>
+      </TabPannel>
+      <TabPannel value={value} index={2}>
         <Curve data={volumeData} label={time} yaxis="Volume Voided (mL)" datalabel="volume voided" />
-      </TabPanel>
+      </TabPannel>
       <div className={classes.stats}>
         <div className={classes.statsItem}>Max Flow: {stats.max}mL/sec</div>
         <div className={classes.statsItem}>Average Flow: {stats.average}mL/sec</div>

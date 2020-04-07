@@ -4,7 +4,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import './App.css';
 
 import theme from './theme';
-import MainPanel from './MainPanel/MainPanel';
+import MainPannel from './MainPannel/MainPannel';
 import Header from "./Header"
 
 import {Login} from "./Login"
@@ -42,7 +42,7 @@ function App(){
                             <ThemeProvider theme={ theme } >
                               <div className={ classes.root } >
                                 <Header setUser={setCurrentUser}/>
-                                <MainPanel
+                                <MainPannel
                                   classes={ classes }
                                   setUser={setCurrentUser}
                                 />
