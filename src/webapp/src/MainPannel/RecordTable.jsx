@@ -39,13 +39,13 @@ const tableTheme = createMuiTheme({
       MUIDataTable: {
         responsiveScroll: {
             height: '100vh'
-        }
+        },
       },
       MUIDataTableHeadCell: {
         root: {
           textAlign: 'center',
         },
-      }
+      },
     }
 })
   
@@ -240,10 +240,10 @@ class RecordTable extends React.Component{
                     <TableCell></TableCell>
 
                     {/* Cell for the record upload time */}
-                    <TableCell> {record[0].toLocaleDateString()} </TableCell>
+                    <TableCell style={{textAlign: 'center'}}> {record[0].toLocaleDateString()} </TableCell>
 
                     {/* Cell for the thumbnail */}
-                    <TableCell>
+                    <TableCell style={{textAlign: 'center'}}>
                     {" "}
                     <Button onClick={() => this.handleOpenGraph(record[1])}>
                         <img
@@ -255,7 +255,7 @@ class RecordTable extends React.Component{
                     </TableCell>
 
                     {/* Cell for leak */}
-                    <TableCell>
+                    <TableCell style={{textAlign: 'center'}}>
                         <Opacity className={classes.icon}
                             fontSize="large"
                             color={record[2]==="yes" ? "error" : "disabled"}
@@ -263,7 +263,7 @@ class RecordTable extends React.Component{
                     </TableCell>
 
                     {/* Cell for poop */}
-                    <TableCell>
+                    <TableCell style={{textAlign: 'center'}}>
                         <SvgIcon className={classes.icon}
                             fontSize="large"
                             color={record[3]==="yes" ? "error" : "disabled"}
@@ -288,20 +288,20 @@ class RecordTable extends React.Component{
                     </TableCell>
 
                     {/* Cell for Urgent */}
-                    <TableCell>
+                    <TableCell style={{textAlign: 'center'}}>
                     <Warning className={classes.icon}
                             fontSize="large"
                             color={record[4]==="yes" ? "error" : "disabled"}
                         />
                     </TableCell>
 
-                    <TableCell> {record[5]} </TableCell>
-                    <TableCell>
+                    <TableCell style={{textAlign: 'center'}}> {record[5]} </TableCell>
+                    <TableCell style={{textAlign: 'center'}}>
                         {record[7]? 
                             <TextField defaultValue={this.state.currentComment} id="standard-basic" label="Comment" onChange={this.onCommentChange} />
                             :record[6]}
                     </TableCell>
-                    <TableCell>
+                    <TableCell style={{textAlign: 'center'}}>
                         {record[7]?
                             <Button color="primary" onClick={() => this.SaveButtonClick(record[1])}>
                             Save
