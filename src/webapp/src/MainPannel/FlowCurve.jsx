@@ -46,6 +46,9 @@ const useStyles = makeStyles(theme => ({
     background: 'white',
     padding: '30px 20px 10px 20px',
     borderRadius: '10px',
+    position: 'absolute',
+    top: '10%',
+    left: '10%'
   },
   stats: {
     display: 'flex',

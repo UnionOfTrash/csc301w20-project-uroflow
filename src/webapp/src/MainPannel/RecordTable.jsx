@@ -8,6 +8,7 @@ import {
     TableRow,
     TableCell
 } from "@material-ui/core";
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 import FlowCurve from "./FlowCurve";
 
@@ -20,7 +21,7 @@ function getModalStyle() {
     return {
       top: "50%",
       left: "50%",
-    //   transform: `translate(-${top}%, -${left}%)`,
+      // transform: `translate(${top}%, ${left}%)`,
       outline: 0
     };
 }
@@ -28,7 +29,8 @@ function getModalStyle() {
 const classes = makeStyles(theme => ({
     container: {
       height: '100%',
-      overflowY: 'auto'
+      overflowY: 'auto',
+      padding: 0,
     },
     paper: {
       position: "absolute",
@@ -39,10 +41,28 @@ const classes = makeStyles(theme => ({
     },
     icon: {
       margin: theme.spacing(1)
+    },
+    height: {
+        minHeight: window.innerHeight - theme.spacing(15),
     }
   }));
 
+const height = window.innerHeight - 120
+
 const CURVE_URL = "https://uroflow.unionoftra.sh/api/curve/"
+
+const tableTheme = createMuiTheme({
+    overrides: {
+      MUIDataTable: {
+        textAlign: 'center',
+        responsiveScroll: {
+            minHeight: '100vh',
+            maxWidth: '60vw'
+        }
+      }
+    }
+  })
+  
 
 class RecordTable extends React.Component{
 
@@ -220,7 +240,7 @@ class RecordTable extends React.Component{
     
     options = {
         filterType: "dropdown",
-        responsive: "scroll",
+        responsive: "scrollMaxHeight",
         selectableRowsHeader:false,
         print:false,
         download:false,
@@ -231,7 +251,7 @@ class RecordTable extends React.Component{
                 <TableRow hover key={rowIndex}>
 
                     {/* Cell for data index */}
-                    <TableCell>{dataIndex}</TableCell>
+                    <TableCell></TableCell>
 
                     {/* Cell for the record upload time */}
                     <TableCell> {record[0].toLocaleDateString()} </TableCell>
@@ -325,6 +345,7 @@ class RecordTable extends React.Component{
                     <FlowCurve label={this.state.curveLabel} data={this.state.curveData} />
                     </div>
                 </Modal>
+                <ThemeProvider theme={tableTheme}>
                 <MUIDataTable
                     className={classes.container}
                     title={"Record List"}
@@ -332,6 +353,7 @@ class RecordTable extends React.Component{
                     columns={this.columns}
                     options={this.options}
                 />
+                </ThemeProvider>
             </>
         )
     }
