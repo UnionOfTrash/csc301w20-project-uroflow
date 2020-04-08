@@ -122,6 +122,7 @@ class RecordTable extends React.Component{
             })
         }, () => {
             Service.updateCComment(id, comment).then(() => {
+                //alert(comment)
                 alert("successfully make comment!")
             }).catch(e => alert(e))
         })
@@ -299,7 +300,7 @@ class RecordTable extends React.Component{
                     <TableCell> {record[5]} </TableCell>
                     <TableCell>
                         {record[7]? 
-                            <TextField defaultValue={this.state.currentComment} id="standard-basic" label="Comment" onChange={this.handleCommentChange} />
+                            <TextField defaultValue={this.state.currentComment} id="standard-basic" label="Comment" onChange={this.onCommentChange} />
                             :record[6]}
                     </TableCell>
                     <TableCell>
