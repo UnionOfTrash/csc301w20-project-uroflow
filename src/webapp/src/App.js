@@ -24,6 +24,12 @@ const useStyles = makeStyles(theme => ({
     height: window.innerHeight - theme.spacing(15),
     // maxHeight: window.innerHeight - theme.spacing(15),
   },
+  paper2: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+    height: window.innerHeight - theme.spacing(13),
+  }
 }));
 
 function App(){

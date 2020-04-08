@@ -319,7 +319,7 @@ class RecordTable extends React.Component{
 
     render (){
         return (
-            <>
+            <div style={{height: '100%'}}>
                 <Modal
                     disableAutoFocus={true}
                     aria-labelledby="simple-modal-title"
@@ -340,7 +340,7 @@ class RecordTable extends React.Component{
                     options={this.options}
                 />
                 </ThemeProvider>
-            </>
+            </div>
         )
     }
 } 

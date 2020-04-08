@@ -269,7 +269,10 @@ class MainPannel extends React.Component {
     }
 
     recordPanel = {
-        padding: '0'
+        paddingTop: '0',
+        paddingLeft: '0',
+        display: 'flex',
+        flexDirection: 'column',
     }
 
 
@@ -296,7 +299,7 @@ class MainPannel extends React.Component {
                     </Paper>
                 </Grid>
                 <Grid item xl={8} xs={8} >
-                    <Paper className={this.classes.paper} style={this.recordPanel}>
+                    <Paper className={this.classes.paper2} style={this.recordPanel}>
                         {
                             this.state.detailRecords ?
                                 this.state.changeRecords ?
@@ -304,7 +307,7 @@ class MainPannel extends React.Component {
                                     :
                                     <div style={this.progressStyle()}><CircularProgress /></div>
                                 :
-                                <div style={{ marginTop: "80px" }}>
+                                <div>
                                     <h1>Welcome to Uroflow</h1>
                                 </div>
                         }
