@@ -20,7 +20,7 @@ function getModalStyle() {
     return {
       top: "50%",
       left: "50%",
-      transform: `translate(-${top}%, -${left}%)`,
+    //   transform: `translate(-${top}%, -${left}%)`,
       outline: 0
     };
 }
