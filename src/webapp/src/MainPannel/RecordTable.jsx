@@ -14,18 +14,6 @@ import FlowCurve from "./FlowCurve";
 
 import {Service} from '../Service'
 
-function getModalStyle() {
-    const top = 50;
-    const left = 50;
-  
-    return {
-      top: "50%",
-      left: "50%",
-      // transform: `translate(${top}%, ${left}%)`,
-      outline: 0
-    };
-}
-
 const classes = makeStyles(theme => ({
     container: {
       height: '100%',
@@ -41,27 +29,25 @@ const classes = makeStyles(theme => ({
     },
     icon: {
       margin: theme.spacing(1)
-    },
-    height: {
-        minHeight: window.innerHeight - theme.spacing(15),
     }
   }));
-
-const height = window.innerHeight - 120
 
 const CURVE_URL = "https://uroflow.unionoftra.sh/api/curve/"
 
 const tableTheme = createMuiTheme({
     overrides: {
       MUIDataTable: {
-        textAlign: 'center',
         responsiveScroll: {
-            minHeight: '100vh',
-            maxWidth: '60vw'
+            height: '100vh'
         }
+      },
+      MUIDataTableHeadCell: {
+        root: {
+          textAlign: 'center',
+        },
       }
     }
-  })
+})
   
 
 class RecordTable extends React.Component{
@@ -341,7 +327,7 @@ class RecordTable extends React.Component{
                     open={this.state.openGraph}
                     onClose={this.handleCloseGraph}
                 >
-                    <div style={getModalStyle()} className={classes.paper}>
+                    <div className={classes.paper}>
                     <FlowCurve label={this.state.curveLabel} data={this.state.curveData} />
                     </div>
                 </Modal>
