@@ -73,13 +73,15 @@ class RecordTable extends React.Component{
 
     handleOpenGraph = (cid) => {
 
-        Service.getCurveData(cid)
-        .then(curveData => {
-          // console.log('Results:', curveData)
+        Service.getCurveData(cid).then(curveData => {
+          console.log('Results:', curveData)
           this.setState({
               curveData:curveData.data,
               curveLabel:curveData.label,
-              openGraph:true
+          }, ()=> {
+            this.setState({
+                openGraph:true
+            })
           })
         })
 
@@ -224,6 +226,7 @@ class RecordTable extends React.Component{
         download:false,
         viewColumns:false,
         customRowRender: (record, dataIndex, rowIndex) => {
+
             return (
                 <TableRow hover key={rowIndex}>
 
@@ -236,24 +239,13 @@ class RecordTable extends React.Component{
                     {/* Cell for the thumbnail */}
                     <TableCell>
                     {" "}
-                    <Button onClick={() => this.handleOpenGraph(record.id)}>
+                    <Button onClick={() => this.handleOpenGraph(record[1])}>
                         <img
-                        src= { CURVE_URL + record.id +  ".png"}
-                        style={{ maxWidth: "200px" }}
-                        alt="curve img"
+                            src= { CURVE_URL + record[1] +  ".png"}
+                            style={{ maxWidth: "200px" }}
+                            alt="curve img"
                         />{" "}
                     </Button>
-                    <Modal
-                        disableAutoFocus={true}
-                        aria-labelledby="simple-modal-title"
-                        aria-describedby="simple-modal-description"
-                        open={this.state.openGraph}
-                        onClose={this.handleCloseGraph}
-                    >
-                        <div style={getModalStyle()} className={classes.paper}>
-                        <FlowCurve label={this.state.label} data={this.state.data} />
-                        </div>
-                    </Modal>
                     </TableCell>
 
                     {/* Cell for leak */}
@@ -321,13 +313,26 @@ class RecordTable extends React.Component{
 
     render (){
         return (
-            <MUIDataTable
-                className={classes.container}
-                title={"Record List"}
-                data={this.state.records}
-                columns={this.columns}
-                options={this.options}
-            />
+            <>
+                <Modal
+                    disableAutoFocus={true}
+                    aria-labelledby="simple-modal-title"
+                    aria-describedby="simple-modal-description"
+                    open={this.state.openGraph}
+                    onClose={this.handleCloseGraph}
+                >
+                    <div style={getModalStyle()} className={classes.paper}>
+                    <FlowCurve label={this.state.curveLabel} data={this.state.curveData} />
+                    </div>
+                </Modal>
+                <MUIDataTable
+                    className={classes.container}
+                    title={"Record List"}
+                    data={this.state.records}
+                    columns={this.columns}
+                    options={this.options}
+                />
+            </>
         )
     }
 } 
