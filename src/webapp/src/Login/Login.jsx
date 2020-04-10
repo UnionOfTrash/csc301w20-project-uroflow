@@ -19,7 +19,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://www.sickkids.ca/">
-        UrowFlow
+        Uroflow
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -91,7 +91,7 @@ function Login(props) {
                 required
                 fullWidth
                 id="username"
-                label="User name"
+                label="Username"
                 name="username"
                 autoFocus
             />
