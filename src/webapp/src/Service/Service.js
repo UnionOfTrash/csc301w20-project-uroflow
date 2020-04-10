@@ -1,5 +1,4 @@
 import { Authentication } from './Authentication'
-import { readRemoteFile } from 'react-papaparse'
 const URL = "https://uroflow.unionoftra.sh/api/"
 
 export const Service = {
@@ -83,36 +82,26 @@ function getRecords(id){
     })
 }
 
-function getCurveData(cid){
+function getCurveData(uri){
 
-    const url = URL + "curve/" + cid + ".csv"
+    const data = uri.split(',')[1]
+
+    let buff = Buffer.from(data, 'base64');
+    let text = buff.toString('utf-8');
+    text = text.split('\n')
+
     const curve = {
         data:[],
         label:[]
     }
-    let firstRow = true
 
-    return new Promise((resolve, reject) => {
-        readRemoteFile(
-            url,
-            {
-                step: function(row) {
-                    // skip the first row
-                    if (firstRow){
-                        firstRow = false
-                    }else{
-                        const data = row.data
-                        curve.data.push(data[1])
-                        curve.label.push(data[2])
-                    }
-                },
-                complete: function(results) {
-                    resolve(curve)
-                }
-            }
-          )
-    })
-    
+    for (let i = 1; i < text.length; i++){
+        const data = text[i].split(',')
+        curve.data.push(data[1])
+        curve.label.push(data[2])
+    }
+
+    return Promise.resolve(curve)
 }
 
 function addPatient(data){
