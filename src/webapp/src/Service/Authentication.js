@@ -4,7 +4,7 @@ export const Authentication = {
     logout
 };
 
-const URL = "https://uroflow.unionoftra.sh"
+const URL = "https://uroflow.unionoftra.sh/api/"
 
 function login(username, password) {
 
@@ -15,7 +15,7 @@ function login(username, password) {
     };
     
     // const url = process.env.API_URL + "/api/authentication"
-    const url = URL + "/api/authentication"
+    const url = URL + "authentication"
 
     return fetch(url, requestOptions)
     .then(res => {
