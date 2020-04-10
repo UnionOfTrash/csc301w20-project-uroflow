@@ -1,9 +1,16 @@
 const { authenticate } = require("@feathersjs/authentication").hooks;
 const { protect } = require("@feathersjs/authentication-local").hooks;
+const { iff, disallow } = require("feathers-hooks-common");
 
 module.exports = {
   before: {
-    all: [ authenticate("jwt") ],
+    all: [authenticate("jwt"), iff((context) => {
+      if (!context.params.user || context.params.user.role != "patient") {
+        return false;
+      }
+
+      return true;
+    }, disallow())],
     find: [],
     get: [],
     create: [],
@@ -16,7 +23,7 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [ protect("uri") ],
+    create: [protect("uri")],
     update: [],
     patch: [],
     remove: []
