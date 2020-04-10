@@ -28,22 +28,22 @@ module.exports = {
     }],
     create: [hashPassword("password"), authenticate("jwt"), iff((context) => {
       if (!context.params.user) {
-        return true;
+        return false;
       }
       if (context.params.user.role == "admin" && context.data.role != "patient") {
-        return true;
+        return false;
       }
 
-      return false;
+      return true;
     }, disallow())],
     update: [hashPassword("password"), authenticate("jwt"), discard("id", "username")],
     patch: [hashPassword("password"), authenticate("jwt"), discard("id", "username")],
     remove: [authenticate("jwt"), iff((context) => {
       if (!context.params.user || context.params.user.role == "admin") {
-        return true;
+        return false;
       }
 
-      return false;
+      return true;
     }, disallow())]
   },
 
