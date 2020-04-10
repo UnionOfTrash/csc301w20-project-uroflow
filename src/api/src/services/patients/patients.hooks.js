@@ -14,7 +14,7 @@ module.exports = {
     get: [(context) => {
       if (context.params.user && context.params.user.role == "patient") {
         if (context.id != context.params.user.id) {
-          context.result = "Patients not allowed to visit other patients.";
+          context.result = { error: "Patients not allowed to visit other patients." };
           context.statusCode = 400;
         }
       }
@@ -27,7 +27,7 @@ module.exports = {
       }
 
       return true;
-    }, disallow())],
+    }, disallow("external"))],
     update: [discard("id", "study_id")],
     patch: [discard("id", "study_id")],
     remove: [iff((context) => {
@@ -36,7 +36,7 @@ module.exports = {
       }
 
       return true;
-    }, disallow()]
+    }, disallow("external"))]
   },
 
   after: {

@@ -10,7 +10,7 @@ def serve():
     id = request.args["id"]
 
     preprocessor = os.environ["PREPROCESS_FILE"]
-    model = os.environ["Water.pt"]
+    model = os.environ["MODEL_FILE"]
     audio_file = "./blob/" + id + ".wav"
     out_path = "./blob/"
     out_filename = id + ".csv"

@@ -19,7 +19,7 @@ module.exports = {
     get: [authenticate("jwt"), (context) => {
       if (context.params.user && context.params.user.role == "patient") {
         if (context.id != context.params.user.id) {
-          context.result = "Patients not allowed to visit other userid.";
+          context.result = { error: "Patients not allowed to visit other userid." };
           context.statusCode = 400;
         }
       }
@@ -35,7 +35,7 @@ module.exports = {
       }
 
       return true;
-    }, disallow())],
+    }, disallow("external"))],
     update: [hashPassword("password"), authenticate("jwt"), discard("id", "username")],
     patch: [hashPassword("password"), authenticate("jwt"), discard("id", "username")],
     remove: [authenticate("jwt"), iff((context) => {
@@ -44,7 +44,7 @@ module.exports = {
       }
 
       return true;
-    }, disallow())]
+    }, disallow("external"))]
   },
 
   after: {

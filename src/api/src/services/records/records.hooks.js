@@ -19,13 +19,13 @@ module.exports = {
       }
 
       return false;
-    }, disallow(), (context) => {
+    }, disallow()), (context) => {
       if (!context.data.patient_id) {
         context.data = Object.assign({}, context.data, { patient_id: context.params.user.id });
       }
 
       return context;
-    })],
+    }],
     update: [discard("id", "patient_id")],
     patch: [discard("id", "patient_id")],
     remove: [iff((context) => {

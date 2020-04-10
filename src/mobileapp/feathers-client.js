@@ -4,7 +4,7 @@ import socketio from '@feathersjs/socketio-client'
 const auth = require('@feathersjs/authentication-client')
 import { AsyncStorage } from 'react-native'
 
-const socket = io('https://uroflow.unionoftra.sh', { // Change to API_BASE_URL
+const socket = io('http://192.168.1.20:3010', { // Change to API_BASE_URL
   transports: ['websocket'],
   forceNew: true
 })
