@@ -44,8 +44,10 @@ module.exports = {
       const blobService = context.app.service("blob");
 
       for (const record of result) {
-        const uri = await blobService.get(record.id + ".png");
-        record.uri = uri.uri;
+        const thumbnail = await blobService.get(record.id + ".png");
+        const data = await blobService.get(record.id + ".csv");
+        record.thumbnail = thumbnail.uri;
+        record.data = data.uri;
       }
 
       return context;
@@ -63,8 +65,10 @@ module.exports = {
       const result = context.result;
       const blobService = context.app.service("blob");
 
-      const uri = await blobService.get(result.id + ".png");
-      result.uri = uri.uri;
+      const thumbnail = await blobService.get(result.id + ".png");
+      const data = await blobService.get(result.id + ".csv");
+      result.thumbnail = thumbnail.uri;
+      result.data = data.uri;
 
       return context;
     }],
