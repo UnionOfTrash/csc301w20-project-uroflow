@@ -1,5 +1,5 @@
 import { Authentication } from './Authentication'
-const URL = process.env.REACT_APP_API_URL;
+const URL = "https://uroflow.unionoftra.sh/api/"
 
 export const Service = {
     Authentication,

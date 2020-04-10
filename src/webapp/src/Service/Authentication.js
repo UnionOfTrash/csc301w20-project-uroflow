@@ -1,6 +1,10 @@
-const URL = process.env.REACT_APP_API_URL;
 
-export const Authentication = { login, logout };
+export const Authentication = {
+    login,
+    logout
+};
+
+const URL = "https://uroflow.unionoftra.sh"
 
 function login(username, password) {
 
@@ -10,7 +14,8 @@ function login(username, password) {
         body: JSON.stringify({ strategy:"local", username: username,  password:password })
     };
     
-    const url = URL + "authentication"
+    // const url = process.env.API_URL + "/api/authentication"
+    const url = URL + "/api/authentication"
 
     return fetch(url, requestOptions)
     .then(res => {
