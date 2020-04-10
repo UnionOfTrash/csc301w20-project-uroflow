@@ -1,16 +1,9 @@
-const { authenticate } = require("@feathersjs/authentication").hooks;
 const { protect } = require("@feathersjs/authentication-local").hooks;
-const { iff, disallow } = require("feathers-hooks-common");
+const { disallow } = require("feathers-hooks-common");
 
 module.exports = {
   before: {
-    all: [authenticate("jwt"), iff((context) => {
-      if (!context.params.user || context.params.user.role != "patient") {
-        return false;
-      }
-
-      return true;
-    }, disallow())],
+    all: [disallow("external")],
     find: [],
     get: [],
     create: [],
