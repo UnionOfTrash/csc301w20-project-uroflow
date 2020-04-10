@@ -13,6 +13,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=uroflow
       - POSTGRES_DB=uroflow
+      - POSTGRES_HOST_AUTH_METHOD=trust
 
   model:
     image: python:3.7
@@ -38,7 +39,7 @@ services:
     ports:
       - 3010:3010
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=test
       - MODEL_URL=http://model:8080?id=
       - POSTGRES_HOST=postgres
       - POSTGRES_DB=uroflow
@@ -47,9 +48,6 @@ services:
       - ADMIN_USERNAME=admin
       - ADMIN_PASSWORD=admin
     command: /bin/bash -c "npm i; npm run start"
-    depends_on:
-      - postgres
-      - model
 
   web:
     image: node:12
@@ -62,8 +60,6 @@ services:
     environment:
       - API_URL=http://api:3010
     command: /bin/bash -c "npm i; npm run start"
-    depends_on:
-      - api
 
 volumes:
 
