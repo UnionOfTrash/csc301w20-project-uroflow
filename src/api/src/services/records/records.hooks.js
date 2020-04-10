@@ -39,7 +39,17 @@ module.exports = {
 
   after: {
     all: [],
-    find: [],
+    find: [async (context) => {
+      const result = context.result;
+      const blobService = context.app.service("blob");
+
+      for (const record of result) {
+        const uri = await blobService.get(record.id + ".png");
+        record.uri = uri.uri;
+      }
+
+      return context;
+    }],
     get: [(context) => {
       if (context.params.user && context.params.user.role == "patient") {
         if (context.result.patient_id != context.params.user.id) {
@@ -47,6 +57,14 @@ module.exports = {
           context.statusCode = 400;
         }
       }
+
+      return context;
+    }, async (context) => {
+      const result = context.result;
+      const blobService = context.app.service("blob");
+
+      const uri = await blobService.get(result.id + ".png");
+      result.uri = uri.uri;
 
       return context;
     }],
