@@ -19,7 +19,7 @@ response:
   {
     "id": USERID,
     "username": USERNAME,
-    "role": 0 / 1,
+    "role": ROLE,
     "initialized": true / false,
     "createdAt": TIMESTAMP,
     "updatedAt": TIMESTAMP
@@ -29,20 +29,18 @@ response:
 
 ### ```GET``` / ```get()``` and ```DELETE``` / ```remove()```:
 
-request: ```?id=USERID```, does not have a body
+request: ```HOST/users/USERID```, does not have a body
 
 response:
 ```json
-[
-  {
-    "id": USERID,
-    "username": USERNAME,
-    "role": 0 / 1,
-    "initialized": true / false,
-    "createdAt": TIMESTAMP,
-    "updatedAt": TIMESTAMP
-  }
-] -- though a list, it only contains one users model
+{
+  "id": USERID,
+  "username": USERNAME,
+  "role": ROLE,
+  "initialized": true / false,
+  "createdAt": TIMESTAMP,
+  "updatedAt": TIMESTAMP
+}
 ```
 
 ### ```POST``` / ```create()```:
@@ -52,7 +50,7 @@ request:
 {
   "username": USERNAME,
   "password": PASSWORD, -- optional
-  "role": 0 / 1, -- optional, 0 by default, not recommended
+  "role": ROLE,
   "initialized": true / false -- optional, false by default, set to true if password is also sent
 }
 ```
@@ -62,20 +60,26 @@ response:
 {
   "id": USERID,
   "username": USERNAME,
-  "role": 0 / 1,
+  "role": ROLE,
   "initialized": true / false,
   "createdAt": TIMESTAMP,
   "updatedAt": TIMESTAMP
-} -- only a simple users model
+}
 ```
 
 ### ```PUT``` / ```update()``` and ```PATCH``` / ```patch()```:
 
-request: ```?id=USERID```, body same as ```POST``` / ```create()```
+request: ```HOST/users/USERID```, body same as ```POST``` / ```create()```
 
 response: same as ```POST``` / ```create()```
 
 
 ## Additional Notes:
 
-1. For patients creation please use ```POST /patients``` or ```app.service("patients").create()```, this will automatically create a new users model
+1. For patient accounts using ```GET```/```find()``` method, they will only receive users information about themselves
+2. For clinician accounts using ```GET```/```find()``` method, they will only receive all patients information
+3. Patient accounts will receive **400 BadRequest** when visiting ```GET```/```get()``` method with a different ```USERID```
+4. ```POST``` only accepts creating new admin accounts and clinician accounts, and only can be used by admin accounts
+5. For patients creation please use ```POST /patients``` or ```app.service("patients").create()```, this will automatically create a new users model
+6. You are not allowed to patch the ```id``` as well as ```username``` across all accounts
+7. ```DELETE``` only for admin accounts
