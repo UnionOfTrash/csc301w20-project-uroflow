@@ -19,11 +19,7 @@ function Copyright() {
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://www.sickkids.ca/">
-<<<<<<< HEAD
         Uroflow
-=======
-        UroFlow
->>>>>>> refs/remotes/origin/dev
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
