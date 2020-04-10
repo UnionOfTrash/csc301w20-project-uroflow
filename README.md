@@ -1,5 +1,7 @@
 # Hospital for Sick Children
 
++ Video Demo: https://youtu.be/ID0yGLDdHhY
+
 ## How to setup the repo
 
 ### If you didn't clone the repo, run:
@@ -68,10 +70,10 @@ $ deactivate                # offload the dev environment
 
 ## Contributors:
 
-- ed.sh:
-- even.zhou: "Even Zhou" "even.y.zhou@outlook.com"
-- jingjing.gu:
-- kareny.chen:
-- kexin.lin:
-- pan.chen:
-- yyx.yang:
+- ed.shi - "Qiushi Shi" "ed.shi@mail.utoronto.ca"
+- even.zhou - "Even Zhou" "even.y.zhou@outlook.com"
+- jingjing.gu - "Jingjing Gu" "jingjing.gu@mail.utoronto.ca"
+- kareny.chen - "Karen Chen" "kareny.chen@mail.utoronto.ca"
+- kexin.lin - "Kexin Lin" "kexin.lin@mail.utoronto.ca"
+- pan.chen - "Pan Chen" "pan.chen@mail.utoronto.ca"
+- yyx.yang - "Yuxin Yang" "yangyuxin0406@gmail.com"
