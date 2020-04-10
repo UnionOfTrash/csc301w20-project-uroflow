@@ -27,7 +27,7 @@ response:
   "user": { -- check docs/models/users.md for the model definition
     "id": USERID,
     "username": USERNAME,
-    "role": 0 / 1,
+    "role": ROLE,
     "initialized": true / false,
     "createdAt": TIMESTAMP,
     "updatedAt": TIMESTAMP
@@ -37,7 +37,7 @@ response:
 
 ## Additional Notes:
 
-1. Still figuring out the logout (or the ```remove()``` method in local strategy), it does not work right now and seems like an upstream issue
-2. Ther user has to be created before doing authentication, otherwise a **401 NotAuthenticated** error will be sent
+1. Still figuring out the logout (or the ```remove()``` method in local strategy), it is not working as expected right now
+2. The user has to be created before doing authentication, otherwise a **401 NotAuthenticated** error will be sent
 3. For other stuff here, check [Feathers Authentication](https://docs.feathersjs.com/api/authentication/)
-4. For the definitiond and used of JWT, check [JSON Web Tokens](https://jwt.io/introduction/)
+4. For the definition and use of JWT, check [JSON Web Tokens](https://jwt.io/introduction/)

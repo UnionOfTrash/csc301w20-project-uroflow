@@ -20,5 +20,5 @@
 
 ### Sex:
 
-true -- Male
-false -- Female
+* true -- Male
+* false -- Female

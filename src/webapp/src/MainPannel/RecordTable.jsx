@@ -32,8 +32,6 @@ const classes = makeStyles(theme => ({
     }
   }));
 
-const CURVE_URL = "https://uroflow.unionoftra.sh/api/curve/"
-
 const tableTheme = createMuiTheme({
     overrides: {
       MUIDataTable: {
@@ -66,6 +64,8 @@ class RecordTable extends React.Component{
                     pcomment:r.pcomment,
                     ccomment:r.ccomment,
                     editCComment:false,
+                    thumbnail:r.thumbnail,
+                    data:r.data,
                 }
             }),
 
@@ -77,10 +77,9 @@ class RecordTable extends React.Component{
     }
 
 
-    handleOpenGraph = (cid) => {
+    handleOpenGraph = (uri) => {
 
-        Service.getCurveData(cid).then(curveData => {
-          console.log('Results:', curveData)
+        Service.getCurveData(uri).then(curveData => {
           this.setState({
               curveData:curveData.data,
               curveLabel:curveData.label,
@@ -232,6 +231,9 @@ class RecordTable extends React.Component{
         download:false,
         viewColumns:false,
         customRowRender: (record, dataIndex, rowIndex) => {
+            const rec = this.state.records.filter(r => r.id === record[1])[0]
+            const thumbnail = rec.thumbnail
+            const curve_uri = rec.data
 
             return (
                 <TableRow hover key={rowIndex}>
@@ -245,9 +247,9 @@ class RecordTable extends React.Component{
                     {/* Cell for the thumbnail */}
                     <TableCell style={{textAlign: 'center'}}>
                     {" "}
-                    <Button onClick={() => this.handleOpenGraph(record[1])}>
+                    <Button onClick={() => this.handleOpenGraph(curve_uri)}>
                         <img
-                            src= { CURVE_URL + record[1] +  ".png"}
+                            src= { thumbnail }
                             style={{ maxWidth: "200px" }}
                             alt="curve img"
                         />{" "}

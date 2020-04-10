@@ -23,8 +23,8 @@ module.exports = function (app) {
       allowNull: true
     },
     role: {
-      type: DataTypes.INTEGER,
-      defaultValue: 0,
+      type: DataTypes.STRING,
+      defaultValue: "patient",
       allowNull: false
     },
     initialized: {

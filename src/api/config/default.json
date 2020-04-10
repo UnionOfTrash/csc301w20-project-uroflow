@@ -2,8 +2,7 @@
   "host": "localhost",
   "port": 3010,
   "public": "../public/",
-  "audio": "../audios/",
-  "curve": "../curves/",
+  "blob": "../blob/",
   "paginate": {
     "default": 10,
     "max": 50

@@ -9,11 +9,12 @@ app = Flask("pytorch_model")
 def serve():
     id = request.args["id"]
 
+    preprocessor = os.environ["PREPROCESS_FILE"]
     model = os.environ["MODEL_FILE"]
-    audio_file = "./audios/" + id + ".wav"
-    out_path = "./curves/"
+    audio_file = "./blob/" + id + ".wav"
+    out_path = "./blob/"
     out_filename = id + ".csv"
-    subprocess.run(["python3", model, "-audio_file", audio_file, "-out_path", out_path, "-out_filename", out_filename, "-checkpoint", "./Water.pt"])
+    subprocess.run(["python3", preprocessor, "-audio_file", audio_file, "-out_path", out_path, "-out_filename", out_filename, "-checkpoint", model])
     subprocess.run(["python3", "plot.py", "-i", id])
 
     return "Success"

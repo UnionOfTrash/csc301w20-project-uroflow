@@ -18,4 +18,5 @@
 
 ### Condition:
 
-an array of length 3 fixed
+an array of length 3 fixed \
+representing: leak, poop and urgent respectively

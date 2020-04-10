@@ -1,39 +1,49 @@
 const { authenticate } = require("@feathersjs/authentication").hooks;
+const { iff, disallow, discard } = require("feathers-hooks-common");
 
 module.exports = {
   before: {
-    all: [ authenticate("jwt") ],
-    find: [ (context) => {
-      if (context.params.user && context.params.user.role == 0) {
+    all: [authenticate("jwt")],
+    find: [(context) => {
+      if (context.params.user && context.params.user.role == "patient") {
         context.params.query = Object.assign({}, context.params.query, { id: context.params.user.id });
       }
 
       return context;
-    } ],
-    get: [],
-    create: [ (context) => {
-      if (context.params.user && context.params.user.role == 0) {
-        throw new Error("Patients are not allowed to create new patients");
+    }],
+    get: [(context) => {
+      if (context.params.user && context.params.user.role == "patient") {
+        if (context.id != context.params.user.id) {
+          context.result = { error: "Patients not allowed to visit other patients." };
+          context.statusCode = 400;
+        }
       }
 
       return context;
-    } ],
-    update: [],
-    patch: [],
-    remove: [ (context) => {
-      if (context.params.user && context.params.user.role == 0) {
-        throw new Error("Patients are not allowed to delete patients");
+    }],
+    create: [iff((context) => {
+      if (context.params.user && context.params.user.role != "patient") {
+        return false;
       }
 
-      return context;
-    } ]
+      return true;
+    }, disallow("external"))],
+    update: [discard("id", "study_id")],
+    patch: [discard("id", "study_id")],
+    remove: [iff((context) => {
+      if (!context.params.user || context.params.user.role == "admin") {
+        return false;
+      }
+
+      return true;
+    }, disallow("external"))]
   },
 
   after: {
     all: [],
     find: [],
     get: [],
-    create: [ async (context) => {
+    create: [async (context) => {
       const result = context.result;
       const usersService = context.app.service("users");
 
@@ -43,38 +53,17 @@ module.exports = {
       });
 
       return context;
-    } ],
-    update: [ async (context) => {
-      const result = context.result;
-      const usersService = context.app.service("users");
-
-      await usersService.patch(result.id, {
-        username: result.study_id
-      });
-
-      return context;
-    } ],
-    patch: [ async (context) => {
-      const data = context.data;
-      if ("study_id" in data) {
-        const result = context.result;
-        const usersService = context.app.service("users");
-
-        await usersService.patch(result.id, {
-          username: result.study_id
-        });
-      }
-
-      return context;
-    } ],
-    remove: [ async (context) => {
+    }],
+    update: [],
+    patch: [],
+    remove: [async (context) => {
       const result = context.result;
       const usersService = context.app.service("users");
 
       await usersService.remove(result.id);
 
       return context;
-    } ]
+    }]
   },
 
   error: {

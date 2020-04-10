@@ -1,9 +1,9 @@
-const { authenticate } = require("@feathersjs/authentication").hooks;
 const { protect } = require("@feathersjs/authentication-local").hooks;
+const { disallow } = require("feathers-hooks-common");
 
 module.exports = {
   before: {
-    all: [ authenticate("jwt") ],
+    all: [disallow("external")],
     find: [],
     get: [],
     create: [],
@@ -16,7 +16,7 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [ protect("uri") ],
+    create: [protect("uri")],
     update: [],
     patch: [],
     remove: []

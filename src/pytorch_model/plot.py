@@ -9,8 +9,8 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     id = args.id
-    csvfile = np.genfromtxt("./curves/" + id + ".csv", delimiter=",")
+    csvfile = np.genfromtxt("./blob/" + id + ".csv", delimiter=",")
     plt.xlabel("Time")
     plt.ylabel("Flow ml/s")
     plt.plot(csvfile[:, 2], csvfile[:, 1])
-    plt.savefig("./curves/" + id + ".png")
+    plt.savefig("./blob/" + id + ".png")
