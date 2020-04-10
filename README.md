@@ -65,3 +65,13 @@ $ deactivate                # offload the dev environment
     ```
 
 4. Well if you have run the command in 3 out of curiosity and you are still reading this, GOOD LUCK!
+
+## Contributors:
+
+- ed.sh:
+- even.zhou: "Even Zhou" "even.y.zhou@outlook.com"
+- jingjing.gu:
+- kareny.chen:
+- kexin.lin:
+- pan.chen:
+- yyx.yang:
